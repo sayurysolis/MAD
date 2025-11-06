@@ -51,8 +51,8 @@ CREATE TABLE Empleado(
 	FOREIGN KEY (EmpresaID) REFERENCES Empresa(ID_Empresa),
 	FOREIGN KEY (DepID) REFERENCES Departamento(ID_Departamento),
 	FOREIGN KEY (PuestoID) REFERENCES Puesto(ID_Puesto),
-
 );
+
 CREATE TABLE telefonos (
 	ID_Telefono INT IDENTITY(1,1) PRIMARY KEY,
 	NumeroTelefono VARCHAR(10),
@@ -92,25 +92,8 @@ CREATE TABLE PercepcionesDeduccion(
 );
 
 
+DROP TABLE PercepcionesDeduccion
 
-
-
-
-
-
-
-
-
-
-INSERT INTO Empleado(nombre) values
-('reobert'),('Areth'),('Michi'),('Jimena');
-
-INSERT INTO Empleado(nombre) values
-('Sayuri');
-
-SELECT *FROM Empleado;
-
-
-SELECT * FROM empleado WHERE nombre LIKE 'A%';
-
-Drop table Empleado;
+SELECT * FROM Empleado;
+SELECT * FROM INFORMATION_SCHEMA.TABLES;
+SELECT * FROM INFORMATION_SCHEMA.ROUTINES;
