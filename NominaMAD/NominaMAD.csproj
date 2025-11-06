@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2F03140-A853-4627-B5EE-F5B5C79E8880}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>NominaMAD</RootNamespace>
+    <AssemblyName>NominaMAD</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Conceptos DP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Conceptos DP.Designer.cs">
+      <DependentUpon>Conceptos DP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empresa.Designer.cs">
+      <DependentUpon>Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeadCounter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeadCounter.Designer.cs">
+      <DependentUpon>HeadCounter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RH.Designer.cs">
+      <DependentUpon>RH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte General Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte General Nomina.Designer.cs">
+      <DependentUpon>Reporte General Nomina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReciboPorEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReciboPorEmpleado.Designer.cs">
+      <DependentUpon>ReciboPorEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarNomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarNomina.Designer.cs">
+      <DependentUpon>GenerarNomina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionEmpleados.Designer.cs">
+      <DependentUpon>GestionEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionPuestos.Designer.cs">
+      <DependentUpon>GestionPuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDepartamentos.Designer.cs">
+      <DependentUpon>GestionDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Meenu2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Meenu2.Designer.cs">
+      <DependentUpon>Meenu2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu1.Designer.cs">
+      <DependentUpon>Menu1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Conceptos DP.resx">
+      <DependentUpon>Conceptos DP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empresa.resx">
+      <DependentUpon>Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeadCounter.resx">
+      <DependentUpon>HeadCounter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RH.resx">
+      <DependentUpon>RH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte General Nomina.resx">
+      <DependentUpon>Reporte General Nomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReciboPorEmpleado.resx">
+      <DependentUpon>ReciboPorEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarNomina.resx">
+      <DependentUpon>GenerarNomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionEmpleados.resx">
+      <DependentUpon>GestionEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionPuestos.resx">
+      <DependentUpon>GestionPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDepartamentos.resx">
+      <DependentUpon>GestionDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Meenu2.resx">
+      <DependentUpon>Meenu2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu1.resx">
+      <DependentUpon>Menu1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plantilla.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reporte Departamentos .html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reporte Puestos.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reporte Turnos.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReporteGeneral%28Kardex%29.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

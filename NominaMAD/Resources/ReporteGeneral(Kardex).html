@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .employee-section {
+            margin-bottom: 30px;
+            border: 1px solid #000;
+            padding: 15px;
+        }
+
+        .employee-info {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .month-header {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .total-row {
+            font-weight: bold;
+            background-color: #dcdcdc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mes y Año en la esquina superior derecha -->
+    <div class="header">
+        Año del Reporte: @ANO_REPORTE
+    </div>
+
+    <!-- Título del Reporte -->
+    <div class="title">
+        <h2>Reporte General de Empleados (Kardex)</h2>
+    </div>
+
+    <!-- Sección de Empleados -->
+    @EMPLEADOS <!-- Marca de lugar para cada empleado -->
+
+</body>
+</html>

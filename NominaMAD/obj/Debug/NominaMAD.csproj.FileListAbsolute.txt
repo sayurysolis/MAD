@@ -1,0 +1,53 @@
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\bin\Debug\NominaMAD.exe.config
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\bin\Debug\NominaMAD.exe
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\bin\Debug\NominaMAD.pdb
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.AssemblyReference.cache
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Menu2.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Menu1.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Inicio.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.Properties.Resources.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.GenerateResource.cache
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.CoreCompileInputs.cache
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.exe
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.pdb
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GestionDepar.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GestionPuestos.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GestionEmpleados.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_ConceptosDP.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GenerarNomina.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Empresa.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_ReciboEmpleado.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\bin\Debug\itextsharp.dll
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\bin\Debug\itextsharp.xmlworker.dll
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\bin\Debug\itextsharp.xml
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.CopyComplete
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_RH.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_RepGenNomina.resources
+C:\Luis Mtz\Quinto semestre\Moaddat\Proyecto\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_HeadCounter.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\bin\Debug\NominaMAD.exe.config
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\bin\Debug\NominaMAD.exe
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\bin\Debug\NominaMAD.pdb
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\bin\Debug\itextsharp.dll
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\bin\Debug\itextsharp.xml
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.AssemblyReference.cache
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.exe.config
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_ConceptosDP.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Empresa.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_HeadCounter.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_RH.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_RepGenNomina.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_ReciboEmpleado.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GenerarNomina.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GestionEmpleados.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GestionPuestos.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_GestionDepar.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Menu2.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Menu1.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.P_Inicio.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.Properties.Resources.resources
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.GenerateResource.cache
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.Up2Date
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.exe
+C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.pdb
