@@ -51,3 +51,30 @@ C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\Nom
 C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.csproj.Up2Date
 C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.exe
 C:\Users\Usuario\Downloads\MAD-2052355-1686343\NominaMAD\NominaMAD\obj\Debug\NominaMAD.pdb
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\bin\Debug\NominaMAD.exe.config
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\bin\Debug\NominaMAD.exe
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\bin\Debug\NominaMAD.pdb
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\bin\Debug\itextsharp.dll
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\bin\Debug\itextsharp.xmlworker.dll
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\bin\Debug\itextsharp.xml
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.AssemblyReference.cache
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.exe.config
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_ConceptosDP.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_Empresa.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_HeadCounter.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_RH.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_RepGenNomina.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_ReciboEmpleado.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_GenerarNomina.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_GestionEmpleados.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_GestionPuestos.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_GestionDepar.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_Menu2.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_Menu1.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.P_Inicio.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.Properties.Resources.resources
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.GenerateResource.cache
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.CoreCompileInputs.cache
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.Up2Date
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.exe
+E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.pdb

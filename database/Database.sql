@@ -28,23 +28,30 @@ CREATE TABLE Empleado(
 	EmpresaID INT,
 	DepID INT,
 	PuestoID INT,
-	Gerente  BIT,
+	Gerente  BIT,--1 Gerente, 0 empleado
+
 	ID_Empleado INT  IDENTITY  (1000,1) PRIMARY KEY ,--Numero de empleado
-	Contrasena NVARCHAR(20), --NOT NULL,
+	Contrasena NVARCHAR(20) NOT NULL, -- implementar HASH en un futuro para seguridad
+
+	
 	CURP VARCHAR(18) UNIQUE,
 	NSS VARCHAR(11) UNIQUE,
 	RFC VARCHAR (13) UNIQUE,
+	
 	Nombre VARCHAR(50) NOT NULL,
 	ApellidoPaterno VARCHAR(50) NOT NULL,
 	ApellidoMaterno VARCHAR(50) ,--NOT NULL,
 	FechaNacimiento DATE,
+	
 	Banco VARCHAR(30),
 	NumeroCuenta VARCHAR(20) UNIQUE,
 	SalarioDiario DECIMAL (10,2),
 	SalarioDiarioIntegrado DECIMAL (10,2),-- capturar en automatico en c#
-	Email VARCHAR(50),
+	
+	Email NVARCHAR(50),
 	DireccionID INT,
 	TelefonoID INT,
+	
 	estatus BIT, -- 1 para activo 0 para inactivo
 	FechaIngreso DATE,
 

@@ -13,7 +13,7 @@ namespace NominaMAD
 {
     public partial class P_Inicio : Form
     {
-        string Conexion = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+        string Conexion = "Data Source=RAGE-PC\\SQLEXPRESS;Initial Catalog=DSB_topografia;Integrated Security=True";
         //public int MMenuAoE;
         public static int MMenuAoE;  // Variable estática
                                      // public static string NombUsuario;

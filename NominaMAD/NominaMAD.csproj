@@ -59,18 +59,21 @@
     <Compile Include="Conceptos DP.Designer.cs">
       <DependentUpon>Conceptos DP.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\EmpleadoDAO.cs" />
     <Compile Include="Empresa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Empresa.Designer.cs">
       <DependentUpon>Empresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entidad\Empleado.cs" />
     <Compile Include="HeadCounter.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HeadCounter.Designer.cs">
       <DependentUpon>HeadCounter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BD_Conexion.cs" />
     <Compile Include="RH.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,5 +214,6 @@
   <ItemGroup>
     <None Include="Resources\ReporteGeneral%28Kardex%29.html" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
