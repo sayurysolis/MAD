@@ -84,7 +84,7 @@
             // btn_Regresar_GestionEmpleados
             // 
             this.btn_Regresar_GestionEmpleados.Location = new System.Drawing.Point(268, 477);
-            this.btn_Regresar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Regresar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Regresar_GestionEmpleados.Name = "btn_Regresar_GestionEmpleados";
             this.btn_Regresar_GestionEmpleados.Size = new System.Drawing.Size(93, 36);
             this.btn_Regresar_GestionEmpleados.TabIndex = 77;
@@ -95,7 +95,7 @@
             // btn_Modificar_GestionEmpleados
             // 
             this.btn_Modificar_GestionEmpleados.Location = new System.Drawing.Point(8, 401);
-            this.btn_Modificar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Modificar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Modificar_GestionEmpleados.Name = "btn_Modificar_GestionEmpleados";
             this.btn_Modificar_GestionEmpleados.Size = new System.Drawing.Size(78, 34);
             this.btn_Modificar_GestionEmpleados.TabIndex = 75;
@@ -117,7 +117,7 @@
             // txt_Telefono_GestionEmpleados
             // 
             this.txt_Telefono_GestionEmpleados.Location = new System.Drawing.Point(480, 387);
-            this.txt_Telefono_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Telefono_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Telefono_GestionEmpleados.Name = "txt_Telefono_GestionEmpleados";
             this.txt_Telefono_GestionEmpleados.Size = new System.Drawing.Size(96, 20);
             this.txt_Telefono_GestionEmpleados.TabIndex = 73;
@@ -148,7 +148,7 @@
             // 
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.Location = new System.Drawing.Point(642, 423);
-            this.dateTimer_FechaIngreEmpr_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimer_FechaIngreEmpr_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.Name = "dateTimer_FechaIngreEmpr_GestionEmpleados";
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.Size = new System.Drawing.Size(90, 20);
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.TabIndex = 70;
@@ -158,7 +158,7 @@
             this.CmBox_Puesto_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Puesto_GestionEmpleados.FormattingEnabled = true;
             this.CmBox_Puesto_GestionEmpleados.Location = new System.Drawing.Point(91, 241);
-            this.CmBox_Puesto_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CmBox_Puesto_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Puesto_GestionEmpleados.Name = "CmBox_Puesto_GestionEmpleados";
             this.CmBox_Puesto_GestionEmpleados.Size = new System.Drawing.Size(158, 21);
             this.CmBox_Puesto_GestionEmpleados.TabIndex = 69;
@@ -179,7 +179,7 @@
             this.Cmbox_Departamento_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmbox_Departamento_GestionEmpleados.FormattingEnabled = true;
             this.Cmbox_Departamento_GestionEmpleados.Location = new System.Drawing.Point(139, 201);
-            this.Cmbox_Departamento_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Cmbox_Departamento_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.Cmbox_Departamento_GestionEmpleados.Name = "Cmbox_Departamento_GestionEmpleados";
             this.Cmbox_Departamento_GestionEmpleados.Size = new System.Drawing.Size(140, 21);
             this.Cmbox_Departamento_GestionEmpleados.TabIndex = 67;
@@ -188,7 +188,7 @@
             // txt_Email_GestionEmpleados
             // 
             this.txt_Email_GestionEmpleados.Location = new System.Drawing.Point(454, 352);
-            this.txt_Email_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Email_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Email_GestionEmpleados.Name = "txt_Email_GestionEmpleados";
             this.txt_Email_GestionEmpleados.Size = new System.Drawing.Size(186, 20);
             this.txt_Email_GestionEmpleados.TabIndex = 66;
@@ -207,7 +207,7 @@
             // txt_NumCuenta_GestionEmpleados
             // 
             this.txt_NumCuenta_GestionEmpleados.Location = new System.Drawing.Point(540, 180);
-            this.txt_NumCuenta_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_NumCuenta_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_NumCuenta_GestionEmpleados.Name = "txt_NumCuenta_GestionEmpleados";
             this.txt_NumCuenta_GestionEmpleados.Size = new System.Drawing.Size(128, 20);
             this.txt_NumCuenta_GestionEmpleados.TabIndex = 64;
@@ -226,7 +226,7 @@
             // txt_Banco_GestionEmpleados
             // 
             this.txt_Banco_GestionEmpleados.Location = new System.Drawing.Point(451, 146);
-            this.txt_Banco_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Banco_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Banco_GestionEmpleados.Name = "txt_Banco_GestionEmpleados";
             this.txt_Banco_GestionEmpleados.Size = new System.Drawing.Size(174, 20);
             this.txt_Banco_GestionEmpleados.TabIndex = 62;
@@ -245,7 +245,7 @@
             // txt_DomCompleto_GestionEmpleados
             // 
             this.txt_DomCompleto_GestionEmpleados.Location = new System.Drawing.Point(539, 115);
-            this.txt_DomCompleto_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_DomCompleto_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_DomCompleto_GestionEmpleados.Name = "txt_DomCompleto_GestionEmpleados";
             this.txt_DomCompleto_GestionEmpleados.Size = new System.Drawing.Size(225, 20);
             this.txt_DomCompleto_GestionEmpleados.TabIndex = 60;
@@ -264,7 +264,7 @@
             // txt_RFC_GestionEmpleados
             // 
             this.txt_RFC_GestionEmpleados.Location = new System.Drawing.Point(439, 80);
-            this.txt_RFC_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_RFC_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_RFC_GestionEmpleados.Name = "txt_RFC_GestionEmpleados";
             this.txt_RFC_GestionEmpleados.Size = new System.Drawing.Size(123, 20);
             this.txt_RFC_GestionEmpleados.TabIndex = 58;
@@ -283,7 +283,7 @@
             // txt_NSS_GestionEmpleados
             // 
             this.txt_NSS_GestionEmpleados.Location = new System.Drawing.Point(628, 50);
-            this.txt_NSS_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_NSS_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_NSS_GestionEmpleados.Name = "txt_NSS_GestionEmpleados";
             this.txt_NSS_GestionEmpleados.Size = new System.Drawing.Size(143, 20);
             this.txt_NSS_GestionEmpleados.TabIndex = 56;
@@ -302,7 +302,7 @@
             // txt_Curp_GestionEmpleados
             // 
             this.txt_Curp_GestionEmpleados.Location = new System.Drawing.Point(65, 326);
-            this.txt_Curp_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Curp_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Curp_GestionEmpleados.Name = "txt_Curp_GestionEmpleados";
             this.txt_Curp_GestionEmpleados.Size = new System.Drawing.Size(160, 20);
             this.txt_Curp_GestionEmpleados.TabIndex = 54;
@@ -322,7 +322,7 @@
             // dateTimer_FechaNacim_GestionEmpleados
             // 
             this.dateTimer_FechaNacim_GestionEmpleados.Location = new System.Drawing.Point(182, 284);
-            this.dateTimer_FechaNacim_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimer_FechaNacim_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimer_FechaNacim_GestionEmpleados.Name = "dateTimer_FechaNacim_GestionEmpleados";
             this.dateTimer_FechaNacim_GestionEmpleados.Size = new System.Drawing.Size(91, 20);
             this.dateTimer_FechaNacim_GestionEmpleados.TabIndex = 52;
@@ -342,7 +342,7 @@
             // txt_ApellMaterno_GestionEmpleados
             // 
             this.txt_ApellMaterno_GestionEmpleados.Location = new System.Drawing.Point(157, 161);
-            this.txt_ApellMaterno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_ApellMaterno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ApellMaterno_GestionEmpleados.Name = "txt_ApellMaterno_GestionEmpleados";
             this.txt_ApellMaterno_GestionEmpleados.Size = new System.Drawing.Size(150, 20);
             this.txt_ApellMaterno_GestionEmpleados.TabIndex = 50;
@@ -361,7 +361,7 @@
             // txt_ApellPaterno_GestionEmpleados
             // 
             this.txt_ApellPaterno_GestionEmpleados.Location = new System.Drawing.Point(145, 119);
-            this.txt_ApellPaterno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_ApellPaterno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ApellPaterno_GestionEmpleados.Name = "txt_ApellPaterno_GestionEmpleados";
             this.txt_ApellPaterno_GestionEmpleados.Size = new System.Drawing.Size(164, 20);
             this.txt_ApellPaterno_GestionEmpleados.TabIndex = 48;
@@ -380,7 +380,7 @@
             // txt_Nombres_GestionEmpleados
             // 
             this.txt_Nombres_GestionEmpleados.Location = new System.Drawing.Point(101, 80);
-            this.txt_Nombres_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Nombres_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Nombres_GestionEmpleados.Name = "txt_Nombres_GestionEmpleados";
             this.txt_Nombres_GestionEmpleados.Size = new System.Drawing.Size(195, 20);
             this.txt_Nombres_GestionEmpleados.TabIndex = 46;
@@ -399,7 +399,7 @@
             // txt_NumEmplea_GestionEmpleados
             // 
             this.txt_NumEmplea_GestionEmpleados.Location = new System.Drawing.Point(243, 11);
-            this.txt_NumEmplea_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_NumEmplea_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_NumEmplea_GestionEmpleados.Name = "txt_NumEmplea_GestionEmpleados";
             this.txt_NumEmplea_GestionEmpleados.Size = new System.Drawing.Size(148, 20);
             this.txt_NumEmplea_GestionEmpleados.TabIndex = 42;
@@ -419,7 +419,7 @@
             // btn_Agregar_GestionEmpleados
             // 
             this.btn_Agregar_GestionEmpleados.Location = new System.Drawing.Point(8, 361);
-            this.btn_Agregar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Agregar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Agregar_GestionEmpleados.Name = "btn_Agregar_GestionEmpleados";
             this.btn_Agregar_GestionEmpleados.Size = new System.Drawing.Size(78, 36);
             this.btn_Agregar_GestionEmpleados.TabIndex = 78;
@@ -430,7 +430,7 @@
             // btn_Buscar_GestionEmpleados
             // 
             this.btn_Buscar_GestionEmpleados.Location = new System.Drawing.Point(412, 10);
-            this.btn_Buscar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Buscar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Buscar_GestionEmpleados.Name = "btn_Buscar_GestionEmpleados";
             this.btn_Buscar_GestionEmpleados.Size = new System.Drawing.Size(72, 20);
             this.btn_Buscar_GestionEmpleados.TabIndex = 79;
@@ -441,7 +441,7 @@
             // btn_Eliminar_GestionEmpleados
             // 
             this.btn_Eliminar_GestionEmpleados.Location = new System.Drawing.Point(8, 440);
-            this.btn_Eliminar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Eliminar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Eliminar_GestionEmpleados.Name = "btn_Eliminar_GestionEmpleados";
             this.btn_Eliminar_GestionEmpleados.Size = new System.Drawing.Size(76, 37);
             this.btn_Eliminar_GestionEmpleados.TabIndex = 80;
@@ -452,7 +452,7 @@
             // btn_AceptarMOD_GestionEmpleados
             // 
             this.btn_AceptarMOD_GestionEmpleados.Location = new System.Drawing.Point(110, 428);
-            this.btn_AceptarMOD_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AceptarMOD_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AceptarMOD_GestionEmpleados.Name = "btn_AceptarMOD_GestionEmpleados";
             this.btn_AceptarMOD_GestionEmpleados.Size = new System.Drawing.Size(138, 26);
             this.btn_AceptarMOD_GestionEmpleados.TabIndex = 81;
@@ -463,7 +463,7 @@
             // btn_CancelarMOD_GestionEmpleados
             // 
             this.btn_CancelarMOD_GestionEmpleados.Location = new System.Drawing.Point(110, 468);
-            this.btn_CancelarMOD_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_CancelarMOD_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CancelarMOD_GestionEmpleados.Name = "btn_CancelarMOD_GestionEmpleados";
             this.btn_CancelarMOD_GestionEmpleados.Size = new System.Drawing.Size(138, 26);
             this.btn_CancelarMOD_GestionEmpleados.TabIndex = 82;
@@ -474,7 +474,7 @@
             // txt_MosNumEmplea_GestionEmpleados
             // 
             this.txt_MosNumEmplea_GestionEmpleados.Location = new System.Drawing.Point(181, 47);
-            this.txt_MosNumEmplea_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_MosNumEmplea_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_MosNumEmplea_GestionEmpleados.Name = "txt_MosNumEmplea_GestionEmpleados";
             this.txt_MosNumEmplea_GestionEmpleados.Size = new System.Drawing.Size(148, 20);
             this.txt_MosNumEmplea_GestionEmpleados.TabIndex = 84;
@@ -493,7 +493,7 @@
             // btn_AgregarAceptar_GestionEmpleados
             // 
             this.btn_AgregarAceptar_GestionEmpleados.Location = new System.Drawing.Point(118, 361);
-            this.btn_AgregarAceptar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AgregarAceptar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AgregarAceptar_GestionEmpleados.Name = "btn_AgregarAceptar_GestionEmpleados";
             this.btn_AgregarAceptar_GestionEmpleados.Size = new System.Drawing.Size(80, 25);
             this.btn_AgregarAceptar_GestionEmpleados.TabIndex = 85;
@@ -504,7 +504,7 @@
             // btn_AgregarCancelar_GestionEmpleados
             // 
             this.btn_AgregarCancelar_GestionEmpleados.Location = new System.Drawing.Point(118, 398);
-            this.btn_AgregarCancelar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AgregarCancelar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AgregarCancelar_GestionEmpleados.Name = "btn_AgregarCancelar_GestionEmpleados";
             this.btn_AgregarCancelar_GestionEmpleados.Size = new System.Drawing.Size(80, 25);
             this.btn_AgregarCancelar_GestionEmpleados.TabIndex = 86;
@@ -548,7 +548,7 @@
             // txt_SalarioDiario_GestionEmpleados
             // 
             this.txt_SalarioDiario_GestionEmpleados.Location = new System.Drawing.Point(506, 213);
-            this.txt_SalarioDiario_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_SalarioDiario_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SalarioDiario_GestionEmpleados.Name = "txt_SalarioDiario_GestionEmpleados";
             this.txt_SalarioDiario_GestionEmpleados.Size = new System.Drawing.Size(134, 20);
             this.txt_SalarioDiario_GestionEmpleados.TabIndex = 90;
@@ -556,7 +556,7 @@
             // txt_SalarioDIntegrado_GestionEmpleados
             // 
             this.txt_SalarioDIntegrado_GestionEmpleados.Location = new System.Drawing.Point(576, 253);
-            this.txt_SalarioDIntegrado_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_SalarioDIntegrado_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SalarioDIntegrado_GestionEmpleados.Name = "txt_SalarioDIntegrado_GestionEmpleados";
             this.txt_SalarioDIntegrado_GestionEmpleados.Size = new System.Drawing.Size(134, 20);
             this.txt_SalarioDIntegrado_GestionEmpleados.TabIndex = 91;
@@ -566,7 +566,7 @@
             this.CmBox_Estatus_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Estatus_GestionEmpleados.FormattingEnabled = true;
             this.CmBox_Estatus_GestionEmpleados.Location = new System.Drawing.Point(458, 288);
-            this.CmBox_Estatus_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CmBox_Estatus_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Estatus_GestionEmpleados.Name = "CmBox_Estatus_GestionEmpleados";
             this.CmBox_Estatus_GestionEmpleados.Size = new System.Drawing.Size(114, 21);
             this.CmBox_Estatus_GestionEmpleados.TabIndex = 92;
@@ -578,16 +578,17 @@
             this.label21.Location = new System.Drawing.Point(391, 318);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 17);
+            this.label21.Size = new System.Drawing.Size(113, 17);
             this.label21.TabIndex = 93;
-            this.label21.Text = "Turno:";
+            this.label21.Text = "Administrador:";
+            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // CmBox_Turno_GestionEmpleados
             // 
             this.CmBox_Turno_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Turno_GestionEmpleados.FormattingEnabled = true;
-            this.CmBox_Turno_GestionEmpleados.Location = new System.Drawing.Point(452, 318);
-            this.CmBox_Turno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CmBox_Turno_GestionEmpleados.Location = new System.Drawing.Point(508, 318);
+            this.CmBox_Turno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Turno_GestionEmpleados.Name = "CmBox_Turno_GestionEmpleados";
             this.CmBox_Turno_GestionEmpleados.Size = new System.Drawing.Size(105, 21);
             this.CmBox_Turno_GestionEmpleados.TabIndex = 94;
@@ -649,7 +650,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_NumEmplea_GestionEmpleados);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "P_GestionEmpleados";

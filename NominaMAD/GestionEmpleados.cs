@@ -1119,6 +1119,11 @@ namespace NominaMAD
         {
 
         }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

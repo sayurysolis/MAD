@@ -6,14 +6,14 @@ CREATE TABLE Empresa (
     RazonSocial NVARCHAR(100),
     DomicilioFiscal NVARCHAR(200),
     Contacto NVARCHAR(100),
-    RegistroPatronal NVARCHAR(50),
+    RegistroPatronal NVARCHAR(100),
     RFC NVARCHAR(20),
     FechaInicio DATE
 );
 CREATE TABLE Departamento(
 	ID_Departamento INT PRIMARY KEY,
 	Nombre NVARCHAR(30),
-	EmpleadoID INT
+	EmpleadoID INT  -- creo que no va
 );
 CREATE TABLE Puesto(
 	ID_Puesto INT PRIMARY KEY,
@@ -38,12 +38,12 @@ CREATE TABLE Empleado(
 	NSS VARCHAR(11) UNIQUE,
 	RFC VARCHAR (13) UNIQUE,
 	
-	Nombre VARCHAR(50) NOT NULL,
-	ApellidoPaterno VARCHAR(50) NOT NULL,
-	ApellidoMaterno VARCHAR(50) ,--NOT NULL,
+	Nombre NVARCHAR(MAX) NOT NULL,
+	ApellidoPaterno NVARCHAR(50) NOT NULL,
+	ApellidoMaterno NVARCHAR(50) ,--NOT NULL,
 	FechaNacimiento DATE,
 	
-	Banco VARCHAR(30),
+	Banco NVARCHAR(30),
 	NumeroCuenta VARCHAR(20) UNIQUE,
 	SalarioDiario DECIMAL (10,2),
 	SalarioDiarioIntegrado DECIMAL (10,2),-- capturar en automatico en c#
@@ -99,8 +99,4 @@ CREATE TABLE PercepcionesDeduccion(
 );
 
 
-DROP TABLE PercepcionesDeduccion
 
-SELECT * FROM Empleado;
-SELECT * FROM INFORMATION_SCHEMA.TABLES;
-SELECT * FROM INFORMATION_SCHEMA.ROUTINES;

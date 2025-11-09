@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NominaMAD.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,8 @@ namespace NominaMAD
 {
     public partial class P_Empresa : Form
     {
-        string Conexion = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+       // string Conexion = "Data Source=RAGE-PC\\SQLEXPRESS;Initial Catalog=DSB_topografia;Integrated Security=True";
+       
         public P_Empresa()
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace NominaMAD
 
         private void P_Empresa_Load(object sender, EventArgs e)
         {
-            txt_Nombre_Empresa.Enabled = false;
+           
             txt_RazonSocial_Empresa.Enabled=false;
             txt_DomFiscal_Empresa.Enabled =false;
             txt_Telelfono_Empresa.Enabled = false;
@@ -34,19 +36,19 @@ namespace NominaMAD
 
         private void CargarDatosEmpresa()
         {
-            using (SqlConnection cn = new SqlConnection(Conexion)) // Reemplaza "your_connection_string" con la cadena de conexión real
+            using (SqlConnection conexion = BD_Conexion.ObtenerConexion())
             {
                 try
                 {
-                    cn.Open();
+                    
                     string query = "SELECT TOP 1 Nombre, RazonFiscal, DomicilioFiscal, Telefono, RegistroPatronal, RFC, FechaInOperaciones FROM Empresa";
-                    SqlCommand cmd = new SqlCommand(query, cn);
+                    SqlCommand cmd = new SqlCommand(query, conexion);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
                         // Asignar los datos obtenidos a los campos de texto
-                        txt_Nombre_Empresa.Text = reader["Nombre"].ToString();
+                       
                         txt_RazonSocial_Empresa.Text = reader["RazonFiscal"].ToString();
                         txt_DomFiscal_Empresa.Text = reader["DomicilioFiscal"].ToString();
                         txt_Telelfono_Empresa.Text = reader["Telefono"].ToString();

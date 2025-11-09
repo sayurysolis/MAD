@@ -1,4 +1,5 @@
 ﻿using NominaMAD.Entidad;
+using NominaMAD.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,12 +11,20 @@ namespace NominaMAD.DAO
 {
     public class EmpleadoDAO
     {
-        public static int AgregarEmpleado(Empleado newEmpleado)
-        {
+        public static int AgregarEmpleado(Empleado Empleado){
             int retorno = 0;
 
+            using (SqlConnection conexion = BD_Conexion.ObtenerConexion())
+            {
+                string query = "";
 
-            return retorno;
+                SqlCommand comando = new SqlCommand(query, conexion);
+                retorno =comando.ExecuteNonQuery();
+               }
+
+
+
+                return retorno;
         }
 
 
