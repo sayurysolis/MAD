@@ -48,13 +48,12 @@ namespace NominaMAD
                 MMenuAoE = 1;
                 // Crear una instancia del nuevo formulario
                 P_Menu1 p_Menu1 = new P_Menu1();
-                this.Hide();
-
                 // Mostrar el nuevo formulario
                 p_Menu1.ShowDialog();
+                this.Close();
             }
-           
 
+            //this.Close();
         }
                 
       

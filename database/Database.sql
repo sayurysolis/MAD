@@ -4,7 +4,7 @@ USE DSB_topografia;
 CREATE TABLE Empresa (
     ID_Empresa INT IDENTITY(1,1) PRIMARY KEY,
     RazonSocial NVARCHAR(100),
-    DomicilioFiscal NVARCHAR(200),
+    DomicilioFiscal NVARCHAR(MAX),
     Contacto NVARCHAR(100),
     RegistroPatronal NVARCHAR(100),
     RFC NVARCHAR(20),
@@ -13,8 +13,7 @@ CREATE TABLE Empresa (
 CREATE TABLE Departamento(
 	ID_Departamento INT PRIMARY KEY,
 	Nombre NVARCHAR(30),
-	EmpleadoID INT  -- creo que no va
-);
+	);
 CREATE TABLE Puesto(
 	ID_Puesto INT PRIMARY KEY,
 	Nombre VARCHAR(30),

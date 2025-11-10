@@ -10,18 +10,18 @@ namespace NominaMAD.Entidad
     {
         public int ID { get; set; }
         public string RazonSocial {  get; set; }
-        public string Direccion {  get; set; }
+        public string DomicilioFiscal {  get; set; }
         public string contacto {  get; set; }
         public string registroPatronal {  get; set; }
         public string RFC {  get; set; }
         public DateTime fechaInicio {  get; set; }
 
         public EMPRESAS() { }
-        public EMPRESAS(int ID, string RazonSocial,string Direccion, string contacto,string registroPatronal,string RFC,DateTime FechaIni)
+        public EMPRESAS(int ID, string RazonSocial,string DomicilioFiscal, string contacto,string registroPatronal,string RFC,DateTime FechaIni)
         {
             this.ID = ID;
             this.RazonSocial = RazonSocial;
-            this.Direccion = Direccion;
+            this.DomicilioFiscal = DomicilioFiscal;
             this.contacto = contacto;
             this.registroPatronal = registroPatronal;
             this.RFC =RFC ;

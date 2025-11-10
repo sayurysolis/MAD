@@ -1,4 +1,6 @@
-﻿using NominaMAD.Resources;
+﻿using NominaMAD.DAO;
+using NominaMAD.Entidad;
+using NominaMAD.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,50 +26,53 @@ namespace NominaMAD
         private void P_Empresa_Load(object sender, EventArgs e)
         {
            
-            txt_RazonSocial_Empresa.Enabled=false;
-            txt_DomFiscal_Empresa.Enabled =false;
+            txt_RazonSocial_Empresa.ReadOnly=true;
+            txt_DomFiscal_Empresa.ReadOnly =true;
             txt_Telelfono_Empresa.Enabled = false;
             txt_RegistroPeatronal_Empresa.Enabled= false;
             txt_RFC_Empresa.Enabled = false;
             dtp_FechaInOpera_Empresa.Enabled = false;
             CargarDatosEmpresa();
+            
+            #region formatos
+            txt_RazonSocial_Empresa.Multiline = true;
+            txt_RazonSocial_Empresa.ScrollBars = ScrollBars.Horizontal;
+            txt_RazonSocial_Empresa.WordWrap = false;
+
+            txt_DomFiscal_Empresa.Multiline = true;
+            txt_DomFiscal_Empresa.ScrollBars = ScrollBars.Horizontal;
+
+            txt_DomFiscal_Empresa.WordWrap = false;
+            dtp_FechaInOpera_Empresa.Format = DateTimePickerFormat.Custom;
+            dtp_FechaInOpera_Empresa.CustomFormat = "dd-MMM-yyyy";
+            #endregion
+
         }
 
 
         private void CargarDatosEmpresa()
         {
-            using (SqlConnection conexion = BD_Conexion.ObtenerConexion())
+            EMPRESAS empresa = EmpresaDAO.ObtenerEmpresas();
+            if (empresa != null)
             {
-                try
-                {
-                    
-                    string query = "SELECT TOP 1 Nombre, RazonFiscal, DomicilioFiscal, Telefono, RegistroPatronal, RFC, FechaInOperaciones FROM Empresa";
-                    SqlCommand cmd = new SqlCommand(query, conexion);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        // Asignar los datos obtenidos a los campos de texto
-                       
-                        txt_RazonSocial_Empresa.Text = reader["RazonFiscal"].ToString();
-                        txt_DomFiscal_Empresa.Text = reader["DomicilioFiscal"].ToString();
-                        txt_Telelfono_Empresa.Text = reader["Telefono"].ToString();
-                        txt_RegistroPeatronal_Empresa.Text = reader["RegistroPatronal"].ToString();
-                        txt_RFC_Empresa.Text = reader["RFC"].ToString();
-                        dtp_FechaInOpera_Empresa.Value = Convert.ToDateTime(reader["FechaInOperaciones"]);
-                    }
-
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar los datos de la empresa: " + ex.Message);
-                }
+                txt_RazonSocial_Empresa.Text = empresa.RazonSocial;
+                txt_DomFiscal_Empresa.Text = empresa.DomicilioFiscal;
+                txt_Telelfono_Empresa.Text = empresa.contacto;
+                txt_RegistroPeatronal_Empresa.Text = empresa.registroPatronal;
+                txt_RFC_Empresa.Text = empresa.RFC;
+                dtp_FechaInOpera_Empresa.Value = empresa.fechaInicio;
+            }
+            else
+            {
+                MessageBox.Show("No se encontró la informacón de la empresa");
             }
         }
 
+    
+
         private void btn_Regresar_Empresa_Click(object sender, EventArgs e)
         {
+
             if (P_Inicio.MMenuAoE == 1)
             {
                 P_Menu1 p_Menu1 = new P_Menu1();
@@ -92,6 +97,8 @@ namespace NominaMAD
                 }
             }
         }
+
+       
 
         private void dtp_FechaInOpera_Empresa_ValueChanged(object sender, EventArgs e)
         {
