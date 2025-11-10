@@ -45,13 +45,15 @@ namespace NominaMAD
             if (NombUsuario == "fer" && Contra == "123")
             {           
                 MessageBox.Show("Bienvenido Admin.");
+                this.Hide();
                 MMenuAoE = 1;
                 // Crear una instancia del nuevo formulario
                 P_Menu1 p_Menu1 = new P_Menu1();
                 // Mostrar el nuevo formulario
                 p_Menu1.ShowDialog();
-                this.Close();
+                
             }
+            this.Close();
 
             //this.Close();
         }

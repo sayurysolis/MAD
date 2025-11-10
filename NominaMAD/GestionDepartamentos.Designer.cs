@@ -45,20 +45,23 @@
             // dtgv_GestionDepar
             // 
             this.dtgv_GestionDepar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgv_GestionDepar.Location = new System.Drawing.Point(14, 179);
+            this.dtgv_GestionDepar.Location = new System.Drawing.Point(10, 145);
+            this.dtgv_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtgv_GestionDepar.Name = "dtgv_GestionDepar";
             this.dtgv_GestionDepar.ReadOnly = true;
             this.dtgv_GestionDepar.RowHeadersWidth = 51;
             this.dtgv_GestionDepar.RowTemplate.Height = 24;
-            this.dtgv_GestionDepar.Size = new System.Drawing.Size(549, 211);
+            this.dtgv_GestionDepar.Size = new System.Drawing.Size(412, 171);
             this.dtgv_GestionDepar.TabIndex = 0;
             this.dtgv_GestionDepar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_GestionDepar_CellClick);
+            this.dtgv_GestionDepar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_GestionDepar_CellContentClick);
             // 
             // btn_CancelarMod_GestionDepar
             // 
-            this.btn_CancelarMod_GestionDepar.Location = new System.Drawing.Point(176, 133);
+            this.btn_CancelarMod_GestionDepar.Location = new System.Drawing.Point(132, 108);
+            this.btn_CancelarMod_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_CancelarMod_GestionDepar.Name = "btn_CancelarMod_GestionDepar";
-            this.btn_CancelarMod_GestionDepar.Size = new System.Drawing.Size(163, 28);
+            this.btn_CancelarMod_GestionDepar.Size = new System.Drawing.Size(122, 23);
             this.btn_CancelarMod_GestionDepar.TabIndex = 30;
             this.btn_CancelarMod_GestionDepar.Text = "Cancelar Modificacion";
             this.btn_CancelarMod_GestionDepar.UseVisualStyleBackColor = true;
@@ -66,9 +69,10 @@
             // 
             // btn_AceptarMod_GestionDepar
             // 
-            this.btn_AceptarMod_GestionDepar.Location = new System.Drawing.Point(15, 133);
+            this.btn_AceptarMod_GestionDepar.Location = new System.Drawing.Point(11, 108);
+            this.btn_AceptarMod_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_AceptarMod_GestionDepar.Name = "btn_AceptarMod_GestionDepar";
-            this.btn_AceptarMod_GestionDepar.Size = new System.Drawing.Size(155, 27);
+            this.btn_AceptarMod_GestionDepar.Size = new System.Drawing.Size(116, 22);
             this.btn_AceptarMod_GestionDepar.TabIndex = 29;
             this.btn_AceptarMod_GestionDepar.Text = "Aceptar Modificacion ";
             this.btn_AceptarMod_GestionDepar.UseVisualStyleBackColor = true;
@@ -76,9 +80,10 @@
             // 
             // btn_Agregar_GestionDepar
             // 
-            this.btn_Agregar_GestionDepar.Location = new System.Drawing.Point(356, 35);
+            this.btn_Agregar_GestionDepar.Location = new System.Drawing.Point(267, 28);
+            this.btn_Agregar_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Agregar_GestionDepar.Name = "btn_Agregar_GestionDepar";
-            this.btn_Agregar_GestionDepar.Size = new System.Drawing.Size(86, 30);
+            this.btn_Agregar_GestionDepar.Size = new System.Drawing.Size(64, 24);
             this.btn_Agregar_GestionDepar.TabIndex = 28;
             this.btn_Agregar_GestionDepar.Text = "Agregar";
             this.btn_Agregar_GestionDepar.UseVisualStyleBackColor = true;
@@ -86,9 +91,10 @@
             // 
             // btn_Modificar_GestionDepar
             // 
-            this.btn_Modificar_GestionDepar.Location = new System.Drawing.Point(117, 81);
+            this.btn_Modificar_GestionDepar.Location = new System.Drawing.Point(88, 66);
+            this.btn_Modificar_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Modificar_GestionDepar.Name = "btn_Modificar_GestionDepar";
-            this.btn_Modificar_GestionDepar.Size = new System.Drawing.Size(99, 34);
+            this.btn_Modificar_GestionDepar.Size = new System.Drawing.Size(74, 28);
             this.btn_Modificar_GestionDepar.TabIndex = 27;
             this.btn_Modificar_GestionDepar.Text = "Modificar";
             this.btn_Modificar_GestionDepar.UseVisualStyleBackColor = true;
@@ -96,9 +102,10 @@
             // 
             // btn_Regresar_GestionDepar
             // 
-            this.btn_Regresar_GestionDepar.Location = new System.Drawing.Point(367, 122);
+            this.btn_Regresar_GestionDepar.Location = new System.Drawing.Point(275, 99);
+            this.btn_Regresar_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Regresar_GestionDepar.Name = "btn_Regresar_GestionDepar";
-            this.btn_Regresar_GestionDepar.Size = new System.Drawing.Size(96, 38);
+            this.btn_Regresar_GestionDepar.Size = new System.Drawing.Size(72, 31);
             this.btn_Regresar_GestionDepar.TabIndex = 26;
             this.btn_Regresar_GestionDepar.Text = "Regresar";
             this.btn_Regresar_GestionDepar.UseVisualStyleBackColor = true;
@@ -106,9 +113,10 @@
             // 
             // btn_limpiar_GestionDepar
             // 
-            this.btn_limpiar_GestionDepar.Location = new System.Drawing.Point(222, 83);
+            this.btn_limpiar_GestionDepar.Location = new System.Drawing.Point(166, 67);
+            this.btn_limpiar_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_limpiar_GestionDepar.Name = "btn_limpiar_GestionDepar";
-            this.btn_limpiar_GestionDepar.Size = new System.Drawing.Size(97, 34);
+            this.btn_limpiar_GestionDepar.Size = new System.Drawing.Size(73, 28);
             this.btn_limpiar_GestionDepar.TabIndex = 25;
             this.btn_limpiar_GestionDepar.Text = "Limpiar";
             this.btn_limpiar_GestionDepar.UseVisualStyleBackColor = true;
@@ -116,9 +124,10 @@
             // 
             // btn_Guardar_GestionDepar
             // 
-            this.btn_Guardar_GestionDepar.Location = new System.Drawing.Point(12, 83);
+            this.btn_Guardar_GestionDepar.Location = new System.Drawing.Point(9, 67);
+            this.btn_Guardar_GestionDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Guardar_GestionDepar.Name = "btn_Guardar_GestionDepar";
-            this.btn_Guardar_GestionDepar.Size = new System.Drawing.Size(99, 30);
+            this.btn_Guardar_GestionDepar.Size = new System.Drawing.Size(74, 24);
             this.btn_Guardar_GestionDepar.TabIndex = 24;
             this.btn_Guardar_GestionDepar.Text = "Guardar";
             this.btn_Guardar_GestionDepar.UseVisualStyleBackColor = true;
@@ -126,9 +135,10 @@
             // 
             // txt_Departamento_GestDepar
             // 
-            this.txt_Departamento_GestDepar.Location = new System.Drawing.Point(176, 43);
+            this.txt_Departamento_GestDepar.Location = new System.Drawing.Point(132, 35);
+            this.txt_Departamento_GestDepar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Departamento_GestDepar.Name = "txt_Departamento_GestDepar";
-            this.txt_Departamento_GestDepar.Size = new System.Drawing.Size(158, 22);
+            this.txt_Departamento_GestDepar.Size = new System.Drawing.Size(120, 20);
             this.txt_Departamento_GestDepar.TabIndex = 21;
             this.txt_Departamento_GestDepar.TextChanged += new System.EventHandler(this.txt_Departamento_GestDepar_TextChanged);
             // 
@@ -136,26 +146,28 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 45);
+            this.label3.Location = new System.Drawing.Point(8, 37);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 20);
+            this.label3.Size = new System.Drawing.Size(120, 17);
             this.label3.TabIndex = 18;
             this.label3.Text = "Departamento: ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 19);
+            this.label2.Location = new System.Drawing.Point(9, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 16);
+            this.label2.Size = new System.Drawing.Size(88, 13);
             this.label2.TabIndex = 17;
             this.label2.Text = "Datos a Ingresar:";
             // 
             // P_GestionDepar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 402);
+            this.ClientSize = new System.Drawing.Size(432, 327);
             this.ControlBox = false;
             this.Controls.Add(this.btn_CancelarMod_GestionDepar);
             this.Controls.Add(this.btn_AceptarMod_GestionDepar);
@@ -168,6 +180,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtgv_GestionDepar);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "P_GestionDepar";

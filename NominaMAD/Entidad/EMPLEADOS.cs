@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NominaMAD.Entidad
 {
-    public class Empleado
+    public class EMPLEADOS
     {
         public int empresaID { get; set; }
         public int depID { get; set; }
@@ -38,9 +38,9 @@ namespace NominaMAD.Entidad
         public bool estatus {  get; set; }
         public DateTime fechaIngreso { get; set; }
 
-        public Empleado() {}
+        public EMPLEADOS() {}
 
-        public Empleado (int empresaID, int depID, int puestoID, bool gerente, int iD_Empleado, string contrasena, string CURP, string RFC, string NSS, string nombre,
+        public EMPLEADOS (int empresaID, int depID, int puestoID, bool gerente, int iD_Empleado, string contrasena, string CURP, string RFC, string NSS, string nombre,
             string apellidoP, string apellidoM, DateTime fechaNacimiento, string banco, string numCuenta, decimal salarioDiario, decimal salarioDiarioIntegrado,
             string email, int direccionID, int telefonoID, bool estatus, DateTime fechaIngreso)
         {

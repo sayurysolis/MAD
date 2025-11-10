@@ -11,7 +11,7 @@ namespace NominaMAD.DAO
 {
     public class EmpleadoDAO
     {
-        public static int AgregarEmpleado(Empleado Empleado){
+        public static int AgregarEmpleado(EMPLEADOS Empleado){
             int retorno = 0;
 
             using (SqlConnection conexion = BD_Conexion.ObtenerConexion())

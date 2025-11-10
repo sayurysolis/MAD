@@ -68,7 +68,7 @@ namespace NominaMAD
             }
         }
 
-    
+
 
         private void btn_Regresar_Empresa_Click(object sender, EventArgs e)
         {
@@ -97,9 +97,6 @@ namespace NominaMAD
                 }
             }
         }
-
-       
-
         private void dtp_FechaInOpera_Empresa_ValueChanged(object sender, EventArgs e)
         {
 

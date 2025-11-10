@@ -3,6 +3,7 @@ USE DSB_topografia;
 
 CREATE TABLE Empresa (
     ID_Empresa INT IDENTITY(1,1) PRIMARY KEY,
+	nombre NVARCHAR(17),
     RazonSocial NVARCHAR(100),
     DomicilioFiscal NVARCHAR(MAX),
     Contacto NVARCHAR(100),
@@ -11,9 +12,15 @@ CREATE TABLE Empresa (
     FechaInicio DATE
 );
 CREATE TABLE Departamento(
-	ID_Departamento INT PRIMARY KEY,
+	ID_Departamento INT IDENTITY (10,10)PRIMARY KEY,
 	Nombre NVARCHAR(30),
+	estado BIT DEFAULT 1,--1 activo, 0 inactivo 
+	EmpresaID INT,
+	FOREIGN KEY (EmpresaID) REFERENCES Empresa(ID_Empresa)
 	);
+	
+	
+	
 CREATE TABLE Puesto(
 	ID_Puesto INT PRIMARY KEY,
 	Nombre VARCHAR(30),

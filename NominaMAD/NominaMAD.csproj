@@ -59,6 +59,7 @@
     <Compile Include="Conceptos DP.Designer.cs">
       <DependentUpon>Conceptos DP.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\DepartamendoDAO.cs" />
     <Compile Include="DAO\EmpleadoDAO.cs" />
     <Compile Include="DAO\EmpresaDAO.cs" />
     <Compile Include="Empresa.cs">
@@ -67,7 +68,8 @@
     <Compile Include="Empresa.Designer.cs">
       <DependentUpon>Empresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entidad\Empleado.cs" />
+    <Compile Include="Entidad\DEPARTAMENTO.cs" />
+    <Compile Include="Entidad\EMPLEADOS.cs" />
     <Compile Include="Entidad\EMPRESAS.cs" />
     <Compile Include="HeadCounter.cs">
       <SubType>Form</SubType>
