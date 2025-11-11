@@ -23,7 +23,7 @@ namespace NominaMAD
 {
     public partial class P_RepGenNomina : Form
     {
-        string Conexion = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+        string Conexion = "Data Source=RAGE-PC\\SQLEXPRESS;Initial Catalog=DSB_topografia;Integrated Security=True";
         public P_RepGenNomina()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace NominaMAD
                 cn.Open();
 
                 // Obtener todos los empleados con sus nombres completos y estatus
-                string queryEmpleados = "SELECT id_Empleado, CONCAT(NombreEmpleado, ' ', ApelPaternoEmpleado, ' ', ApelMaternoEmpleado) AS NombreCompleto, SalarioDiario, Activo FROM Empleado";
+                string queryEmpleados = "SELECT ID_Empleado, CONCAT(Nombre, ' ', ApellidoPaterno, ' ', ApellidoMaterno) AS NombreCompleto, SalarioDiario, Activo FROM Empleado";
                 SqlCommand cmdEmpleados = new SqlCommand(queryEmpleados, cn);
                 List<(int idEmpleado, string nombreCompleto, decimal salarioDiario, bool activo)> empleados = new List<(int, string, decimal, bool)>();
 
@@ -48,7 +48,7 @@ namespace NominaMAD
                 {
                     while (readerEmpleados.Read())
                     {
-                        int idEmpleado = (int)readerEmpleados["id_Empleado"];
+                        int idEmpleado = (int)readerEmpleados["ID_Empleado"];
                         string nombreCompleto = readerEmpleados["NombreCompleto"].ToString();
                         decimal salarioDiario = (decimal)readerEmpleados["SalarioDiario"];
                         bool activo = (bool)readerEmpleados["Activo"];
@@ -210,171 +210,7 @@ namespace NominaMAD
 
                 }
             }
-            //int año = int.Parse(txt_Ano_RepGenNomina.Text);
-
-            //string plantillaHtml = Properties.Resources.ReporteGeneral_Kardex_.ToString();
-            //string empleadosHtml = "";
-
-            //using (SqlConnection cn = new SqlConnection(Conexion))
-            //{
-            //    cn.Open();
-
-            //    // Primero, obtenemos todos los empleados y los almacenamos en una lista temporal
-            //    string queryEmpleados = "SELECT id_Empleado, NombreEmpleado, SalarioDiario FROM Empleado";
-            //    SqlCommand cmdEmpleados = new SqlCommand(queryEmpleados, cn);
-            //    List<(int idEmpleado, string nombreEmpleado, decimal salarioDiario)> empleados = new List<(int, string, decimal)>();
-
-            //    using (SqlDataReader readerEmpleados = cmdEmpleados.ExecuteReader())
-            //    {
-            //        while (readerEmpleados.Read())
-            //        {
-            //            int idEmpleado = (int)readerEmpleados["id_Empleado"];
-            //            string nombreEmpleado = readerEmpleados["NombreEmpleado"].ToString();
-            //            decimal salarioDiario = (decimal)readerEmpleados["SalarioDiario"];
-            //            empleados.Add((idEmpleado, nombreEmpleado, salarioDiario));
-            //        }
-            //    }
-
-            //    // Ahora procesamos cada empleado
-            //    foreach (var (idEmpleado, nombreEmpleado, salarioDiario) in empleados)
-            //    {
-            //        decimal aguinaldo = salarioDiario * 18;
-
-            //        decimal totalSueldoBrutoAnual = 0;
-            //        decimal totalSueldoNetoAnual = 0;
-            //        decimal totalPercepcionesAnual = 0;
-            //        decimal totalDeduccionesAnual = 0;
-
-            //        string empHtml = $@"
-            //<div class='employee-header'>
-            //    <p>ID Empleado: {idEmpleado}</p>
-            //    <p>Nombre: {nombreEmpleado}</p>
-            //</div>
-            //<table class='table'>
-            //    <tr>
-            //        <th>Mes</th>
-            //        <th>Departamento</th>
-            //        <th>Puesto</th>
-            //        <th>Sueldo Bruto</th>
-            //        <th>Sueldo Neto</th>
-            //        <th>Total Percepciones</th>
-            //        <th>Total Deducciones</th>
-            //    </tr>";
-
-            //        for (int mes = 1; mes <= 12; mes++)
-            //        {
-            //            string nombreMes = MesNombre(mes);
-            //            string queryNomina = @"
-            //    SELECT d.NombreDepartamento, p.NombrePuesto, ni.SueldoBruto, ni.SueldoNeto, ni.totalPercepciones, ni.totalDeducciones
-            //    FROM NominaIndividual ni
-            //    JOIN Departamento d ON ni.idDepartamento = d.id_Departamento
-            //    JOIN Puestos p ON ni.idPuesto = p.id_Puesto
-            //    WHERE ni.idEmpleadoFK = @idEmpleado AND ni.Mes = @Mes AND ni.Ano = @Ano";
-
-            //            using (SqlCommand cmdNomina = new SqlCommand(queryNomina, cn))
-            //            {
-            //                cmdNomina.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-            //                cmdNomina.Parameters.AddWithValue("@Mes", nombreMes);
-            //                cmdNomina.Parameters.AddWithValue("@Ano", año);
-
-            //                using (SqlDataReader readerNomina = cmdNomina.ExecuteReader())
-            //                {
-            //                    if (readerNomina.Read())
-            //                    {
-            //                        string departamento = readerNomina["NombreDepartamento"].ToString();
-            //                        string puesto = readerNomina["NombrePuesto"].ToString();
-            //                        decimal sueldoBruto = (decimal)readerNomina["SueldoBruto"];
-            //                        decimal sueldoNeto = (decimal)readerNomina["SueldoNeto"];
-            //                        decimal totalPercepciones = (decimal)readerNomina["totalPercepciones"];
-            //                        decimal totalDeducciones = (decimal)readerNomina["totalDeducciones"];
-
-            //                        totalSueldoBrutoAnual += sueldoBruto;
-            //                        totalSueldoNetoAnual += sueldoNeto;
-            //                        totalPercepcionesAnual += totalPercepciones;
-            //                        totalDeduccionesAnual += totalDeducciones;
-
-            //                        empHtml += $@"
-            //                <tr>
-            //                    <td>{MesNombre(mes)}</td>
-            //                    <td>{departamento}</td>
-            //                    <td>{puesto}</td>
-            //                    <td>{sueldoBruto:C}</td>
-            //                    <td>{sueldoNeto:C}</td>
-            //                    <td>{totalPercepciones:C}</td>
-            //                    <td>{totalDeducciones:C}</td>
-            //                </tr>";
-            //                    }
-            //                    else
-            //                    {
-            //                        empHtml += $@"
-            //                <tr>
-            //                    <td>{MesNombre(mes)}</td>
-            //                    <td>-</td>
-            //                    <td>-</td>
-            //                    <td>{0:C}</td>
-            //                    <td>{0:C}</td>
-            //                    <td>{0:C}</td>
-            //                    <td>{0:C}</td>
-            //                </tr>";
-            //                    }
-            //                }
-            //            }
-            //        }
-
-            //        empHtml += $@"
-            //<tr>
-            //    <td>Aguinaldo</td>
-            //    <td>-</td>
-            //    <td>-</td>
-            //    <td>{aguinaldo:C}</td>
-            //    <td>{aguinaldo:C}</td>
-            //    <td>-</td>
-            //    <td>-</td>
-            //</tr>
-            //<tr class='total-row'>
-            //    <td>Total Anual</td>
-            //    <td>-</td>
-            //    <td>-</td>
-            //    <td>{totalSueldoBrutoAnual:C}</td>
-            //    <td>{totalSueldoNetoAnual:C}</td>
-            //    <td>{totalPercepcionesAnual:C}</td>
-            //    <td>{totalDeduccionesAnual:C}</td>
-            //</tr>
-            //</table>";
-
-            //        empleadosHtml += empHtml;
-            //    }
-            //}
-
-            //plantillaHtml = plantillaHtml.Replace("@EMPLEADOS", empleadosHtml);
-            //plantillaHtml = plantillaHtml.Replace("@ANO_REPORTE", año.ToString());
-
-            //// Generar el PDF con el contenido
-            //using (SaveFileDialog guardar = new SaveFileDialog())
-            //{
-            //    guardar.FileName = $"{año}_ReporteGeneralNomina.pdf";
-
-            //    if (guardar.ShowDialog() == DialogResult.OK)
-            //    {
-            //        using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-            //        {
-            //            Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-            //            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-            //            pdfDoc.Open();
-            //            pdfDoc.Add(new Phrase(""));
-
-            //            using (StringReader sr = new StringReader(plantillaHtml))
-            //            {
-            //                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-            //            }
-
-            //            pdfDoc.Close();
-            //            stream.Close();
-            //        }
-
-            //        MessageBox.Show("Reporte general de nómina generado exitosamente.");
-            //    }
-            //}
+           
         }
 
         private void btn_Buscar_RepGenNomina_Click(object sender, EventArgs e)

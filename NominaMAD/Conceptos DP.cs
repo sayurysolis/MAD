@@ -41,7 +41,7 @@ namespace NominaMAD
             btn_ModCancelar_ConceptosDP.Visible = false;
             btn_Eliminar_ConceptosDP.Visible = false;
         }
-        string Conexion = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+        string Conexion = "Data Source=RAGE-PC\\SQLEXPRESS;Initial Catalog=DSB_topografia;Integrated Security=True";
         string modificarOpcion;
 
         private void label2_Click(object sender, EventArgs e)
@@ -72,9 +72,9 @@ namespace NominaMAD
             DataTable dt = new DataTable();
             using (SqlConnection cn = new SqlConnection(Conexion))
             {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM DeduccionesPercepciones", cn);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM PercepcionesDeduccion", cn);
                 da.SelectCommand.CommandType = CommandType.Text;
-                cn.Open();
+                
                 da.Fill(dt);
                 dtgv_ConceptosDP.DataSource = dt;
 
@@ -182,26 +182,7 @@ namespace NominaMAD
 
            
 
-            //if (string.IsNullOrWhiteSpace(txt_NombreCon_ConceptosDP.Text) ||
-            //    string.IsNullOrWhiteSpace(txt_Porcentaje_ConceptosDP.Text))
-            //{
-            //    MessageBox.Show("Por favor, complete todos los campos obligatorios.");
-            //    return false;
-            //}
-
-            //// Validar que se haya seleccionado un departamento y un puesto
-            //if (CmBox_Concepto_ConceptosDP.SelectedIndex == -1 ||
-            //    CmBox_Tipo_ConceptosDP.SelectedIndex == -1)
-            //{
-            //    MessageBox.Show("Por favor, seleccione un Concepto y un Tipo.");
-            //    return false;
-            //}
-
-            //if (!ValidarEmail(txt_Email_GestionEmpleados.Text))
-            //{
-            //    MessageBox.Show("Ingrese un formato de correo electrónico válido.");
-            //    return false;
-            //}
+            
 
 
             return true; // Todos los campos están completos
@@ -209,49 +190,49 @@ namespace NominaMAD
 
         private void btn_Aceptar_ConceptosDP_Click(object sender, EventArgs e)
         {
-           // ValidarCampos();
+            if (!ValidarCampos()) return;
 
-            // Validar campos antes de insertar
-            if (!ValidarCampos())
+            string tipo = CmBox_Concepto_ConceptosDP.SelectedItem.ToString() == "Percepción" ? "P" : "D";
+            string nombre = txt_NombreCon_ConceptosDP.Text;
+            bool esPorcentaje = CmBox_Tipo_ConceptosDP.SelectedItem.ToString() == "Porcentaje";
+            decimal valor;
+
+            if (esPorcentaje)
             {
-                return; // Detener el proceso si alguna validación falla
+                if (!decimal.TryParse(txt_Porcentaje_ConceptosDP.Text, out valor))
+                {
+                    MessageBox.Show("Porcentaje inválido.");
+                    return;
+                }
+            }
+            else
+            {
+                if (!decimal.TryParse(txt_Monto_ConceptosDP.Text, out valor))
+                {
+                    MessageBox.Show("Monto inválido.");
+                    return;
+                }
             }
 
-            string concepto = CmBox_Concepto_ConceptosDP.SelectedItem.ToString();
-            string tipo = CmBox_Tipo_ConceptosDP.SelectedItem.ToString();
-            string nombreConcepto = txt_NombreCon_ConceptosDP.Text;
-            int? monto = tipo == "Monto" ? int.Parse(txt_Monto_ConceptosDP.Text) : (int?)null;
-            float? porcentaje = tipo == "Porcentaje" ? float.Parse(txt_Porcentaje_ConceptosDP.Text) : (float?)null;
-
-           // string conexionString = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
             using (SqlConnection cn = new SqlConnection(Conexion))
             {
-                string query = "INSERT INTO DeduccionesPercepciones (D_P, Nombre_PD, MontoPD, Porcentaje_PD) " +
-                               "VALUES (@DP, @NombrePD, @MontoPD, @PorcentajePD)";
-
+                string query = "INSERT INTO PercepcionesDeduccion (Tipo, nombre, EsPorcetanje, Valor) VALUES (@Tipo, @Nombre, @EsPorcentaje, @Valor)";
                 SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@DP", concepto);
-                cmd.Parameters.AddWithValue("@NombrePD", nombreConcepto);
-                cmd.Parameters.AddWithValue("@MontoPD", monto.HasValue ? (object)monto.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("@PorcentajePD", porcentaje.HasValue ? (object)porcentaje.Value : DBNull.Value);
+                cmd.Parameters.AddWithValue("@Tipo", tipo);
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Valor", valor);
+                cmd.Parameters.AddWithValue("@EsPorcentaje", esPorcentaje);
 
                 cn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 cn.Close();
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Concepto agregado exitosamente.");
-                    LimpiarCampos();
-                    mostrarTablaDP();
-                }
-                else
-                {
-                    MessageBox.Show("Error al agregar el concepto.");
-                }
             }
 
+            MessageBox.Show("Concepto registrado correctamente.");
+            LimpiarCampos();
+            mostrarTablaDP();
         }
+
 
         // Función para limpiar los campos después de la inserción
         private void LimpiarCampos()
@@ -359,89 +340,35 @@ namespace NominaMAD
 
                 DataGridViewRow row = dtgv_ConceptosDP.Rows[e.RowIndex];
                 // Almacenar el id_PD del concepto seleccionado
-                idConceptoSeleccionado = Convert.ToInt32(row.Cells["id_PD"].Value);
+                idConceptoSeleccionado = Convert.ToInt32(row.Cells["ID_PercDed"].Value);
 
-                // Cargar los valores en los ComboBox y TextBox
-                CmBox_Concepto_ConceptosDP.SelectedItem = row.Cells["D_P"].Value.ToString();
-                txt_NombreCon_ConceptosDP.Text = row.Cells["Nombre_PD"].Value.ToString();
 
-                // Verificar si se debe cargar Monto o Porcentaje
-                if (row.Cells["MontoPD"].Value != DBNull.Value)
-                {
-                    CmBox_Tipo_ConceptosDP.SelectedItem = "Monto";
-                    txt_Monto_ConceptosDP.Text = row.Cells["MontoPD"].Value.ToString();
-                    txt_Porcentaje_ConceptosDP.Clear();
-                    labelMonto.Visible = true;
-                    txt_Monto_ConceptosDP.Visible = true;
-                    labelPorcentaje.Visible = false;
-                    txt_Porcentaje_ConceptosDP.Visible = false;
-                }
-                else if (row.Cells["Porcentaje_PD"].Value != DBNull.Value)
+                CmBox_Concepto_ConceptosDP.SelectedItem = row.Cells["Tipo"].Value.ToString() == "P" ? "Percepción" : "Deducción";
+                txt_NombreCon_ConceptosDP.Text = row.Cells["nombre"].Value.ToString();
+
+                bool esPorcentaje = Convert.ToBoolean(row.Cells["EsPorcetanje"].Value);
+                if (esPorcentaje)
                 {
                     CmBox_Tipo_ConceptosDP.SelectedItem = "Porcentaje";
-                    txt_Porcentaje_ConceptosDP.Text = row.Cells["Porcentaje_PD"].Value.ToString();
+                    txt_Porcentaje_ConceptosDP.Text = row.Cells["Valor"].Value.ToString();
                     txt_Monto_ConceptosDP.Clear();
                     labelMonto.Visible = false;
                     txt_Monto_ConceptosDP.Visible = false;
                     labelPorcentaje.Visible = true;
                     txt_Porcentaje_ConceptosDP.Visible = true;
                 }
+                else
+                {
+                    CmBox_Tipo_ConceptosDP.SelectedItem = "Monto";
+                    txt_Monto_ConceptosDP.Text = row.Cells["Valor"].Value.ToString();
+                    txt_Porcentaje_ConceptosDP.Clear();
+                    labelMonto.Visible = true;
+                    txt_Monto_ConceptosDP.Visible = true;
+                    labelPorcentaje.Visible = false;
+                    txt_Porcentaje_ConceptosDP.Visible = false;
+                }
+
             }
-            //ColumnaSeleccionada = e.RowIndex;
-
-            //if (ColumnaSeleccionada != -1)
-            //{
-            //    //limpa txt
-            //    CmBox_Concepto_ConceptosDP.SelectedIndex = -1;//Es la manera correcta de dejar el ComboBox en un estado sin selección.
-            //    CmBox_Tipo_ConceptosDP.SelectedIndex = -1;//Es la manera correcta de dejar el ComboBox en un estado sin selección.
-            //    txt_NombreCon_ConceptosDP.Clear();
-            //    txt_NombreCon_ConceptosDP.Clear();
-            //    txt_NombreCon_ConceptosDP.Clear();
-            //    //ingresa datos en los txt
-            //    //txt_Departamento_GestDepar.Text = (string)dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[0].Value;
-            //    //txt_SueldoBase_GestionDepar.Text = (string)dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[1].Value;
-            //    //txt_Empleados_GestionDepar.Text = (string)dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[2].Value;
-
-            //    txt_Departamento_GestDepar.Text = dtgv_ConceptosDP.Rows[ColumnaSeleccionada].Cells[1].Value.ToString();
-            //    txt_SueldoBase_GestionDepar.Text = dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[2].Value.ToString();
-            //    // txt_Empleados_GestionDepar.Text = dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[2].Value.ToString();
-
-
-            //    //desabilita txt
-            //    txt_Departamento_GestDepar.Enabled = false;
-            //    txt_SueldoBase_GestionDepar.Enabled = false;
-            //    txt_Empleados_GestionDepar.Enabled = false;
-            //    //muestra boton modificar y oculta los demas
-            //    btn_Guardar_GestionDepar.Visible = false;
-            //    btn_limpiar_GestionDepar.Visible = false;
-            //    btn_Agregar_GestionDepar.Visible = true;
-            //    btn_Modificar_GestionDepar.Visible = true;
-            //    btn_AceptarMod_GestionDepar.Visible = false;
-            //    btn_CancelarMod_GestionDepar.Visible = false;
-
-
-
-
-            //    //DataGridViewRow row = dtgv_ConceptosDP.Rows[e.RowIndex];
-
-            //    // Cargar los valores en los ComboBox y TextBox
-            //    CmBox_Concepto_ConceptosDP.SelectedItem = row.Cells["D_P"].Value.ToString();
-            //    txt_NombreCon_ConceptosDP.Text = dtgv_ConceptosDP.Rows[ColumnaSeleccionada].Cells[1].Value.ToString();
-
-            //    // Verificar si se debe cargar Monto o Porcentaje
-            //    if (row.Cells["MontoPD"].Value != DBNull.Value)
-            //    {
-            //        CmBox_Tipo_ConceptosDP.SelectedItem = "Monto";
-            //        txt_Monto_ConceptosDP.Text = row.Cells["MontoPD"].Value.ToString();
-            //        txt_Porcentaje_ConceptosDP.Clear();
-            //    }
-            //    else if (row.Cells["Porcentaje_PD"].Value != DBNull.Value)
-            //    {
-            //        CmBox_Tipo_ConceptosDP.SelectedItem = "Porcentaje";
-            //        txt_Porcentaje_ConceptosDP.Text = row.Cells["Porcentaje_PD"].Value.ToString();
-            //        txt_Monto_ConceptosDP.Clear();
-            //    }
-            //}
         }
 
         private void btn_Modificar_ConceptosDP_Click(object sender, EventArgs e)
@@ -458,10 +385,7 @@ namespace NominaMAD
             labelPorcentaje.Enabled = true;
             txt_Porcentaje_ConceptosDP.Enabled = true;
 
-            //labelMonto.Visible = false;
-            //txt_Monto_ConceptosDP.Visible = false;
-            //labelPorcentaje.Visible = false;
-            //txt_Porcentaje_ConceptosDP.Visible = false;
+            
 
             btn_Agregar_ConceptosDP.Visible = false;
             btn_Aceptar_ConceptosDP.Visible =false;
@@ -481,24 +405,47 @@ namespace NominaMAD
                 return;
             }
 
-            string concepto = CmBox_Concepto_ConceptosDP.SelectedItem.ToString();
-            string tipo = CmBox_Tipo_ConceptosDP.SelectedItem.ToString();
+            // Obtener valores desde los controles
+            string concepto = CmBox_Concepto_ConceptosDP.SelectedItem.ToString(); // "Percepción" o "Deducción"
+            string tipo = CmBox_Tipo_ConceptosDP.SelectedItem.ToString();         // "Monto" o "Porcentaje"
             string nombreConcepto = txt_NombreCon_ConceptosDP.Text;
-            int? monto = tipo == "Monto" ? int.Parse(txt_Monto_ConceptosDP.Text) : (int?)null;
-            float? porcentaje = tipo == "Porcentaje" ? float.Parse(txt_Porcentaje_ConceptosDP.Text) : (float?)null;
 
+            // Convertir tipo a 'P' o 'D'
+            string tipoBD = concepto == "Percepción" ? "P" : "D";
+            bool esPorcentaje = tipo == "Porcentaje";
+
+            // Obtener valor numérico
+            decimal valor;
+            if (esPorcentaje)
+            {
+                if (!decimal.TryParse(txt_Porcentaje_ConceptosDP.Text, out valor))
+                {
+                    MessageBox.Show("Porcentaje inválido.");
+                    return;
+                }
+            }
+            else
+            {
+                if (!decimal.TryParse(txt_Monto_ConceptosDP.Text, out valor))
+                {
+                    MessageBox.Show("Monto inválido.");
+                    return;
+                }
+            }
+
+            // Actualizar en la base de datos
             using (SqlConnection cn = new SqlConnection(Conexion))
             {
-                // Comando SQL para actualizar el registro en la base de datos
-                string query = "UPDATE DeduccionesPercepciones SET D_P = @DP, Nombre_PD = @NombrePD, " +
-                               "MontoPD = @MontoPD, Porcentaje_PD = @PorcentajePD WHERE id_PD = @idPD";
+                string query = @"UPDATE PercepcionesDeduccion 
+                         SET Tipo = @Tipo, nombre = @Nombre, EsPorcetanje = @EsPorcentaje, Valor = @Valor 
+                         WHERE ID_PercDed = @ID";
 
                 SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@DP", concepto);
-                cmd.Parameters.AddWithValue("@NombrePD", nombreConcepto);
-                cmd.Parameters.AddWithValue("@MontoPD", monto.HasValue ? (object)monto.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("@PorcentajePD", porcentaje.HasValue ? (object)porcentaje.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("@idPD", idConceptoSeleccionado);
+                cmd.Parameters.AddWithValue("@Tipo", tipoBD);
+                cmd.Parameters.AddWithValue("@Nombre", nombreConcepto);
+                cmd.Parameters.AddWithValue("@EsPorcentaje", esPorcentaje);
+                cmd.Parameters.AddWithValue("@Valor", valor);
+                cmd.Parameters.AddWithValue("@ID", idConceptoSeleccionado);
 
                 cn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -508,7 +455,7 @@ namespace NominaMAD
                 {
                     MessageBox.Show("Concepto modificado exitosamente.");
                     LimpiarCampos();
-                    mostrarTablaDP(); // Actualizar el DataGridView
+                    mostrarTablaDP(); // Refresca el DataGridView
                 }
                 else
                 {
@@ -516,6 +463,7 @@ namespace NominaMAD
                 }
             }
         }
+
 
         private void btn_ModCancelar_ConceptosDP_Click(object sender, EventArgs e)
         {
@@ -541,10 +489,10 @@ namespace NominaMAD
             {
                 using (SqlConnection cn = new SqlConnection(Conexion))
                 {
-                    // Comando SQL para eliminar el registro en la base de datos080
-                    string query = "DELETE FROM DeduccionesPercepciones WHERE id_PD = @idPD";
+                    // Comando SQL corregido para eliminar de la tabla correcta
+                    string query = "DELETE FROM PercepcionesDeduccion WHERE ID_PercDed = @ID";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@idPD", idConceptoSeleccionado);
+                    cmd.Parameters.AddWithValue("@ID", idConceptoSeleccionado);
 
                     cn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -564,6 +512,7 @@ namespace NominaMAD
                 }
             }
         }
+
 
         private void dtgv_ConceptosDP_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

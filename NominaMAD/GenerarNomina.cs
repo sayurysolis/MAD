@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NominaMAD.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,18 +29,7 @@ namespace NominaMAD
             ObtenerPeriodoActual();
             
             dtgv_Empleados_GenerarNomina.Visible = false;
-            //CargarDatosEmpleadosConMatriz();
-            // mostrarTablaMatriz();
-            //LlenarMatrizConEmpleados();
-            //  LlenarMatriz();
-
-            //// Crear una instancia de P_Inicio y asignar valores
-            //P_Inicio Periodo = new P_Inicio();
-            //mes = Periodo.MesActual;
-            // anoSeleccionado = Periodo.AnoActual;
-            // Definir columnas para el DataGridView intermedio
-
-            // Definir columnas en el DataGridView
+            
             dtgv_EmDP_GenerarNomina.Columns.Add("D_P", "Tipo");
             dtgv_EmDP_GenerarNomina.Columns.Add("Nombre_PD", "Nombre");
             dtgv_EmDP_GenerarNomina.Columns.Add("MontoPD", "Monto");
@@ -73,54 +63,11 @@ namespace NominaMAD
             dtgv_Matriz_GenerarNomina.Columns.Add("Despensa", "Despensa");
             dtgv_Matriz_GenerarNomina.Columns.Add("Vacaciones", "Vacaciones");
             dtgv_Matriz_GenerarNomina.Columns.Add("PrimaVacacional", "Prima Vacacional");
-           // dtgv_Matriz_GenerarNomina.Columns.Add("PrestamoEmpresa", "Préstamo Empresa");
+        
             dtgv_Matriz_GenerarNomina.Columns.Add("PrestamoInfo", "Préstamo Infonavit");
             dtgv_Matriz_GenerarNomina.Columns.Add("FondoAhorro", "Fondo de Ahorro");
             dtgv_Matriz_GenerarNomina.Columns.Add("HoraExtra", "Horas Extras");
-           // dtgv_Matriz_GenerarNomina.Columns.Add("PensionAlimenticia", "Pensión Alimenticia");
-            //dtgv_Matriz_GenerarNomina.Columns.Add("IMSS", "IMSS");
-            //dtgv_Matriz_GenerarNomina.Columns.Add("ISR", "ISR");
-            //dtgv_Matriz_GenerarNomina.Columns.Add("TotalDeducciones", "Total Deducciones");
-            //dtgv_Matriz_GenerarNomina.Columns.Add("TotalPercepciones", "Total Percepciones");
-            //dtgv_Matriz_GenerarNomina.Columns.Add("SueldoBruto", "Sueldo Bruto");
-            //dtgv_Matriz_GenerarNomina.Columns.Add("Neto", "Neto");
-
-
-            //// Cargar los datos desde la base de datos
-            //using (SqlConnection cn = new SqlConnection(Conexion))
-            //{
-            //    string query = "SELECT * FROM Matriz";
-            //    SqlCommand cmd = new SqlCommand(query, cn);
-
-            //    cn.Open();
-            //    SqlDataReader reader = cmd.ExecuteReader();
-
-            //    while (reader.Read())
-            //    {
-            //        dtgv_Matriz_GenerarNomina.Rows.Add(
-            //            reader["id_Matriz"],
-            //            false, // Configura "Activo" como falso por defecto
-            //            reader["id_Empleado"],
-            //            reader["NombreEmpleado"],
-            //            reader["Faltas"],
-            //            reader["Asistencia"],
-            //            reader["Puntualidad"],
-            //            reader["Despensa"],
-            //            reader["Vacaciones"],
-            //            reader["PrimaVacacional"],
-            //            reader["PrestamoEmpresa"],
-            //            reader["PrestamoInfo"],
-            //            reader["FondoAhorro"],
-            //            reader["Productividad"],
-            //            reader["HorasExtras"],
-            //            reader["PensionAlimenticia"]
-            //        );
-            //    }
-
-            //    reader.Close();
-            //}
-
-            ////
+        
 
             mes = MesPeriodo;
             anoSeleccionado = AnoPeriodo;
@@ -180,14 +127,14 @@ namespace NominaMAD
         public void LlenarMatriz()
         {
             // Conexión a la base de datos
-            string conexion = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+            string conexion = "Data Source=RAGE-PC\\SQLEXPRESS;Initial Catalog=DSB_Topografia;Integrated Security=True";
 
             using (SqlConnection cn = new SqlConnection(conexion))
             {
                 cn.Open();
 
                 // Consulta para obtener todos los empleados
-                string queryEmpleados = "SELECT id_Empleado, NombreEmpleado FROM Empleado";
+                string queryEmpleados = "SELECT ID_Empleado,nombre FROM Empleado";
                 SqlCommand cmdEmpleados = new SqlCommand(queryEmpleados, cn);
                 SqlDataReader readerEmpleados = cmdEmpleados.ExecuteReader();
 
@@ -266,16 +213,27 @@ namespace NominaMAD
             using (SqlConnection cn = new SqlConnection(Conexion))
             {
                 string query = @"
-SELECT E.id_Empleado, E.NombreEmpleado, D.D_P, D.Nombre_PD, D.MontoPD, D.Porcentaje_PD, DP.Mes, DP.Ano, E.SalarioDiario
+                    SELECT 
+                        E.ID_Empleado, 
+                    E.Nombre + ' ' + E.ApellidoPaterno + ' ' + ISNULL(E.ApellidoMaterno, '') AS NombreEmpleado,
+    PD.Tipo AS D_P,
+    PD.nombre AS Nombre_PD,
+    PD.Valor AS MontoPD,
+    PD.EsPorcetanje AS Porcentaje_PD,
+    DPN.Mes,
+    DPN.Ano,
+    E.SalarioDiario
 FROM Empleado E
-LEFT JOIN DEDPERNOMINA DP ON E.id_Empleado = DP.id_Empleado AND DP.Mes = @Mes AND DP.Ano = @Ano
-LEFT JOIN DeduccionesPercepciones D ON DP.id_PD = D.id_PD
-WHERE E.Activo = 1
-ORDER BY E.id_Empleado";
+LEFT JOIN DEDPERNOMINA DPN ON E.ID_Empleado = DPN.id_Empleado AND DPN.Mes = @Mes AND DPN.Ano = @Ano
+LEFT JOIN PercepcionesDeduccion PD ON DPN.id_PD = PD.ID_PercDed
+WHERE E.estatus = 1
+ORDER BY E.ID_Empleado";
+
 
                 SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@Mes", mes);
+                cmd.Parameters.AddWithValue("@Mes", mesSeleccionado);
                 cmd.Parameters.AddWithValue("@Ano", anoSeleccionado);
+
 
                 cn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -290,9 +248,9 @@ ORDER BY E.id_Empleado";
                     decimal monto = reader.IsDBNull(reader.GetOrdinal("MontoPD")) ? 0m : Convert.ToDecimal(reader["MontoPD"]);
                     decimal porcentaje = reader.IsDBNull(reader.GetOrdinal("Porcentaje_PD")) ? 0m : Convert.ToDecimal(reader["Porcentaje_PD"]);
                     decimal salarioDiario = reader.GetDecimal(reader.GetOrdinal("SalarioDiario"));
-                    var (diasVacaciones, montoVacaciones, primaVacacional) = CalcularVacaciones(idEmpleado, mes, anoSeleccionado, salarioDiario);
+                    //var (diasVacaciones, montoVacaciones, primaVacacional) = CalcularVacaciones(idEmpleado, mes, anoSeleccionado, salarioDiario);
                     int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
-                    int diasTrabajados = 30 - faltas - diasVacaciones;
+                    int diasTrabajados = 30;// - faltas - diasVacaciones;
                     decimal sueldoBruto = salarioDiario * diasTrabajados;
 
                     if (!matrizData.ContainsKey(idEmpleado))
@@ -313,8 +271,8 @@ ORDER BY E.id_Empleado";
 
                     if (nombrePD == "Vacaciones")
                     {
-                        matrizData[idEmpleado]["Vacaciones"] = montoVacaciones;
-                        matrizData[idEmpleado]["Prima Vacacional"] = primaVacacional;
+                      //  matrizData[idEmpleado]["Vacaciones"] = montoVacaciones;
+                      //  matrizData[idEmpleado]["Prima Vacacional"] = primaVacacional;
                     }
                     else if (nombrePD == "Prestamo Infonavit")
                     {
@@ -428,34 +386,47 @@ ORDER BY E.id_Empleado";
             }
         }
 
-        //private int idEmpleadoSeleccionado;
-        //private List<int> deduccionesPercepcionesSeleccionadas = new List<int>();
-        // private Dictionary<int, List<int>> deduccionesPercepcionesPorEmpleado = new Dictionary<int, List<int>>();
+        
 
         private int idEmpleadoSeleccionado;
         private int mesSeleccionado = DateTime.Now.Month; // Mes actual
         private int anoSeleccionado = DateTime.Now.Year; // Año actual
         private string mes;
-        string Conexion = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+string Conexion = "Data Source=RAGE-PC\\SQLEXPRESS;Initial Catalog=DSB_Topografia;Integrated Security=True";
         string modificarOpcion;
         private void mostrarTablaEmpleadosNomina()
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection(Conexion))
-            {
-                // Solo selecciona empleados activos
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Empleado WHERE activo = 1", cn);
-                da.SelectCommand.CommandType = CommandType.Text;
-                cn.Open();
+            using (SqlConnection cn = BD_Conexion.ObtenerConexion())
+            {               
+                string query = @"
+            SELECT 
+                e.ID_Empleado,
+                e.Nombre + ' ' + e.ApellidoPaterno + ' ' + e.ApellidoMaterno, '' AS NombreCompleto,
+                p.Nombre AS Puesto,
+                d.Nombre AS Departamento,
+                e.SalarioDiario,
+                e.SalarioDiarioIntegrado,
+                e.Banco,
+                e.NumeroCuenta
+            FROM Empleado e
+            INNER JOIN Puesto p ON e.PuestoID = p.ID_Puesto
+            INNER JOIN Departamento d ON e.DepID = d.ID_Departamento
+            WHERE e.estatus = 1
+        ";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, cn);
                 da.Fill(dt);
                 dtgv_Empleados_GenerarNomina.DataSource = dt;
             }
         }
+   
+
         private void mostrarTablaMatriz()
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection(Conexion))
-            {
+        using (SqlConnection cn = BD_Conexion.ObtenerConexion())
+    {
                 // Solo selecciona empleados activos
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Matriz", cn);
                 da.SelectCommand.CommandType = CommandType.Text;
@@ -468,11 +439,11 @@ ORDER BY E.id_Empleado";
         private void mostrarTablaDPNomina()
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection(Conexion))
+            using (SqlConnection cn = BD_Conexion.ObtenerConexion())
             {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM DeduccionesPercepciones", cn);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM PercepcionesDeduccion", cn);
                 da.SelectCommand.CommandType = CommandType.Text;
-                cn.Open();
+                
                 da.Fill(dt);
                dtgv_DP_GenerarNomina.DataSource = dt;
 
@@ -481,56 +452,10 @@ ORDER BY E.id_Empleado";
 
         private void mostrarTablaDEDPERNOMINA()
         {
-            //DataTable dt = new DataTable();
-            //using (SqlConnection cn = new SqlConnection(Conexion))
-            //{
-            //    //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM DeduccionesPercepciones", cn);
-            //    SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM DEDPERNOMINA WHERE id_Empleado='"++"' AND Mes='"++"' AND Ano='"++"'", cn);
-            //    da.SelectCommand.CommandType = CommandType.Text;
-            //    cn.Open();
-            //    da.Fill(dt);
-            //    dtgv_DP_GenerarNomina.DataSource = dt;
-
-            //}
-            // Limpiar las filas del DataGridView intermedio
             dtgv_EmDP_GenerarNomina.Rows.Clear();
             if (idEmpleadoSeleccionado > 0)
             {
-                //DataTable dt = new DataTable();
-                //using (SqlConnection cn = new SqlConnection(Conexion))
-                //{
-                //    string query = @"
-                //SELECT 
-                //    DPN.id_DPN,
-                //    DPN.id_Empleado,
-                //    DPN.Mes,
-                //    DPN.Ano,
-                //    DP.D_P,
-                //    DP.Nombre_PD,
-                //    DP.MontoPD,
-                //    DP.Porcentaje_PD
-                //FROM 
-                //    DEDPERNOMINA DPN
-                //INNER JOIN 
-                //    DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-                //WHERE 
-                //    DPN.id_Empleado = @idEmpleado AND 
-                //    DPN.Mes = @mes AND 
-                //    DPN.Ano = @ano";
-
-                //    SqlDataAdapter da = new SqlDataAdapter(query, cn);
-
-                //    // Asignación de parámetros
-                //    da.SelectCommand.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-                //    da.SelectCommand.Parameters.AddWithValue("@mes", mes); // mes como string
-                //    da.SelectCommand.Parameters.AddWithValue("@ano", anoSeleccionado); // ano como int
-
-                //    da.SelectCommand.CommandType = CommandType.Text;
-                //    cn.Open();
-                //    da.Fill(dt);
-                //    dtgv_EmDP_GenerarNomina.DataSource = dt; // Mostrar en el DataGridView intermedio
-                //}
-                // Suponiendo que ya tienes una consulta SQL que combina ambas tablas
+                
                 DataTable dt = new DataTable();
                 using (SqlConnection cn = new SqlConnection(Conexion))
                 {
@@ -618,10 +543,8 @@ ORDER BY E.id_Empleado";
             if (e.RowIndex >= 0)
             {
                 // Capturar el ID del empleado seleccionado
-                idEmpleadoSeleccionado = Convert.ToInt32(dtgv_Empleados_GenerarNomina.Rows[e.RowIndex].Cells["id_Empleado"].Value);
-               // MessageBox.Show("Empleado seleccionado con ID: " + idEmpleadoSeleccionado);
-
-                // Mostrar las deducciones y percepciones para el empleado seleccionado en el mes y año actuales
+                idEmpleadoSeleccionado = Convert.ToInt32(dtgv_Empleados_GenerarNomina.Rows[e.RowIndex].Cells["ID_Empleado"].Value);
+             
                 mostrarTablaDEDPERNOMINA();
             }
         }
@@ -630,7 +553,7 @@ ORDER BY E.id_Empleado";
             using (SqlConnection cn = new SqlConnection(Conexion))
             {
                 cn.Open();
-                string query = "SELECT FechaIngresoEmpresa FROM Empleado WHERE id_Empleado = @idEmpleado";
+                string query = "SELECT FechaIngreso FROM Empleado WHERE ID_Empleado = @idEmpleado";
                 SqlCommand cmd = new SqlCommand(query, cn);
                 cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
                 return (DateTime)cmd.ExecuteScalar();
@@ -638,178 +561,7 @@ ORDER BY E.id_Empleado";
         }
         private void dtgv_DP_GenerarNomina_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //// Verificar que se haya seleccionado una fila válida
-            //if (e.RowIndex >= 0)
-            //{
-            //    int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-            //    string nombreDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["Nombre_PD"].Value.ToString();
-            //    string tipoDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["D_P"].Value.ToString();
-
-            //    if (nombreDP == "Vacaciones" && tipoDP == "Percepción")
-            //    {
-            //        DateTime fechaIngreso = ObtenerFechaIngresoEmpleado(idEmpleadoSeleccionado);
-            //        DateTime fechaActual = DateTime.Now;
-            //        int antiguedad = fechaActual.Year - fechaIngreso.Year;
-            //        if (fechaActual < fechaIngreso.AddYears(antiguedad)) antiguedad--;
-
-            //        if (antiguedad < 1)
-            //        {
-            //            MessageBox.Show("El empleado no tiene un año de antigüedad y no puede tomar vacaciones.");
-            //            return;
-            //        }
-
-            //        // Determinar los días de vacaciones según la antigüedad
-            //        int diasVacaciones = 0;
-            //        if (antiguedad == 1) diasVacaciones = 12;
-            //        else if (antiguedad == 2) diasVacaciones = 14;
-            //        else if (antiguedad == 3) diasVacaciones = 16;
-            //        else if (antiguedad == 4) diasVacaciones = 18;
-            //        else if (antiguedad == 5) diasVacaciones = 20;
-            //        else if (antiguedad >= 6 && antiguedad <= 10) diasVacaciones = 22;
-            //        else if (antiguedad >= 11 && antiguedad <= 15) diasVacaciones = 24;
-
-            //        // Obtener el salario diario del empleado
-            //        decimal salarioDiario = ObtenerSalarioDiarioEmpleado(idEmpleadoSeleccionado); // Implementa esta función para obtener el salario diario
-            //        decimal primaVacacional = (diasVacaciones * 0.35m) * salarioDiario;
-
-            //        // Mostrar mensaje con los días de vacaciones y prima vacacional
-            //        MessageBox.Show($"El empleado puede tomar vacaciones y tiene {diasVacaciones} días disponibles.\n" +
-            //                        $"Prima Vacacional: {primaVacacional:C}");
-
-            //        // Asignar el valor de la prima vacacional en el campo de "Monto" en la tabla de percepciones
-            //        dtgv_EmDP_GenerarNomina.Rows.Add(tipoDP, nombreDP, primaVacacional.ToString("C"));
-            //    }
-            //    else
-            //    {
-            //        // Verificar si la DoP ya está asignada para deducciones/percepciones que no sean "Falta"
-            //        bool yaAsignado = false;
-            //        foreach (DataGridViewRow row in dtgv_EmDP_GenerarNomina.Rows)
-            //        {
-            //            if (row.Cells["Nombre_PD"].Value != null && row.Cells["D_P"].Value != null)
-            //            {
-            //                string nombreExistente = row.Cells["Nombre_PD"].Value.ToString();
-            //                string tipoExistente = row.Cells["D_P"].Value.ToString();
-
-            //                if (nombreExistente == nombreDP && tipoExistente == tipoDP)
-            //                {
-            //                    if (nombreDP == "Falta" && tipoDP == "Deducción")
-            //                    {
-            //                        yaAsignado = false;
-            //                        break;
-            //                    }
-            //                    else
-            //                    {
-            //                        yaAsignado = true;
-            //                        break;
-            //                    }
-            //                }
-            //            }
-            //        }
-
-            //        if (yaAsignado)
-            //        {
-            //            MessageBox.Show("Esta deducción/percepción ya ha sido asignada a este empleado.");
-            //        }
-            //        else
-            //        {
-            //            if (idEmpleadoSeleccionado > 0 && e.RowIndex >= 0)
-            //            {
-            //                using (SqlConnection cn = new SqlConnection(Conexion))
-            //                {
-            //                    string query = "INSERT INTO DEDPERNOMINA (id_Empleado, id_PD, Mes, Ano) VALUES (@idEmpleado, @idPD, @mes, @ano)";
-            //                    SqlCommand cmd = new SqlCommand(query, cn);
-            //                    cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-            //                    cmd.Parameters.AddWithValue("@idPD", idPD);
-            //                    cmd.Parameters.AddWithValue("@mes", mes);
-            //                    cmd.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-            //                    cn.Open();
-            //                    cmd.ExecuteNonQuery();
-            //                }
-
-            //                mostrarTablaDEDPERNOMINA();
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("Por favor, selecciona un empleado y una deducción/percepción válida.");
-            //            }
-            //        }
-            //    }
-            //}
-
-            // Verificar que se haya seleccionado una fila válida en el DataGridView de deducciones/percepciones
-            //if (e.RowIndex >= 0)
-            //{
-            //    int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-            //    string nombreDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["Nombre_PD"].Value.ToString();
-            //    string tipoDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["D_P"].Value.ToString();
-
-            //    foreach (DataGridViewRow empleadoRow in dtgv_Matriz_GenerarNomina.Rows)
-            //    {
-            //        // Verificar si el checkbox "Activo" está marcado
-            //        DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell)empleadoRow.Cells["Activo"];
-            //        bool isChecked = (checkBoxCell.Value != null && (bool)checkBoxCell.Value == true);
-
-            //        if (isChecked)
-            //        {
-            //            int idEmpleado = Convert.ToInt32(empleadoRow.Cells["id_Empleado"].Value);
-
-            //            // Verificación de deducción/percepción ya asignada
-            //            bool yaAsignado = false;
-            //            foreach (DataGridViewRow row in dtgv_EmDP_GenerarNomina.Rows)
-            //            {
-            //                if (row.Cells["Nombre_PD"].Value != null && row.Cells["D_P"].Value != null)
-            //                {
-            //                    string nombreExistente = row.Cells["Nombre_PD"].Value.ToString();
-            //                    string tipoExistente = row.Cells["D_P"].Value.ToString();
-
-            //                    if (nombreExistente == nombreDP && tipoExistente == tipoDP && Convert.ToInt32(row.Cells["id_Empleado"].Value) == idEmpleado)
-            //                    {
-            //                        yaAsignado = true;
-            //                        MessageBox.Show($"La deducción/percepción '{nombreDP}' ya ha sido asignada al empleado con ID {idEmpleado}.");
-            //                        break;
-            //                    }
-            //                }
-            //            }
-
-            //            if (yaAsignado)
-            //            {
-            //                continue; // Saltar al siguiente empleado si ya tiene asignada esta deducción/percepción
-            //            }
-
-            //            // Agregar deducción/percepción al empleado en la tabla del medio
-            //            DataGridViewRow newRow = new DataGridViewRow();
-            //            newRow.CreateCells(dtgv_EmDP_GenerarNomina);
-            //            newRow.Cells[dtgv_EmDP_GenerarNomina.Columns["id_Empleado"].Index].Value = idEmpleado;
-            //            newRow.Cells[dtgv_EmDP_GenerarNomina.Columns["D_P"].Index].Value = tipoDP;
-            //            newRow.Cells[dtgv_EmDP_GenerarNomina.Columns["Nombre_PD"].Index].Value = nombreDP;
-            //            newRow.Cells[dtgv_EmDP_GenerarNomina.Columns["Monto_PD"].Index].Value = idPD;
-            //            dtgv_EmDP_GenerarNomina.Rows.Add(newRow);
-
-            //            // Insertar en la base de datos
-            //            using (SqlConnection cn = new SqlConnection(Conexion))
-            //            {
-            //                string query = "INSERT INTO DEDPERNOMINA (id_Empleado, id_PD, Mes, Ano) VALUES (@idEmpleado, @idPD, @mes, @ano)";
-            //                SqlCommand cmd = new SqlCommand(query, cn);
-            //                cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-            //                cmd.Parameters.AddWithValue("@idPD", idPD);
-            //                cmd.Parameters.AddWithValue("@mes", mes);
-            //                cmd.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-            //                cn.Open();
-            //                cmd.ExecuteNonQuery();
-            //            }
-
-            //            MessageBox.Show($"Deducción/Percepción '{nombreDP}' agregada al empleado con ID {idEmpleado}.");
-            //        }
-            //    }
-
-            //    // Actualizar la tabla intermedia para mostrar el nuevo registro agregado
-            //    mostrarTablaDEDPERNOMINA();
-            //    ColocarDatos();
-            //}
-
-            // Verificar que se haya seleccionado una fila válida en la tabla de deducciones/percepciones
+          
             if (e.RowIndex >= 0)
             {
                 int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
@@ -891,236 +643,6 @@ ORDER BY E.id_Empleado";
                 mostrarTablaDEDPERNOMINA();
                 ColocarDatos();
             }
-
-            //// Verificar que se haya seleccionado una fila válida
-            // if (e.RowIndex >= 0)
-            // {
-            //     int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-            //     string nombreDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["Nombre_PD"].Value.ToString();
-            //     string tipoDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["D_P"].Value.ToString();
-
-            //    // Validación especial para "Vacaciones"
-            //     if (nombreDP == "Vacaciones" && tipoDP == "Percepción")
-            //     {
-            //         DateTime fechaIngreso = ObtenerFechaIngresoEmpleado(idEmpleadoSeleccionado); // Función para obtener fecha de ingreso del empleado
-            //         DateTime fechaActual = DateTime.Now;
-            //         int antiguedad = fechaActual.Year - fechaIngreso.Year;
-            //         if (fechaActual < fechaIngreso.AddYears(antiguedad)) antiguedad--;
-
-            //         if (antiguedad < 1)
-            //         {
-            //             MessageBox.Show("El empleado no tiene un año de antigüedad y no puede tomar vacaciones.");
-            //             return; // Salir si no cumple con la antigüedad
-            //         }
-            //         else
-            //         {
-            //             int diasVacaciones = 0;
-            //             if (antiguedad == 1) diasVacaciones = 12;
-            //             else if (antiguedad == 2) diasVacaciones = 14;
-            //             else if (antiguedad == 3) diasVacaciones = 16;
-            //             else if (antiguedad == 4) diasVacaciones = 18;
-            //             else if (antiguedad == 5) diasVacaciones = 20;
-            //             else if (antiguedad >= 6 && antiguedad <= 10) diasVacaciones = 22;
-            //             else if (antiguedad >= 11 && antiguedad <= 15) diasVacaciones = 24;
-
-            //             MessageBox.Show($"El empleado tiene derecho a vacaciones y dispone de {diasVacaciones} días.");
-            //         }
-            //     }
-
-            //    // Verificar si la DoP ya está asignada para deducciones / percepciones que no sean "Falta"
-            //     bool yaAsignado = false;
-
-            //    //// Permitir múltiples registros solo para "Falta"
-            //     foreach (DataGridViewRow row in dtgv_EmDP_GenerarNomina.Rows)
-            //     {
-            //         if (row.Cells["Nombre_PD"].Value != null && row.Cells["D_P"].Value != null)
-            //         {
-            //             string nombreExistente = row.Cells["Nombre_PD"].Value.ToString();
-            //             string tipoExistente = row.Cells["D_P"].Value.ToString();
-
-            //             if (nombreExistente == nombreDP && tipoExistente == tipoDP)
-            //             {
-            //                 if (nombreDP == "Falta" && tipoDP == "Deducción")
-            //                 {
-            //                     yaAsignado = false;
-            //                     break;
-            //                 }
-            //                 else
-            //                 {
-            //                     yaAsignado = true;
-            //                     break;
-            //                 }
-            //             }
-            //         }
-            //     }
-
-            //     if (yaAsignado)
-            //     {
-            //         MessageBox.Show("Esta deducción/percepción ya ha sido asignada a este empleado.");
-            //     }
-            //     else
-            //     {
-            //        // Lógica para agregar la DoP a la tabla y base de datos
-            //         if (idEmpleadoSeleccionado > 0)
-            //         {
-            //             using (SqlConnection cn = new SqlConnection(Conexion))
-            //             {
-            //                 string query = "INSERT INTO DEDPERNOMINA (id_Empleado, id_PD, Mes, Ano) VALUES (@idEmpleado, @idPD, @mes, @ano)";
-            //                 SqlCommand cmd = new SqlCommand(query, cn);
-            //                 cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-            //                 cmd.Parameters.AddWithValue("@idPD", idPD);
-            //                 cmd.Parameters.AddWithValue("@mes", mes);
-            //                 cmd.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-            //                 cn.Open();
-            //                 cmd.ExecuteNonQuery();
-            //             }
-
-            //            // Actualizar la tabla intermedia para mostrar el nuevo registro agregado
-            //             mostrarTablaDEDPERNOMINA();
-            //             ColocarDatos();
-            //         }
-            //         else
-            //         {
-            //             MessageBox.Show("Por favor, selecciona un empleado y una deducción/percepción válida.");
-            //         }
-            //     }
-            // }
-
-            //////////// FUNCIONAL
-            //// Verificar que se haya seleccionado una fila válida
-            //if (e.RowIndex >= 0)
-            //{
-            //    int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-            //    string nombreDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["Nombre_PD"].Value.ToString();
-            //    string tipoDP = dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["D_P"].Value.ToString();
-
-            //    // Verificar si la DoP ya está asignada para deducciones/percepciones que no sean "Falta"
-            //    bool yaAsignado = false;
-
-            //    // Permitir múltiples registros solo para "Falta"
-            //    foreach (DataGridViewRow row in dtgv_EmDP_GenerarNomina.Rows)
-            //    {
-            //        // Verifica que las celdas no sean nulas antes de acceder a sus valores
-            //        if (row.Cells["Nombre_PD"].Value != null && row.Cells["D_P"].Value != null)
-            //        {
-            //            string nombreExistente = row.Cells["Nombre_PD"].Value.ToString();
-            //            string tipoExistente = row.Cells["D_P"].Value.ToString();
-
-            //            if (nombreExistente == nombreDP && tipoExistente == tipoDP)
-            //            {
-            //                if (nombreDP == "Falta" && tipoDP == "Deducción")
-            //                {
-            //                    // Permitir múltiples registros de "Falta" en deducciones
-            //                    yaAsignado = false;
-            //                    break;
-            //                }
-            //                else
-            //                {
-            //                    yaAsignado = true;
-            //                    break;
-            //                }
-            //            }
-            //        }
-            //    }
-            //    if (yaAsignado)
-            //    {
-            //        MessageBox.Show("Esta deducción/percepción ya ha sido asignada a este empleado.");
-            //    }
-            //    else
-            //    {
-            //        // Llama a la función para agregar DoP
-            //        // AgregarDoPEmpleado(idPD);
-            //        // Agregar la DoP a la tabla del medio y a la base de datos
-            //        // AgregarDoPEmpleado(idPD);
-            //        // Aquí agregas la deducción/percepción al empleado en la base de datos y en la tabla del medio
-            //        // (Este es tu código existente para agregar el registro)
-            //        // Verifica que haya un empleado seleccionado y una celda válida
-            //        if (idEmpleadoSeleccionado > 0 && e.RowIndex >= 0)
-            //        {
-            //            // Captura el ID de la deducción/percepción seleccionada
-            //            // int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-
-            //            // Inserta el nuevo registro en la tabla DEDPERNOMINA
-            //            using (SqlConnection cn = new SqlConnection(Conexion))
-            //            {
-            //                string query = "INSERT INTO DEDPERNOMINA (id_Empleado, id_PD, Mes, Ano) VALUES (@idEmpleado, @idPD, @mes, @ano)";
-            //                SqlCommand cmd = new SqlCommand(query, cn);
-            //                cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-            //                cmd.Parameters.AddWithValue("@idPD", idPD);
-            //                cmd.Parameters.AddWithValue("@mes", mes); // Mes actual, asegúrate de que sea el mismo tipo de datos en tu DB
-            //                cmd.Parameters.AddWithValue("@ano", anoSeleccionado); // Año actual
-
-            //                cn.Open();
-            //                cmd.ExecuteNonQuery();
-            //            }
-
-            //            // Actualiza la tabla intermedia para mostrar el nuevo registro agregado
-            //            mostrarTablaDEDPERNOMINA();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Por favor, selecciona un empleado y una deducción/percepción válida.");
-            //        }
-            //    }
-            //}
-
-            //////////////
-            //// Verificar que se haya seleccionado una fila válida
-            //if (e.RowIndex >= 0)
-            //{
-            //    int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-
-            //    // Verificar si la DoP ya está asignada al empleado en la tabla del medio
-            //    bool yaAsignado = false;
-            //    foreach (DataGridViewRow row in dtgv_EmDP_GenerarNomina.Rows)
-            //    {
-            //        if (Convert.ToInt32(row.Cells["id_DPN"].Value) == idPD)
-            //        {
-            //            yaAsignado = true;
-            //            break;
-            //        }
-            //    }
-
-            //    if (yaAsignado)
-            //    {
-            //        MessageBox.Show("Esta deducción/percepción ya ha sido asignada a este empleado.");
-            //    }
-            //    else
-            //    {
-            //        // Agregar la DoP a la tabla del medio y a la base de datos
-            //       // AgregarDoPEmpleado(idPD);
-            //        // Aquí agregas la deducción/percepción al empleado en la base de datos y en la tabla del medio
-            //        // (Este es tu código existente para agregar el registro)
-            //        // Verifica que haya un empleado seleccionado y una celda válida
-            //        if (idEmpleadoSeleccionado > 0 && e.RowIndex >= 0)
-            //        {
-            //            // Captura el ID de la deducción/percepción seleccionada
-            //           // int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-
-            //            // Inserta el nuevo registro en la tabla DEDPERNOMINA
-            //            using (SqlConnection cn = new SqlConnection(Conexion))
-            //            {
-            //                string query = "INSERT INTO DEDPERNOMINA (id_Empleado, id_PD, Mes, Ano) VALUES (@idEmpleado, @idPD, @mes, @ano)";
-            //                SqlCommand cmd = new SqlCommand(query, cn);
-            //                cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-            //                cmd.Parameters.AddWithValue("@idPD", idPD);
-            //                cmd.Parameters.AddWithValue("@mes", mes); // Mes actual, asegúrate de que sea el mismo tipo de datos en tu DB
-            //                cmd.Parameters.AddWithValue("@ano", anoSeleccionado); // Año actual
-
-            //                cn.Open();
-            //                cmd.ExecuteNonQuery();
-            //            }
-
-            //            // Actualiza la tabla intermedia para mostrar el nuevo registro agregado
-            //            mostrarTablaDEDPERNOMINA();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Por favor, selecciona un empleado y una deducción/percepción válida.");
-            //        }
-            //    }
-            //}
         }
         private decimal ObtenerSalarioDiarioEmpleado(int idEmpleado)
         {
@@ -1144,114 +666,7 @@ ORDER BY E.id_Empleado";
             return salarioDiario;
         }
 
-        //private void AgregarDoPEmpleado(int idPD)
-        //{
-        //    // Aquí agregas la deducción/percepción al empleado en la base de datos y en la tabla del medio
-        //    // (Este es tu código existente para agregar el registro)
-        //     // Verifica que haya un empleado seleccionado y una celda válida
-        //    if (idEmpleadoSeleccionado > 0 && e.RowIndex >= 0)
-        //    {
-        //        // Captura el ID de la deducción/percepción seleccionada
-        //        int idPD = Convert.ToInt32(dtgv_DP_GenerarNomina.Rows[e.RowIndex].Cells["id_PD"].Value);
-
-        //        // Inserta el nuevo registro en la tabla DEDPERNOMINA
-        //        using (SqlConnection cn = new SqlConnection(Conexion))
-        //        {
-        //            string query = "INSERT INTO DEDPERNOMINA (id_Empleado, id_PD, Mes, Ano) VALUES (@idEmpleado, @idPD, @mes, @ano)";
-        //            SqlCommand cmd = new SqlCommand(query, cn);
-        //            cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-        //            cmd.Parameters.AddWithValue("@idPD", idPD);
-        //            cmd.Parameters.AddWithValue("@mes", mes); // Mes actual, asegúrate de que sea el mismo tipo de datos en tu DB
-        //            cmd.Parameters.AddWithValue("@ano", anoSeleccionado); // Año actual
-
-        //            cn.Open();
-        //            cmd.ExecuteNonQuery();
-        //        }
-
-        //        // Actualiza la tabla intermedia para mostrar el nuevo registro agregado
-        //        mostrarTablaDEDPERNOMINA();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Por favor, selecciona un empleado y una deducción/percepción válida.");
-        //    }
-        //}
-
-
-
-
-        //private void CalcularTotalesDesdeBD(int idEmpleado, string mes, int ano)
-        //{
-        //    decimal totalDeducciones = 0;
-        //    decimal totalPercepciones = 0;
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        // Consulta para el total de deducciones
-        //        string queryDeducciones = @"
-        //SELECT SUM(CASE 
-        //    WHEN DP.Porcentaje_PD IS NOT NULL 
-        //        THEN DP.Porcentaje_PD * p.SalarioDiario / 100
-        //    ELSE DP.MontoPD END) AS TotalDeducciones
-        //FROM DEDPERNOMINA DPN
-        //JOIN DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-        //JOIN Empleado e ON DPN.id_Empleado = e.id_Empleado
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE DPN.id_Empleado = @idEmpleado
-        //  AND DP.D_P = 'Deducción'
-        //  AND DPN.Mes = @mes
-        //  AND DPN.Ano = @ano";
-
-        //        SqlCommand cmdDeducciones = new SqlCommand(queryDeducciones, cn);
-        //        cmdDeducciones.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //        cmdDeducciones.Parameters.AddWithValue("@mes", mes); // Asumiendo que `mes` es el nombre del mes en texto
-        //        cmdDeducciones.Parameters.AddWithValue("@ano", ano);
-
-        //        var resultDeducciones = cmdDeducciones.ExecuteScalar();
-        //        totalDeducciones = resultDeducciones != DBNull.Value ? Convert.ToDecimal(resultDeducciones) : 0;
-
-        //        // Consulta para el total de percepciones
-        //        string queryPercepciones = @"
-        //SELECT SUM(CASE 
-        //    WHEN DP.Porcentaje_PD IS NOT NULL 
-        //        THEN DP.Porcentaje_PD * p.SalarioDiario / 100
-        //    ELSE DP.MontoPD END) AS TotalPercepciones
-        //FROM DEDPERNOMINA DPN
-        //JOIN DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-        //JOIN Empleado e ON DPN.id_Empleado = e.id_Empleado
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE DPN.id_Empleado = @idEmpleado
-        //  AND DP.D_P = 'Percepción'
-        //  AND DPN.Mes = @mes
-        //  AND DPN.Ano = @ano";
-
-        //        SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-        //        cmdPercepciones.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //        cmdPercepciones.Parameters.AddWithValue("@mes", mes); // Nombre del mes en texto
-        //        cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-
-        //        var resultPercepciones = cmdPercepciones.ExecuteScalar();
-        //         totalPercepciones = resultPercepciones != DBNull.Value ? Convert.ToDecimal(resultPercepciones) : 0;
-
-        //        // Mostrar los resultados para verificar
-        //        MessageBox.Show($"Total Deducciones: {totalDeducciones}, Total Percepciones: {totalPercepciones}");
-        //    }
-
-
-        //    // Mostrar los totales para verificar
-        //   // MessageBox.Show($"Total Deducciones: {totalDeducciones}, Total Percepciones: {totalPercepciones}");
-        //}
-
-
-
-        /// <summary>
-        /// //////////////////
-        /// </summary>
-        /// 
-        ///---------
-        ///
+    
         private (decimal totalDeducciones, decimal totalPercepciones) CalcularTotalesDesdeBD(int idEmpleado, string mes, int ano, decimal sueldoBruto, int faltas, decimal sueldoDiario)
         {
             decimal totalDeducciones = 0;
@@ -1314,124 +729,7 @@ ORDER BY E.id_Empleado";
             return (totalDeducciones, totalPercepciones);
         }
 
-        //private (decimal totalDeducciones, decimal totalPercepciones) CalcularTotalesDesdeBD(int idEmpleado, string mes, int ano, decimal sueldoBruto)
-        //{
-        //    decimal totalDeducciones = 0;
-        //    decimal totalPercepciones = 0;
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        // Consulta para el total de deducciones usando SueldoBruto
-        //        string queryDeducciones = @"
-        //SELECT SUM(CASE 
-        //    WHEN DP.Porcentaje_PD IS NOT NULL 
-        //        THEN DP.Porcentaje_PD * @sueldoBruto / 100
-        //    ELSE DP.MontoPD END) AS TotalDeducciones
-        //FROM DEDPERNOMINA DPN
-        //JOIN DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-        //WHERE DPN.id_Empleado = @idEmpleado
-        //  AND DP.D_P = 'Deducción'
-        //  AND DPN.Mes = @mes
-        //  AND DPN.Ano = @ano";
-
-        //        SqlCommand cmdDeducciones = new SqlCommand(queryDeducciones, cn);
-        //        cmdDeducciones.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //        cmdDeducciones.Parameters.AddWithValue("@mes", mes);
-        //        cmdDeducciones.Parameters.AddWithValue("@ano", ano);
-        //        cmdDeducciones.Parameters.AddWithValue("@sueldoBruto", sueldoBruto);
-
-        //        var resultDeducciones = cmdDeducciones.ExecuteScalar();
-        //        totalDeducciones = resultDeducciones != DBNull.Value ? Convert.ToDecimal(resultDeducciones) : 0;
-
-        //        // Consulta para el total de percepciones usando SueldoBruto
-        //        string queryPercepciones = @"
-        //SELECT SUM(CASE 
-        //    WHEN DP.Porcentaje_PD IS NOT NULL 
-        //        THEN DP.Porcentaje_PD * @sueldoBruto / 100
-        //    ELSE DP.MontoPD END) AS TotalPercepciones
-        //FROM DEDPERNOMINA DPN
-        //JOIN DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-        //WHERE DPN.id_Empleado = @idEmpleado
-        //  AND DP.D_P = 'Percepción'
-        //  AND DPN.Mes = @mes
-        //  AND DPN.Ano = @ano";
-
-        //        SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-        //        cmdPercepciones.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //        cmdPercepciones.Parameters.AddWithValue("@mes", mes);
-        //        cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-        //        cmdPercepciones.Parameters.AddWithValue("@sueldoBruto", sueldoBruto);
-
-        //        var resultPercepciones = cmdPercepciones.ExecuteScalar();
-        //        totalPercepciones = resultPercepciones != DBNull.Value ? Convert.ToDecimal(resultPercepciones) : 0;
-        //    }
-
-        //    return (totalDeducciones, totalPercepciones);
-        //}
-        ///------
-
-
-        //private (decimal totalDeducciones, decimal totalPercepciones) CalcularTotalesDesdeBD(int idEmpleado, string mes, int ano)
-        //{
-        //    decimal totalDeducciones = 0;
-        //    decimal totalPercepciones = 0;
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        // Consulta para el total de deducciones
-        //        string queryDeducciones = @"
-        //SELECT SUM(CASE 
-        //    WHEN DP.Porcentaje_PD IS NOT NULL 
-        //        THEN DP.Porcentaje_PD * p.SalarioDiario / 100
-        //    ELSE DP.MontoPD END) AS TotalDeducciones
-        //FROM DEDPERNOMINA DPN
-        //JOIN DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-        //JOIN Empleado e ON DPN.id_Empleado = e.id_Empleado
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE DPN.id_Empleado = @idEmpleado
-        //  AND DP.D_P = 'Deducción'
-        //  AND DPN.Mes = @mes
-        //  AND DPN.Ano = @ano";
-
-        //        SqlCommand cmdDeducciones = new SqlCommand(queryDeducciones, cn);
-        //        cmdDeducciones.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //        cmdDeducciones.Parameters.AddWithValue("@mes", mes); // Asumiendo que `mes` es el nombre del mes en texto
-        //        cmdDeducciones.Parameters.AddWithValue("@ano", ano);
-
-        //        var resultDeducciones = cmdDeducciones.ExecuteScalar();
-        //        totalDeducciones = resultDeducciones != DBNull.Value ? Convert.ToDecimal(resultDeducciones) : 0;
-
-        //        // Consulta para el total de percepciones
-        //        string queryPercepciones = @"
-        //SELECT SUM(CASE 
-        //    WHEN DP.Porcentaje_PD IS NOT NULL 
-        //        THEN DP.Porcentaje_PD * p.SalarioDiario / 100
-        //    ELSE DP.MontoPD END) AS TotalPercepciones
-        //FROM DEDPERNOMINA DPN
-        //JOIN DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-        //JOIN Empleado e ON DPN.id_Empleado = e.id_Empleado
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE DPN.id_Empleado = @idEmpleado
-        //  AND DP.D_P = 'Percepción'
-        //  AND DPN.Mes = @mes
-        //  AND DPN.Ano = @ano";
-
-        //        SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-        //        cmdPercepciones.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //        cmdPercepciones.Parameters.AddWithValue("@mes", mes); // Nombre del mes en texto
-        //        cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-
-        //        var resultPercepciones = cmdPercepciones.ExecuteScalar();
-        //        totalPercepciones = resultPercepciones != DBNull.Value ? Convert.ToDecimal(resultPercepciones) : 0;
-        //    }
-
-        //    return (totalDeducciones, totalPercepciones);
-        //}
-        ////////////////////////
+    
 
         public void AsignarMes()
         {
@@ -1643,162 +941,6 @@ ORDER BY E.id_Empleado";
             }
         }
 
-//        private void btn_GenerarNomina_GenerarNomina_Click(object sender, EventArgs e)
-//        {
-//            // GenerarNominaIndividual();
-//            //GenerarNomina(100,10, 2024);
-//            //ObtenerInformacionEmpleado(100);
-//            //ObtenerSalarioDiario(1);
-//            // Verifica si hay una fila seleccionada en el DataGridView (ejemplo: dtgv_Empleados)
-//            if (dtgv_Empleados_GenerarNomina.SelectedRows.Count > 0)
-//            {
-//                // Obtiene la fila seleccionada
-//                DataGridViewRow filaSeleccionada = dtgv_Empleados_GenerarNomina.SelectedRows[0];
-
-//                // Obtiene los valores de las celdas de esa fila (ajusta los nombres de columna según tu DataGridView)
-//                int idEmpleado = Convert.ToInt32(filaSeleccionada.Cells["id_Empleado"].Value);
-//                //string nombreEmpleado = filaSeleccionada.Cells["NombreEmpleado"].Value.ToString();
-//                //string apellidoPaterno = filaSeleccionada.Cells["ApelPaternoEmpleado"].Value.ToString();
-//                //string apellidoMaterno = filaSeleccionada.Cells["ApelMaternoEmpleado"].Value.ToString();
-
-//                // Muestra un mensaje con los datos del empleado seleccionado
-//                // MessageBox.Show($"Empleado seleccionado:\nID: {idEmpleado}\nNombre: {nombreEmpleado} {apellidoPaterno} {apellidoMaterno}");
-//               // ObtenerDatosEmpleado(idEmpleado); //1
-//                //int faltas=ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);//2
-//                //int DiasTrabajados = 30 - faltas;
-//                //float SueldoBruto = DiasTrabajados*
-//                //CalcularISR(float sueldoBruto);
-//                //CalcularTotalesDesdeBD(100, "Noviembre", 2024);
-
-//                /////////////////////////////
-//            //    //int idEmpleado = 0;
-//            //    int idDepartamento = 0;
-//            //    int idPuesto = 0;
-//            //    float salarioDiario = 0;
-
-//            //    using (SqlConnection cn = new SqlConnection(Conexion))
-//            //    {
-//            //        cn.Open();
-
-//            //        string query = @"
-//            //SELECT e.id_Empleado, e.id_Departamento, e.id_Puesto, p.SalarioDiario
-//            //FROM Empleado e
-//            //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-//            //WHERE e.id_Empleado = @idEmpleado";
-
-//            //        SqlCommand cmd = new SqlCommand(query, cn);
-//            //        cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-
-//            //        SqlDataReader reader = cmd.ExecuteReader();
-
-//            //        if (reader.Read())
-//            //        {
-//            //            idEmpleado = reader.GetInt32(0);
-//            //            idDepartamento = reader.GetInt32(1);
-//            //            idPuesto = reader.GetInt32(2);
-//            //            // salarioDiario = reader.GetFloat(3); // Cambiado a GetFloat para el tipo float
-//            //            salarioDiario = Convert.ToSingle(reader.GetValue(3));
-
-//            //        }
-//            //        reader.Close();
-//            //    }
-//                /////////////////////
-
-//               // var (departamento, puesto, salarioDiario) = ObtenerDatosEmpleado(idEmpleado);//TUPLA
-//               var (departamento, puesto, salarioDiario, salarioDiarioIntegrado) = ObtenerDatosEmpleado(idEmpleado);
-
-//                // MessageBox.Show($"Departamento: {departamento}, Puesto: {puesto}, Salario Diario: {salario}");
-
-//                int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);//2
-//                int DiasTrabajados = 30 - faltas;
-//                //decimal SueldoBruto = DiasTrabajados * salarioDiario;
-//                //float ISR=CalcularISR(SueldoBruto);
-//                //float SueldoBruto = (float)(DiasTrabajados * salarioDiario);
-//                decimal SueldoBruto = DiasTrabajados * (decimal)salarioDiario;
-
-//                //float ISR = CalcularISR(SueldoBruto);
-//                decimal ISR = CalcularISR(SueldoBruto);
-//                // decimal ISR = CalcularISR((float)SueldoBruto);
-//                decimal IMSS= SueldoBruto*0.1225m;
-
-//                // CalcularTotalesDesdeBD(100, "Noviembre", 2024);
-//               // var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado);
-//               // var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, SueldoBruto);
-//                var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, SueldoBruto, faltas, (decimal)salarioDiario);
-//                // MessageBox.Show($"Total Deducciones: {deducciones}, Total Percepciones: {percepciones}");
-//                decimal TotalDeducciones = deducciones+ (ISR + IMSS);
-//                decimal TotalPercepciones = percepciones;
-//                decimal SueldoNeto = (SueldoBruto + TotalPercepciones) - TotalDeducciones;
-
-
-//                using (SqlConnection cn = new SqlConnection(Conexion))
-//                {
-//                    cn.Open();
-
-//                    //            string queryInsert = @"
-//                    //INSERT INTO NominaIndividual 
-//                    //(idEmpleadoFK, idDepartamento, idPuesto, SueldoBruto, SueldoNeto, DiasTrabajados, totalDeducciones, totalPercepciones, Mes, Ano) 
-//                    //VALUES (@idEmpleado, @idDepartamento, @idPuesto, @SueldoBruto, @SueldoNeto, @DiasTrabajados, @totalDeducciones, @totalPercepciones, @Mes, @Ano)";
-
-//                    string queryInsert = @"
-//INSERT INTO NominaIndividual 
-//(idEmpleadoFK, idDepartamento, idPuesto, SueldoBruto, SueldoNeto, DiasTrabajados, totalDeducciones, totalPercepciones, ISR, IMSS, Mes, Ano) 
-//VALUES (@idEmpleado, @idDepartamento, @idPuesto, @SueldoBruto, @SueldoNeto, @DiasTrabajados, @totalDeducciones, @totalPercepciones, @ISR, @IMSS, @Mes, @Ano)";
-
-
-//                    //using (SqlCommand cmd = new SqlCommand(queryInsert, cn))
-//                    //{
-//                    //    cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-//                    //    cmd.Parameters.AddWithValue("@idDepartamento", departamento);
-//                    //    cmd.Parameters.AddWithValue("@idPuesto", puesto);
-//                    //    cmd.Parameters.AddWithValue("@SueldoBruto", SueldoBruto); // Asegúrate de que esta variable sea decimal
-//                    //    cmd.Parameters.AddWithValue("@SueldoNeto", SueldoNeto);   // También debe ser decimal
-//                    //    cmd.Parameters.AddWithValue("@DiasTrabajados", DiasTrabajados);
-//                    //    cmd.Parameters.AddWithValue("@totalDeducciones", TotalDeducciones); // decimal
-//                    //    cmd.Parameters.AddWithValue("@totalPercepciones", TotalPercepciones); // decimal
-//                    //    cmd.Parameters.AddWithValue("@Mes", mes);
-//                    //    cmd.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-//                    //    cmd.ExecuteNonQuery();
-//                    //}
-
-//                    using (SqlCommand cmd = new SqlCommand(queryInsert, cn))
-//                    {
-//                        cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-//                        cmd.Parameters.AddWithValue("@idDepartamento", departamento);
-//                        cmd.Parameters.AddWithValue("@idPuesto", puesto);
-//                        cmd.Parameters.AddWithValue("@SueldoBruto", SueldoBruto); // Asegúrate de que esta variable sea decimal
-//                        cmd.Parameters.AddWithValue("@SueldoNeto", SueldoNeto);   // También debe ser decimal
-//                        cmd.Parameters.AddWithValue("@DiasTrabajados", DiasTrabajados);
-//                        cmd.Parameters.AddWithValue("@totalDeducciones", TotalDeducciones); // decimal
-//                        cmd.Parameters.AddWithValue("@totalPercepciones", TotalPercepciones); // decimal
-//                        cmd.Parameters.AddWithValue("@ISR", ISR); // Añadir ISR
-//                        cmd.Parameters.AddWithValue("@IMSS", IMSS); // Añadir IMSS
-//                        cmd.Parameters.AddWithValue("@Mes", mes);
-//                        cmd.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-//                        cmd.ExecuteNonQuery();
-//                    }
-
-//                }
-//                MessageBox.Show("Nomina Individual Guardada");
-//                MessageBox.Show("Empleado seleccionado con ID: " + ISR);
-//            }
-//            else
-//            {
-//                // Si no hay una fila seleccionada, muestra un mensaje de advertencia
-//                MessageBox.Show("Por favor, selecciona un empleado de la lista.");
-//            }
-
-//            //ObtenerDatosEmpleado(100); //1
-//            //ContarFaltasEmpleado(int idEmpleado, string mes, int ano);//2
-//            ////CalcularTotalesDeduccionesPercepciones(100);
-//            //CalcularISR(float sueldoBruto);
-//            //CalcularTotalesDesdeBD(100, "Noviembre", 2024);
-            
-//        }
-
-
 
         private void GenerarNominasIndividuales(object sender, EventArgs e)
         {
@@ -1815,9 +957,7 @@ ORDER BY E.id_Empleado";
                     // Obtener datos del empleado
                    // var (departamento, puesto, salarioDiario) = ObtenerDatosEmpleado(idEmpleado);
                     var (departamento, puesto, salarioDiario, salarioDiarioIntegrado) = ObtenerDatosEmpleado(idEmpleado);
-                    // Definir mes y año (puedes agregar controles para elegir el mes y año o asignarlos directamente aquí)
-                    // string mes = "Noviembre"; // Ejemplo
-                    //int anoSeleccionado = 2024; // Ejemplo
+                    
 
                     // Calcular faltas, días trabajados, y sueldo bruto
                     int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
@@ -1828,9 +968,7 @@ ORDER BY E.id_Empleado";
                     decimal isr = CalcularISR(sueldoBruto);
                     decimal imss = sueldoBruto * 0.1225m;
 
-                    // Calcular totales de deducciones y percepciones desde la base de datos
-                    //var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado);
-                   // var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto);
+                   
                     var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto, faltas, (decimal)salarioDiario);
                     decimal totalDeducciones = deducciones + isr + imss;
                     decimal totalPercepciones = percepciones;
@@ -1876,399 +1014,6 @@ ORDER BY E.id_Empleado";
 
         }
 
-        //private void GenerarNominasIndividuales2(object sender,EventArgs e)
-        //{
-        //    if (dtgv_Empleados_GenerarNomina.Rows.Count > 0)
-        //    {
-        //        foreach (DataGridViewRow fila in dtgv_Empleados_GenerarNomina.Rows)
-        //        {
-        //            // Validar que la fila tenga datos y que el empleado esté activo
-        //            if (fila.Cells["id_Empleado"].Value == null || fila.Cells["activo"].Value == null)
-        //                continue;
-
-        //            bool isActive = Convert.ToBoolean(fila.Cells["activo"].Value); // Verificar si el empleado está activo
-        //            if (!isActive)
-        //                continue; // Saltar este empleado si no está activo
-
-        //            int idEmpleado = Convert.ToInt32(fila.Cells["id_Empleado"].Value);
-
-        //            // Obtener datos del empleado
-        //            var (departamento, puesto, salarioDiario, salarioDiarioIntegrado) = ObtenerDatosEmpleado(idEmpleado);
-
-        //            // Definir mes y año
-        //            // string mes = "Noviembre"; // Ejemplo
-        //            // int anoSeleccionado = 2024; // Ejemplo
-
-        //            var (diasVacaciones, montoVacaciones, primaVacacional) = CalcularVacaciones(idEmpleado, mes, anoSeleccionado, (decimal)salarioDiario);
-        //            // Calcular faltas, días trabajados, y sueldo bruto
-        //            int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
-
-        //            int diasTrabajados = 30 - faltas -diasVacaciones;
-        //            decimal sueldoBruto = diasTrabajados * (decimal)salarioDiario;
-
-        //            // Calcular el aguinaldo solo si es diciembre
-        //            decimal aguinaldo = 0;
-        //            if (mes.Equals("Diciembre", StringComparison.OrdinalIgnoreCase))
-        //            {
-        //                aguinaldo = (decimal)salarioDiario * 18;
-        //            }
-
-        //            // Calcular ISR y IMSS
-        //            decimal isr = CalcularISR(sueldoBruto);
-        //            decimal imss = (decimal)salarioDiarioIntegrado * 0.05m;
-
-        //            // Calcular totales de deducciones y percepciones desde la base de datos
-        //            var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto, faltas, (decimal)salarioDiario);
-        //            decimal totalDeducciones = deducciones + isr + imss;
-        //            //decimal totalPercepciones = percepciones;
-        //            //decimal totalPercepciones = percepciones + montoVacaciones + primaVacacional; // Agregar vacaciones y prima vacacional a las percepciones
-        //            decimal totalPercepciones = percepciones + montoVacaciones + primaVacacional + aguinaldo;
-
-
-
-        //            // Calcular sueldo neto
-        //            decimal sueldoNeto = (sueldoBruto + totalPercepciones) - totalDeducciones;
-
-        //            using (SqlConnection cn = new SqlConnection(Conexion))
-        //            {
-        //                cn.Open();
-
-        //                // Verificar si ya existe una nómina para este empleado, mes y año
-        //                string querySelect = @"
-        //SELECT COUNT(1) 
-        //FROM NominaIndividual 
-        //WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
-
-        //                SqlCommand cmdSelect = new SqlCommand(querySelect, cn);
-        //                cmdSelect.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //                cmdSelect.Parameters.AddWithValue("@Mes", mes);
-        //                cmdSelect.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //                int count = Convert.ToInt32(cmdSelect.ExecuteScalar());
-
-        //                if (count > 0)
-        //                {
-        //                    // Actualización si ya existe
-        //                    string queryUpdate = @"
-        //    UPDATE NominaIndividual 
-        //    SET idDepartamento = @idDepartamento, 
-        //        idPuesto = @idPuesto, 
-        //        SueldoBruto = @SueldoBruto, 
-        //        SueldoNeto = @SueldoNeto, 
-        //        DiasTrabajados = @DiasTrabajados, 
-        //        totalDeducciones = @totalDeducciones, 
-        //        totalPercepciones = @totalPercepciones, 
-        //        ISR = @ISR, 
-        //        IMSS = @IMSS,
-        //        SalarioDiario = @SalarioDiario
-        //    WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
-
-        //                    using (SqlCommand cmdUpdate = new SqlCommand(queryUpdate, cn))
-        //                    {
-        //                        cmdUpdate.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //                        cmdUpdate.Parameters.AddWithValue("@idDepartamento", departamento);
-        //                        cmdUpdate.Parameters.AddWithValue("@idPuesto", puesto);
-        //                        cmdUpdate.Parameters.AddWithValue("@SueldoBruto", sueldoBruto);
-        //                        cmdUpdate.Parameters.AddWithValue("@SueldoNeto", sueldoNeto);
-        //                        cmdUpdate.Parameters.AddWithValue("@DiasTrabajados", diasTrabajados);
-        //                        cmdUpdate.Parameters.AddWithValue("@totalDeducciones", totalDeducciones);
-        //                        cmdUpdate.Parameters.AddWithValue("@totalPercepciones", totalPercepciones);
-        //                        cmdUpdate.Parameters.AddWithValue("@ISR", isr);
-        //                        cmdUpdate.Parameters.AddWithValue("@IMSS", imss);
-        //                        cmdUpdate.Parameters.AddWithValue("@SalarioDiario", salarioDiario); // Nuevo campo
-        //                        cmdUpdate.Parameters.AddWithValue("@Mes", mes);
-        //                        cmdUpdate.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //                        cmdUpdate.ExecuteNonQuery();
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    // Inserción si no existe
-        //                    string queryInsert = @"
-        //    INSERT INTO NominaIndividual 
-        //    (idEmpleadoFK, idDepartamento, idPuesto, SueldoBruto, SueldoNeto, DiasTrabajados, totalDeducciones, totalPercepciones, ISR, IMSS, Mes, Ano, SalarioDiario) 
-        //    VALUES (@idEmpleado, @idDepartamento, @idPuesto, @SueldoBruto, @SueldoNeto, @DiasTrabajados, @totalDeducciones, @totalPercepciones, @ISR, @IMSS, @Mes, @Ano, @SalarioDiario)";
-
-        //                    using (SqlCommand cmdInsert = new SqlCommand(queryInsert, cn))
-        //                    {
-        //                        cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //                        cmdInsert.Parameters.AddWithValue("@idDepartamento", departamento);
-        //                        cmdInsert.Parameters.AddWithValue("@idPuesto", puesto);
-        //                        cmdInsert.Parameters.AddWithValue("@SueldoBruto", sueldoBruto);
-        //                        cmdInsert.Parameters.AddWithValue("@SueldoNeto", sueldoNeto);
-        //                        cmdInsert.Parameters.AddWithValue("@DiasTrabajados", diasTrabajados);
-        //                        cmdInsert.Parameters.AddWithValue("@totalDeducciones", totalDeducciones);
-        //                        cmdInsert.Parameters.AddWithValue("@totalPercepciones", totalPercepciones);
-        //                        cmdInsert.Parameters.AddWithValue("@ISR", isr);
-        //                        cmdInsert.Parameters.AddWithValue("@IMSS", imss);
-        //                        cmdInsert.Parameters.AddWithValue("@Mes", mes);
-        //                        cmdInsert.Parameters.AddWithValue("@Ano", anoSeleccionado);
-        //                        cmdInsert.Parameters.AddWithValue("@SalarioDiario", salarioDiario); // Nuevo campo
-
-        //                        cmdInsert.ExecuteNonQuery();
-        //                    }
-        //                }
-        //            }
-        //        }
-
-        //        MessageBox.Show("Nóminas individuales generadas/actualizadas para todos los empleados activos.");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("No hay empleados activos en la lista.");
-        //    }
-        //    //////
-        //    //if (dtgv_Empleados_GenerarNomina.Rows.Count > 0)
-        //    //{
-        //    //    foreach (DataGridViewRow fila in dtgv_Empleados_GenerarNomina.Rows)
-        //    //    {
-        //    //        // Validar que la fila tenga datos y que el empleado esté activo
-        //    //        if (fila.Cells["id_Empleado"].Value == null || fila.Cells["activo"].Value == null)
-        //    //            continue;
-
-        //    //        bool isActive = Convert.ToBoolean(fila.Cells["activo"].Value); // Verificar si el empleado está activo
-        //    //        if (!isActive)
-        //    //            continue; // Saltar este empleado si no está activo
-
-        //    //        int idEmpleado = Convert.ToInt32(fila.Cells["id_Empleado"].Value);
-
-        //    //        // Obtener datos del empleado
-        //    //        var (departamento, puesto, salarioDiario, salarioDiarioIntegrado) = ObtenerDatosEmpleado(idEmpleado);
-
-        //    //        // Definir mes y año
-        //    //        // string mes = "Noviembre"; // Ejemplo
-        //    //        // int anoSeleccionado = 2024; // Ejemplo
-
-        //    //        // Calcular faltas, días trabajados, y sueldo bruto
-        //    //        int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
-        //    //        int diasTrabajados = 30 - faltas;
-        //    //        decimal sueldoBruto = diasTrabajados * (decimal)salarioDiario;
-
-        //    //        // Calcular ISR y IMSS
-        //    //        decimal isr = CalcularISR(sueldoBruto);
-        //    //        decimal imss = (decimal)salarioDiarioIntegrado * 0.05m;
-
-        //    //        // Calcular totales de deducciones y percepciones desde la base de datos
-        //    //        var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto, faltas, (decimal)salarioDiario);
-        //    //        decimal totalDeducciones = deducciones + isr + imss;
-        //    //        decimal totalPercepciones = percepciones;
-
-        //    //        // Calcular sueldo neto
-        //    //        decimal sueldoNeto = (sueldoBruto + totalPercepciones) - totalDeducciones;
-
-        //    //        using (SqlConnection cn = new SqlConnection(Conexion))
-        //    //        {
-        //    //            cn.Open();
-
-        //    //            // Verificar si ya existe una nómina para este empleado, mes y año
-        //    //            string querySelect = @"
-        //    //    SELECT COUNT(1) 
-        //    //    FROM NominaIndividual 
-        //    //    WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
-
-        //    //            SqlCommand cmdSelect = new SqlCommand(querySelect, cn);
-        //    //            cmdSelect.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //    //            cmdSelect.Parameters.AddWithValue("@Mes", mes);
-        //    //            cmdSelect.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //    //            int count = Convert.ToInt32(cmdSelect.ExecuteScalar());
-
-        //    //            if (count > 0)
-        //    //            {
-        //    //                // Actualización si ya existe
-        //    //                string queryUpdate = @"
-        //    //        UPDATE NominaIndividual 
-        //    //        SET idDepartamento = @idDepartamento, 
-        //    //            idPuesto = @idPuesto, 
-        //    //            SueldoBruto = @SueldoBruto, 
-        //    //            SueldoNeto = @SueldoNeto, 
-        //    //            DiasTrabajados = @DiasTrabajados, 
-        //    //            totalDeducciones = @totalDeducciones, 
-        //    //            totalPercepciones = @totalPercepciones, 
-        //    //            ISR = @ISR, 
-        //    //            IMSS = @IMSS 
-        //    //        WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
-
-        //    //                using (SqlCommand cmdUpdate = new SqlCommand(queryUpdate, cn))
-        //    //                {
-        //    //                    cmdUpdate.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@idDepartamento", departamento);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@idPuesto", puesto);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@SueldoBruto", sueldoBruto);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@SueldoNeto", sueldoNeto);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@DiasTrabajados", diasTrabajados);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@totalDeducciones", totalDeducciones);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@totalPercepciones", totalPercepciones);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@ISR", isr);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@IMSS", imss);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@Mes", mes);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //    //                    cmdUpdate.ExecuteNonQuery();
-        //    //                }
-        //    //            }
-        //    //            else
-        //    //            {
-        //    //                // Inserción si no existe
-        //    //                string queryInsert = @"
-        //    //        INSERT INTO NominaIndividual 
-        //    //        (idEmpleadoFK, idDepartamento, idPuesto, SueldoBruto, SueldoNeto, DiasTrabajados, totalDeducciones, totalPercepciones, ISR, IMSS, Mes, Ano) 
-        //    //        VALUES (@idEmpleado, @idDepartamento, @idPuesto, @SueldoBruto, @SueldoNeto, @DiasTrabajados, @totalDeducciones, @totalPercepciones, @ISR, @IMSS, @Mes, @Ano)";
-
-        //    //                using (SqlCommand cmdInsert = new SqlCommand(queryInsert, cn))
-        //    //                {
-        //    //                    cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //    //                    cmdInsert.Parameters.AddWithValue("@idDepartamento", departamento);
-        //    //                    cmdInsert.Parameters.AddWithValue("@idPuesto", puesto);
-        //    //                    cmdInsert.Parameters.AddWithValue("@SueldoBruto", sueldoBruto);
-        //    //                    cmdInsert.Parameters.AddWithValue("@SueldoNeto", sueldoNeto);
-        //    //                    cmdInsert.Parameters.AddWithValue("@DiasTrabajados", diasTrabajados);
-        //    //                    cmdInsert.Parameters.AddWithValue("@totalDeducciones", totalDeducciones);
-        //    //                    cmdInsert.Parameters.AddWithValue("@totalPercepciones", totalPercepciones);
-        //    //                    cmdInsert.Parameters.AddWithValue("@ISR", isr);
-        //    //                    cmdInsert.Parameters.AddWithValue("@IMSS", imss);
-        //    //                    cmdInsert.Parameters.AddWithValue("@Mes", mes);
-        //    //                    cmdInsert.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //    //                    cmdInsert.ExecuteNonQuery();
-        //    //                }
-        //    //            }
-        //    //        }
-        //    //    }
-
-        //    //    MessageBox.Show("Nóminas individuales generadas/actualizadas para todos los empleados activos.");
-        //    //}
-        //    //else
-        //    //{
-        //    //    MessageBox.Show("No hay empleados activos en la lista.");
-        //    //}
-        //    ///////
-        //    //if (dtgv_Empleados_GenerarNomina.Rows.Count > 0)
-        //    //{
-        //    //    foreach (DataGridViewRow fila in dtgv_Empleados_GenerarNomina.Rows)
-        //    //    {
-        //    //        // Validar que la fila tenga datos
-        //    //        if (fila.Cells["id_Empleado"].Value == null)
-        //    //            continue;
-
-        //    //        int idEmpleado = Convert.ToInt32(fila.Cells["id_Empleado"].Value);
-
-        //    //        // Obtener datos del empleado
-        //    //      //  var (departamento, puesto, salarioDiario) = ObtenerDatosEmpleado(idEmpleado);
-        //    //        var (departamento,puesto, salarioDiario, salarioDiarioIntegrado) = ObtenerDatosEmpleado(idEmpleado);
-
-        //    //        // Definir mes y año (puedes agregar controles para elegir el mes y año o asignarlos directamente aquí)
-        //    //        // string mes = "Noviembre"; // Ejemplo
-        //    //        //int anoSeleccionado = 2024; // Ejemplo
-
-        //    //        // Calcular faltas, días trabajados, y sueldo bruto
-        //    //        int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
-        //    //        int diasTrabajados = 30 - faltas;
-        //    //        decimal sueldoBruto = diasTrabajados * (decimal)salarioDiario;
-
-        //    //        // Calcular ISR y IMSS
-        //    //        decimal isr = CalcularISR(sueldoBruto);
-        //    //        //decimal imss = sueldoBruto * 0.01225m;
-        //    //        decimal imss = (decimal)salarioDiarioIntegrado * 0.05m;
-
-        //    //        // Calcular totales de deducciones y percepciones desde la base de datos
-        //    //        //var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado);
-        //    //       // var (deducciones, percepciones)= CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto);
-        //    //        var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto, faltas,(decimal) salarioDiario);
-        //    //        decimal totalDeducciones = deducciones + isr + imss;
-        //    //        decimal totalPercepciones = percepciones;
-
-        //    //        // Calcular sueldo neto
-        //    //        decimal sueldoNeto = (sueldoBruto + totalPercepciones) - totalDeducciones;
-
-        //    //        using (SqlConnection cn = new SqlConnection(Conexion))
-        //    //        {
-        //    //            cn.Open();
-
-        //    //            // Primero verificamos si ya existe una nómina para este empleado, mes y año
-        //    //            string querySelect = @"
-        //    //        SELECT COUNT(1) 
-        //    //        FROM NominaIndividual 
-        //    //        WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
-
-        //    //            SqlCommand cmdSelect = new SqlCommand(querySelect, cn);
-        //    //            cmdSelect.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //    //            cmdSelect.Parameters.AddWithValue("@Mes", mes);
-        //    //            cmdSelect.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //    //            int count = Convert.ToInt32(cmdSelect.ExecuteScalar());
-
-        //    //            if (count > 0)
-        //    //            {
-        //    //                // Si ya existe, hacemos una actualización
-        //    //                string queryUpdate = @"
-        //    //            UPDATE NominaIndividual 
-        //    //            SET idDepartamento = @idDepartamento, 
-        //    //                idPuesto = @idPuesto, 
-        //    //                SueldoBruto = @SueldoBruto, 
-        //    //                SueldoNeto = @SueldoNeto, 
-        //    //                DiasTrabajados = @DiasTrabajados, 
-        //    //                totalDeducciones = @totalDeducciones, 
-        //    //                totalPercepciones = @totalPercepciones, 
-        //    //                ISR = @ISR, 
-        //    //                IMSS = @IMSS 
-        //    //            WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
-
-        //    //                using (SqlCommand cmdUpdate = new SqlCommand(queryUpdate, cn))
-        //    //                {
-        //    //                    cmdUpdate.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@idDepartamento", departamento);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@idPuesto", puesto);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@SueldoBruto", sueldoBruto);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@SueldoNeto", sueldoNeto);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@DiasTrabajados", diasTrabajados);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@totalDeducciones", totalDeducciones);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@totalPercepciones", totalPercepciones);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@ISR", isr);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@IMSS", imss);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@Mes", mes);
-        //    //                    cmdUpdate.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //    //                    cmdUpdate.ExecuteNonQuery();
-        //    //                }
-        //    //            }
-        //    //            else
-        //    //            {
-        //    //                // Si no existe, hacemos una inserción
-        //    //                string queryInsert = @"
-        //    //            INSERT INTO NominaIndividual 
-        //    //            (idEmpleadoFK, idDepartamento, idPuesto, SueldoBruto, SueldoNeto, DiasTrabajados, totalDeducciones, totalPercepciones, ISR, IMSS, Mes, Ano) 
-        //    //            VALUES (@idEmpleado, @idDepartamento, @idPuesto, @SueldoBruto, @SueldoNeto, @DiasTrabajados, @totalDeducciones, @totalPercepciones, @ISR, @IMSS, @Mes, @Ano)";
-
-        //    //                using (SqlCommand cmdInsert = new SqlCommand(queryInsert, cn))
-        //    //                {
-        //    //                    cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //    //                    cmdInsert.Parameters.AddWithValue("@idDepartamento", departamento);
-        //    //                    cmdInsert.Parameters.AddWithValue("@idPuesto", puesto);
-        //    //                    cmdInsert.Parameters.AddWithValue("@SueldoBruto", sueldoBruto);
-        //    //                    cmdInsert.Parameters.AddWithValue("@SueldoNeto", sueldoNeto);
-        //    //                    cmdInsert.Parameters.AddWithValue("@DiasTrabajados", diasTrabajados);
-        //    //                    cmdInsert.Parameters.AddWithValue("@totalDeducciones", totalDeducciones);
-        //    //                    cmdInsert.Parameters.AddWithValue("@totalPercepciones", totalPercepciones);
-        //    //                    cmdInsert.Parameters.AddWithValue("@ISR", isr);
-        //    //                    cmdInsert.Parameters.AddWithValue("@IMSS", imss);
-        //    //                    cmdInsert.Parameters.AddWithValue("@Mes", mes);
-        //    //                    cmdInsert.Parameters.AddWithValue("@Ano", anoSeleccionado);
-
-        //    //                    cmdInsert.ExecuteNonQuery();
-        //    //                }
-        //    //            }
-        //    //        }
-        //    //    }
-
-        //    //    MessageBox.Show("Nóminas individuales generadas/actualizadas para todos los empleados.");
-        //    //}
-        //    //else
-        //    //{
-        //    //    MessageBox.Show("No hay empleados en la lista.");
-        //    //}
-        //}
         private void GenerarNominasIndividuales2(object sender, EventArgs e)
         {
             if (dtgv_Empleados_GenerarNomina.Rows.Count > 0)
@@ -2288,15 +1033,11 @@ ORDER BY E.id_Empleado";
                     // Obtener datos del empleado
                     var (departamento, puesto, salarioDiario, salarioDiarioIntegrado) = ObtenerDatosEmpleado(idEmpleado);
 
-                    // Definir mes y año
-                    // string mes = "Noviembre"; // Ejemplo
-                    // int anoSeleccionado = 2024; // Ejemplo
-
-                    var (diasVacaciones, montoVacaciones, primaVacacional) = CalcularVacaciones(idEmpleado, mes, anoSeleccionado, (decimal)salarioDiario);
+                   // var (diasVacaciones, montoVacaciones, primaVacacional) = CalcularVacaciones(idEmpleado, mes, anoSeleccionado, (decimal)salarioDiario);
                     // Calcular faltas, días trabajados, y sueldo bruto
                     int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
 
-                    int diasTrabajados = 30 - faltas - diasVacaciones;
+                    int diasTrabajados = 30;// - faltas - diasVacaciones;
                     decimal sueldoBruto = diasTrabajados * (decimal)salarioDiario;
 
                     // Calcular el aguinaldo solo si es diciembre
@@ -2328,7 +1069,7 @@ ORDER BY E.id_Empleado";
                     decimal totalDeducciones = deducciones + isr + imss + prestamoInfonavit + fondoAhorro;
 
                     // Sumar Vacaciones, Prima Vacacional, Aguinaldo y Horas Extras a percepciones
-                   decimal totalPercepciones = percepciones + montoVacaciones + primaVacacional + aguinaldo + importeHorasExtras;
+                   decimal totalPercepciones = percepciones + importeHorasExtras; //+montoVacaciones + primaVacacional + aguinaldo
 
                     // Calcular sueldo neto
                     decimal sueldoNeto = (sueldoBruto + totalPercepciones) - totalDeducciones;
@@ -2423,29 +1164,7 @@ WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
                 MessageBox.Show("No hay empleados activos en la lista.");
             }
         }
-        //private decimal ObtenerPorcentajeInfonavit(int idEmpleado)
-        //{
-        //    decimal porcentajeInfonavit = 0;
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-        //        string query = "SELECT PorcentajeInfonavit FROM Empleado WHERE id_Empleado = @idEmpleado";
-
-        //        using (SqlCommand cmd = new SqlCommand(query, cn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-
-        //            object result = cmd.ExecuteScalar();
-        //            if (result != null && result != DBNull.Value)
-        //            {
-        //                porcentajeInfonavit = Convert.ToDecimal(result);
-        //            }
-        //        }
-        //    }
-
-        //    return porcentajeInfonavit;
-        //}
+      
 
         private void GenerarNomina(int idEmpleado, int mes, int ano)
         {
@@ -2610,77 +1329,6 @@ WHERE idEmpleadoFK = @idEmpleado AND Mes = @Mes AND Ano = @Ano";
             Console.WriteLine($"El salario diario del puesto con id {idPuesto} es: {salarioDiario}");
         }
 
-        //private void ObtenerDatosEmpleado(int idEmpleadoSeleccionado)
-        //{
-        //    int idEmpleado = 0;
-        //    int idDepartamento = 0;
-        //    int idPuesto = 0;
-        //    float salarioDiario = 0;
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        string query = @"
-        //    SELECT e.id_Empleado, e.id_Departamento, e.id_Puesto, p.SalarioDiario
-        //    FROM Empleado e
-        //    JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //    WHERE e.id_Empleado = @idEmpleado";
-
-        //        SqlCommand cmd = new SqlCommand(query, cn);
-        //        cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-
-        //        SqlDataReader reader = cmd.ExecuteReader();
-
-        //        if (reader.Read())
-        //        {
-        //            idEmpleado = reader.GetInt32(0);
-        //            idDepartamento = reader.GetInt32(1);
-        //            idPuesto = reader.GetInt32(2);
-        //           // salarioDiario = reader.GetFloat(3); // Cambiado a GetFloat para el tipo float
-        //            salarioDiario = Convert.ToSingle(reader.GetValue(3));
-
-        //        }
-        //        reader.Close();
-        //    }
-
-        //    // Ahora tienes los valores guardados en variables
-        //    MessageBox.Show($"Empleado: {idEmpleado}, Departamento: {idDepartamento}, Puesto: {idPuesto}, Salario Diario: {salarioDiario}");
-
-        //}
-        //----------
-        //private (int idDepartamento, int idPuesto, float salarioDiario) ObtenerDatosEmpleado(int idEmpleadoSeleccionado)
-        //{
-        //    int idDepartamento = 0;
-        //    int idPuesto = 0;
-        //    float salarioDiario = 0;
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        string query = @"
-        //SELECT e.id_Empleado, e.id_Departamento, e.id_Puesto, p.SalarioDiario
-        //FROM Empleado e
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE e.id_Empleado = @idEmpleado";
-
-        //        SqlCommand cmd = new SqlCommand(query, cn);
-        //        cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoSeleccionado);
-
-        //        SqlDataReader reader = cmd.ExecuteReader();
-
-        //        if (reader.Read())
-        //        {
-        //            idDepartamento = reader.GetInt32(1);
-        //            idPuesto = reader.GetInt32(2);
-        //            salarioDiario = Convert.ToSingle(reader.GetValue(3));
-        //        }
-        //        reader.Close();
-        //    }
-
-        //    return (idDepartamento, idPuesto, salarioDiario);
-        //}
         private (int idDepartamento, int idPuesto, float salarioDiario, float salarioDiarioIntegrado) ObtenerDatosEmpleado(int idEmpleadoSeleccionado)
         {
             int idDepartamento = 0;
@@ -2719,13 +1367,7 @@ WHERE e.id_Empleado = @idEmpleado";
 
         private void btn_GenerarNominaInd_GenerarNomina_Click(object sender, EventArgs e)
         {
-            //int idEmpleadoSeleccionado = 100; // Ejemplo de ID de empleado
-            //string mesSeleccionado = "Noviembre"; // Ejemplo de mes
-            //int anoSeleccionado = 2024; // Ejemplo de año
-
-            //int totalFaltas = ContarFaltasEmpleado(idEmpleadoSeleccionado, mesSeleccionado, anoSeleccionado);
-            //MessageBox.Show($"El empleado {idEmpleadoSeleccionado} tiene {totalFaltas} faltas en {mesSeleccionado} de {anoSeleccionado}.");
-            //GenerarNominasIndividuales( sender,  e);
+            
 
 
             GenerarNominasIndividuales2(sender, e);
@@ -2799,17 +1441,18 @@ WHERE e.id_Empleado = @idEmpleado";
         {
             int totalFaltas = 0;
 
-            using (SqlConnection cn = new SqlConnection(Conexion))
-            {
-                cn.Open();
+            using (SqlConnection cn = BD_Conexion.ObtenerConexion())
+            { 
+                
                 string query = @"
             SELECT COUNT(*)
-            FROM DEDPERNOMINA DPN
-            JOIN DeduccionesPercepciones DP ON DPN.id_PD = DP.id_PD
-            WHERE DPN.id_Empleado = @idEmpleado 
-              AND DP.Nombre_PD = 'Falta'
-              AND DPN.Mes = @mes
-              AND DPN.Ano = @ano";
+FROM DEDPERNOMINA DPN
+JOIN PercepcionesDeduccion DP ON DPN.id_PD = DP.ID_PercDed
+WHERE DPN.id_Empleado = @idEmpleado 
+  AND DP.nombre = 'Falta'
+  AND DPN.Mes = @mes
+  AND DPN.Ano = @ano
+";
 
                 SqlCommand cmd = new SqlCommand(query, cn);
                 cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
@@ -2848,7 +1491,7 @@ WHERE e.id_Empleado = @idEmpleado";
             return totalHorasExtras;
         }
 
-        private (int diasVacaciones, decimal montoVacaciones, decimal primaVacacional) CalcularVacaciones(int idEmpleado, string mes, int ano, decimal salarioDiario)
+        /*private (int diasVacaciones, decimal montoVacaciones, decimal primaVacacional) CalcularVacaciones(int idEmpleado, string mes, int ano, decimal salarioDiario)
         {
             int diasVacaciones = 0;
             decimal montoVacaciones = 0;
@@ -2885,9 +1528,9 @@ WHERE e.id_Empleado = @idEmpleado";
             }
 
             return (diasVacaciones, montoVacaciones, primaVacacional);
-        }
+        }*/
 
-        private int ObtenerDiasVacacionesPorAntiguedad(int idEmpleado)
+       /* private int ObtenerDiasVacacionesPorAntiguedad(int idEmpleado)
         {
             DateTime fechaIngreso = ObtenerFechaIngresoEmpleado(idEmpleado); // Implementa esta función para obtener la fecha de ingreso del empleado
             DateTime fechaActual = DateTime.Now;
@@ -2904,369 +1547,8 @@ WHERE e.id_Empleado = @idEmpleado";
             else if (antiguedad >= 6 && antiguedad <= 10) return 22;
             else if (antiguedad >= 11 && antiguedad <= 15) return 24;
             return 0;
-        }
+        }*/
 
-        //private void GenerarNominaGeneral(object sender, EventArgs e) {
-
-        //    int idNominaGeneral;
-
-        //    // Verifica si ya existe una entrada en NominaGeneral para el departamento, mes y año
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        // Comprobar existencia
-        //        string queryCheck = @"
-        //SELECT id_NominaGeneral 
-        //FROM NominaGeneral 
-        //WHERE id_Departamento = @idDepartamento AND Mes = @mes AND Ano = @ano";
-
-        //        using (SqlCommand cmdCheck = new SqlCommand(queryCheck, cn))
-        //        {
-        //            cmdCheck.Parameters.AddWithValue("@idDepartamento",1);
-        //            cmdCheck.Parameters.AddWithValue("@mes", mes);
-        //            cmdCheck.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-        //            var result = cmdCheck.ExecuteScalar();
-
-        //            // Si no existe, crear la entrada
-        //            if (result == null)
-        //            {
-        //                string queryInsert = @"
-        //        INSERT INTO NominaGeneral (id_Departamento, Mes, Ano) 
-        //        VALUES (@idDepartamento, @mes, @ano);
-        //        SELECT SCOPE_IDENTITY();";
-
-        //                using (SqlCommand cmdInsert = new SqlCommand(queryInsert, cn))
-        //                {
-        //                    cmdInsert.Parameters.AddWithValue("@idDepartamento", 1);
-        //                    cmdInsert.Parameters.AddWithValue("@mes", mes);
-        //                    cmdInsert.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-        //                    idNominaGeneral = Convert.ToInt32(cmdInsert.ExecuteScalar());
-        //                }
-        //            }
-        //            else
-        //            {
-        //                idNominaGeneral = Convert.ToInt32(result);
-        //            }
-        //        }
-        //    }
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        // Obtener los empleados del departamento
-        //        string queryEmpleados = @"
-        //SELECT e.id_Empleado, p.SalarioDiario
-        //FROM Empleado e
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE e.id_Departamento = @idDepartamento";
-
-        //        using (SqlCommand cmdEmpleados = new SqlCommand(queryEmpleados, cn))
-        //        {
-        //            cmdEmpleados.Parameters.AddWithValue("@idDepartamento", 1);
-
-        //            using (SqlDataReader reader = cmdEmpleados.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    int idEmpleado = reader.GetInt32(0);
-        //                    decimal salarioDiario = reader.GetDecimal(1);
-
-        //                    // Aquí calculamos DiasTrabajados, SueldoBruto, y SueldoNeto
-        //                   // int diasTrabajados = CalcularDiasTrabajados(idEmpleado, mes, ano); // Suponiendo que esta función existe
-        //                    //decimal sueldoBruto = diasTrabajados * salarioDiario;
-        //                    //decimal sueldoNeto = CalcularSueldoNeto(sueldoBruto, idEmpleado, mes, ano); // Suponiendo que esta función existe
-
-
-
-        //                    int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
-        //                    int diasTrabajados = 30 - faltas;
-        //                    decimal sueldoBruto = diasTrabajados * (decimal)salarioDiario;
-
-        //                    // Calcular ISR y IMSS
-        //                    decimal isr = CalcularISR(sueldoBruto);
-        //                    decimal imss = sueldoBruto * 0.01225m;
-
-        //                    // Calcular totales de deducciones y percepciones desde la base de datos
-        //                    //var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado);
-        //                    var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto);
-        //                    decimal totalDeducciones = deducciones + isr + imss;
-        //                    decimal totalPercepciones = percepciones;
-
-        //                    // Calcular sueldo neto
-        //                    decimal sueldoNeto = (sueldoBruto + totalPercepciones) - totalDeducciones;
-
-
-        //                    // Insertar en NominaGeneral_Empleado
-        //                    string queryInsertEmpleado = @"
-        //            INSERT INTO NominaGeneral_Empleado (id_NominaGeneral, id_Empleado, DiasTrabajados, SueldoBruto, SueldoNeto)
-        //            VALUES (@idNominaGeneral, @idEmpleado, @diasTrabajados, @sueldoBruto, @sueldoNeto)";
-
-        //                    using (SqlCommand cmdInsertEmpleado = new SqlCommand(queryInsertEmpleado, cn))
-        //                    {
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@idNominaGeneral", idNominaGeneral);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@diasTrabajados", diasTrabajados);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@sueldoBruto", sueldoBruto);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@sueldoNeto", sueldoNeto);
-
-        //                        cmdInsertEmpleado.ExecuteNonQuery();
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-
-
-
-        //}
-
-        //    private void GenerarNominaGeneral(object sender, EventArgs e)
-        //    {
-        //        int idNominaGeneral;
-
-        //        // Verifica si ya existe una entrada en NominaGeneral para el departamento, mes y año
-        //        using (SqlConnection cn = new SqlConnection(Conexion))
-        //        {
-        //            cn.Open();
-
-        //            // Comprobar existencia de la tabla `NominaGeneral`
-        //            string tableCheckQuery = "IF OBJECT_ID('NominaGeneral', 'U') IS NOT NULL SELECT 1 ELSE SELECT 0;";
-        //            using (SqlCommand tableCheckCmd = new SqlCommand(tableCheckQuery, cn))
-        //            {
-        //                int tableExists = (int)tableCheckCmd.ExecuteScalar();
-        //                if (tableExists == 0)
-        //                {
-        //                    MessageBox.Show("La tabla NominaGeneral no existe en la base de datos.");
-        //                    return;
-        //                }
-        //            }
-
-        //            // Comprobar si ya existe una nómina para el departamento, mes y año
-        //            string queryCheck = @"
-        //        SELECT id_NominaGeneral 
-        //        FROM NominaGeneral 
-        //        WHERE id_Departamento = @idDepartamento AND Mes = @mes AND Ano = @ano";
-
-        //            using (SqlCommand cmdCheck = new SqlCommand(queryCheck, cn))
-        //            {
-        //                cmdCheck.Parameters.AddWithValue("@idDepartamento", 1);
-        //                cmdCheck.Parameters.AddWithValue("@mes", mes);
-        //                cmdCheck.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-        //                var result = cmdCheck.ExecuteScalar();
-
-        //                // Si no existe, crear la entrada
-        //                if (result == null)
-        //                {
-        //                    string queryInsert = @"
-        //                INSERT INTO NominaGeneral (id_Departamento, Mes, Ano) 
-        //                VALUES (@idDepartamento, @mes, @ano);
-        //                SELECT SCOPE_IDENTITY();";
-
-        //                    using (SqlCommand cmdInsert = new SqlCommand(queryInsert, cn))
-        //                    {
-        //                        cmdInsert.Parameters.AddWithValue("@idDepartamento", 1);
-        //                        cmdInsert.Parameters.AddWithValue("@mes", mes);
-        //                        cmdInsert.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-        //                        idNominaGeneral = Convert.ToInt32(cmdInsert.ExecuteScalar());
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    idNominaGeneral = Convert.ToInt32(result);
-        //                }
-        //            }
-
-        //            // Obtener los empleados del departamento y calcular los datos de nómina
-        //            string queryEmpleados = @"
-        //        SELECT e.id_Empleado, p.SalarioDiario
-        //        FROM Empleado e
-        //        JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //        WHERE e.id_Departamento = @idDepartamento";
-
-        //            using (SqlCommand cmdEmpleados = new SqlCommand(queryEmpleados, cn))
-        //            {
-        //                cmdEmpleados.Parameters.AddWithValue("@idDepartamento", 1);
-
-        //                using (SqlDataReader reader = cmdEmpleados.ExecuteReader())
-        //                {
-        //                    while (reader.Read())
-        //                    {
-
-        //                        if (dtgv_Empleados_GenerarNomina.Rows.Count > 0)
-        //                        {
-        //                            foreach (DataGridViewRow fila in dtgv_Empleados_GenerarNomina.Rows)
-        //                            {
-        //                                //int idEmpleado = reader.GetInt32(0);
-        //                                //decimal salarioDiario = reader.GetDecimal(1);
-        //                                // Validar que la fila tenga datos
-        //                                if (fila.Cells["id_Empleado"].Value == null)
-        //                            continue;
-
-        //                        int idEmpleado = Convert.ToInt32(fila.Cells["id_Empleado"].Value);
-
-        //                        // Obtener datos del empleado
-        //                        var (departamento, puesto, salarioDiario) = ObtenerDatosEmpleado(idEmpleado);
-
-        //                        // Calcular los detalles de la nómina para cada empleado
-        //                        int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
-        //                        int diasTrabajados = 30 - faltas;
-        //                        decimal sueldoBruto = diasTrabajados * salarioDiario;
-
-        //                        // Calcular ISR, IMSS y totales
-        //                        decimal isr = CalcularISR(sueldoBruto);
-        //                        decimal imss = sueldoBruto * 0.01225m;
-
-        //                        var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto);
-        //                        decimal totalDeducciones = deducciones + isr + imss;
-        //                        decimal totalPercepciones = percepciones;
-        //                        decimal sueldoNeto = (sueldoBruto + totalPercepciones) - totalDeducciones;
-
-        //                        // Insertar o actualizar en NominaGeneral_Empleado
-        //                        string queryInsertEmpleado = @"
-        //                    IF NOT EXISTS (SELECT 1 FROM NominaGeneral_Empleado WHERE id_NominaGeneral = @idNominaGeneral AND id_Empleado = @idEmpleado)
-        //                    BEGIN
-        //                        INSERT INTO NominaGeneral_Empleado (id_NominaGeneral, id_Empleado, DiasTrabajados, SueldoBruto, SueldoNeto)
-        //                        VALUES (@idNominaGeneral, @idEmpleado, @diasTrabajados, @sueldoBruto, @sueldoNeto);
-        //                    END
-        //                    ELSE
-        //                    BEGIN
-        //                        UPDATE NominaGeneral_Empleado
-        //                        SET DiasTrabajados = @diasTrabajados, SueldoBruto = @sueldoBruto, SueldoNeto = @sueldoNeto
-        //                        WHERE id_NominaGeneral = @idNominaGeneral AND id_Empleado = @idEmpleado;
-        //                    END";
-
-        //                        using (SqlCommand cmdInsertEmpleado = new SqlCommand(queryInsertEmpleado, cn))
-        //                        {
-        //                            cmdInsertEmpleado.Parameters.AddWithValue("@idNominaGeneral", idNominaGeneral);
-        //                            cmdInsertEmpleado.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //                            cmdInsertEmpleado.Parameters.AddWithValue("@diasTrabajados", diasTrabajados);
-        //                            cmdInsertEmpleado.Parameters.AddWithValue("@sueldoBruto", sueldoBruto);
-        //                            cmdInsertEmpleado.Parameters.AddWithValue("@sueldoNeto", sueldoNeto);
-
-        //                            cmdInsertEmpleado.ExecuteNonQuery();
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        MessageBox.Show("Nómina general generada o actualizada exitosamente.");
-        //    }
-
-
-        //private void GenerarNominaGeneral(object sender, EventArgs e)
-        //{
-        //    int idNominaGeneral;
-
-        //    // Verifica si ya existe una entrada en NominaGeneral para el departamento, mes y año
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        // Comprobar si ya existe una nómina para el departamento, mes y año
-        //        string queryCheck = @"
-        //SELECT id_NominaGeneral 
-        //FROM NominaGeneral 
-        //WHERE id_Departamento = @idDepartamento AND Mes = @mes AND Ano = @ano";
-
-        //        using (SqlCommand cmdCheck = new SqlCommand(queryCheck, cn))
-        //        {
-        //            cmdCheck.Parameters.AddWithValue("@idDepartamento", 1);
-        //            cmdCheck.Parameters.AddWithValue("@mes", mes);
-        //            cmdCheck.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-        //            var result = cmdCheck.ExecuteScalar();
-
-        //            // Si no existe, crear la entrada
-        //            if (result == null)
-        //            {
-        //                string queryInsert = @"
-        //        INSERT INTO NominaGeneral (id_Departamento, Mes, Ano) 
-        //        VALUES (@idDepartamento, @mes, @ano);
-        //        SELECT SCOPE_IDENTITY();";
-
-        //                using (SqlCommand cmdInsert = new SqlCommand(queryInsert, cn))
-        //                {
-        //                    cmdInsert.Parameters.AddWithValue("@idDepartamento", 1);
-        //                    cmdInsert.Parameters.AddWithValue("@mes", mes);
-        //                    cmdInsert.Parameters.AddWithValue("@ano", anoSeleccionado);
-
-        //                    idNominaGeneral = Convert.ToInt32(cmdInsert.ExecuteScalar());
-        //                }
-        //            }
-        //            else
-        //            {
-        //                idNominaGeneral = Convert.ToInt32(result);
-        //            }
-        //        }
-
-        //        // Obtener los empleados del departamento y calcular los datos de nómina
-        //        string queryEmpleados = @"
-        //SELECT e.id_Empleado, p.SalarioDiario
-        //FROM Empleado e
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE e.id_Departamento = @idDepartamento";
-
-        //        using (SqlCommand cmdEmpleados = new SqlCommand(queryEmpleados, cn))
-        //        {
-        //            cmdEmpleados.Parameters.AddWithValue("@idDepartamento", 1);
-
-        //            using (SqlDataReader reader = cmdEmpleados.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    int idEmpleado = reader.GetInt32(0);
-        //                    decimal salarioDiario = Convert.ToDecimal(reader.GetValue(1)); // Conversión explícita
-
-        //                    // Calcular los detalles de la nómina para cada empleado
-        //                    int faltas = ContarFaltasEmpleado(idEmpleado, mes, anoSeleccionado);
-        //                    int diasTrabajados = 30 - faltas;
-        //                    decimal sueldoBruto = diasTrabajados * salarioDiario;
-
-        //                    // Calcular ISR, IMSS y totales
-        //                    decimal isr = CalcularISR(sueldoBruto);
-        //                    decimal imss = sueldoBruto * 0.01225m;
-
-        //                    var (deducciones, percepciones) = CalcularTotalesDesdeBD(idEmpleado, mes, anoSeleccionado, sueldoBruto);
-        //                    decimal totalDeducciones = deducciones + isr + imss;
-        //                    decimal totalPercepciones = percepciones;
-        //                    decimal sueldoNeto = (sueldoBruto + totalPercepciones) - totalDeducciones;
-
-        //                    // Insertar o actualizar en NominaGeneral_Empleado
-        //                    string queryInsertEmpleado = @"
-        //            IF NOT EXISTS (SELECT 1 FROM NominaGeneral_Empleado WHERE id_NominaGeneral = @idNominaGeneral AND id_Empleado = @idEmpleado)
-        //            BEGIN
-        //                INSERT INTO NominaGeneral_Empleado (id_NominaGeneral, id_Empleado, DiasTrabajados, SueldoBruto, SueldoNeto)
-        //                VALUES (@idNominaGeneral, @idEmpleado, @diasTrabajados, @sueldoBruto, @sueldoNeto);
-        //            END
-        //            ELSE
-        //            BEGIN
-        //                UPDATE NominaGeneral_Empleado
-        //                SET DiasTrabajados = @diasTrabajados, SueldoBruto = @sueldoBruto, SueldoNeto = @sueldoNeto
-        //                WHERE id_NominaGeneral = @idNominaGeneral AND id_Empleado = @idEmpleado;
-        //            END";
-
-        //                    using (SqlCommand cmdInsertEmpleado = new SqlCommand(queryInsertEmpleado, cn))
-        //                    {
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@idNominaGeneral", idNominaGeneral);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@diasTrabajados", diasTrabajados);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@sueldoBruto", sueldoBruto);
-        //                        cmdInsertEmpleado.Parameters.AddWithValue("@sueldoNeto", sueldoNeto);
-
-        //                        cmdInsertEmpleado.ExecuteNonQuery();
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        MessageBox.Show("Nómina general generada o actualizada exitosamente.");
-        //    }
-        // }
         private void GenerarNominaGeneral(object sender, EventArgs e)
         {
             int idNominaGeneral;

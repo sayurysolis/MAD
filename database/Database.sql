@@ -31,7 +31,6 @@ CREATE TABLE Puesto(
 	FOREIGN KEY (EmpresaID) REFERENCES Empresa(ID_Empresa),
 	FOREIGN KEY (DepartamentoID) REFERENCES Departamento(ID_Departamento)
 );
-
 CREATE TABLE Empleado(
 	EmpresaID INT,
 	DepID INT,
@@ -39,7 +38,7 @@ CREATE TABLE Empleado(
 	Gerente  BIT,--1 Gerente, 0 empleado
 
 	ID_Empleado INT  IDENTITY  (1000,1) PRIMARY KEY ,--Numero de empleado
-	Contrasena NVARCHAR(20) NOT NULL, -- implementar HASH en un futuro para seguridad
+	Contrasena NVARCHAR(20) ,--NOT NULL,  implementar HASH en un futuro para seguridad
 
 	
 	CURP VARCHAR(18) UNIQUE,
@@ -57,34 +56,17 @@ CREATE TABLE Empleado(
 	SalarioDiarioIntegrado DECIMAL (10,2),-- capturar en automatico en c#
 	
 	Email NVARCHAR(50),
-	DireccionID INT,
-	TelefonoID INT,
+	Direccion VARCHAR(MAX),
+	Telefono VARCHAR(10),
 	
 	estatus BIT, -- 1 para activo 0 para inactivo
 	FechaIngreso DATE,
 
 	FOREIGN KEY (EmpresaID) REFERENCES Empresa(ID_Empresa),
 	FOREIGN KEY (DepID) REFERENCES Departamento(ID_Departamento),
-	FOREIGN KEY (PuestoID) REFERENCES Puesto(ID_Puesto),
+	FOREIGN KEY (PuestoID) REFERENCES Puesto(ID_Puesto)
 );
 
-CREATE TABLE telefonos (
-	ID_Telefono INT IDENTITY(1,1) PRIMARY KEY,
-	NumeroTelefono VARCHAR(10),
-	EmpleadoID INT,
-	FOREIGN KEY (EmpleadoID) REFERENCES Empleado (ID_Empleado)
-);
-CREATE TABLE DireccionEmpleado (
-	ID_Direccion INT IDENTITY PRIMARY KEY,
-	calle VARCHAR (100),
-	numeroExterior VARCHAR(10),
-	colonia VARCHAR(100),
-	municipio VARCHAR(100),
-	estado VARCHAR(100),
-	codigoPostal VARCHAR(5),
-	EmpleadoID INT,
-	FOREIGN KEY (EmpleadoID) REFERENCES Empleado(ID_Empleado)
-);
 CREATE TABLE Nomina(
 	ID_Nomina INT IDENTITY PRIMARY KEY,
 	MES INT,
@@ -102,3 +84,6 @@ CREATE TABLE PercepcionesDeduccion(
 	EsPorcetanje BIT,
 	Valor DECIMAL (10,2)
 );
+Select from
+
+SELECT *FROM Empleado
