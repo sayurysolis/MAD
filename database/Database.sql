@@ -11,24 +11,26 @@ CREATE TABLE Empresa (
     RFC NVARCHAR(20),
     FechaInicio DATE
 );
+
 CREATE TABLE Departamento(
-	ID_Departamento INT IDENTITY (10,10)PRIMARY KEY,
+	ID_Departamento INT IDENTITY(10,10) PRIMARY KEY,
 	Nombre NVARCHAR(30),
 	estado BIT DEFAULT 1,--1 activo, 0 inactivo 
 	EmpresaID INT,
 	FOREIGN KEY (EmpresaID) REFERENCES Empresa(ID_Empresa)
 	);
 	
-	
-	
+	SELECT *FROM Departamento
+
 CREATE TABLE Puesto(
-	ID_Puesto INT PRIMARY KEY,
+	ID_Puesto INT IDENTITY(100,1) PRIMARY KEY,
 	Nombre VARCHAR(30),
 	Descripcion VARCHAR(MAX),
+	EmpresaID INT,
 	DepartamentoID INT,
+	FOREIGN KEY (EmpresaID) REFERENCES Empresa(ID_Empresa),
 	FOREIGN KEY (DepartamentoID) REFERENCES Departamento(ID_Departamento)
 );
-
 
 CREATE TABLE Empleado(
 	EmpresaID INT,
@@ -83,8 +85,6 @@ CREATE TABLE DireccionEmpleado (
 	EmpleadoID INT,
 	FOREIGN KEY (EmpleadoID) REFERENCES Empleado(ID_Empleado)
 );
-
-
 CREATE TABLE Nomina(
 	ID_Nomina INT IDENTITY PRIMARY KEY,
 	MES INT,
@@ -95,7 +95,6 @@ CREATE TABLE Nomina(
 	EmpleadoID INT,
 	FOREIGN KEY(EmpleadoID) REFERENCES Empleado(ID_Empleado)
 );
-
 CREATE TABLE PercepcionesDeduccion(
 	ID_PercDed INT IDENTITY (1,1) PRIMARY KEY,
 	Tipo CHAR(1),  -- 'P' para percepcion, 'D' deduccion	 
@@ -103,6 +102,3 @@ CREATE TABLE PercepcionesDeduccion(
 	EsPorcetanje BIT,
 	Valor DECIMAL (10,2)
 );
-
-
-

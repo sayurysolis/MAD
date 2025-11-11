@@ -49,7 +49,7 @@
             // btn_Regresar_GestionPuestos
             // 
             this.btn_Regresar_GestionPuestos.Location = new System.Drawing.Point(505, 416);
-            this.btn_Regresar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Regresar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Regresar_GestionPuestos.Name = "btn_Regresar_GestionPuestos";
             this.btn_Regresar_GestionPuestos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btn_Regresar_GestionPuestos.Size = new System.Drawing.Size(69, 28);
@@ -61,7 +61,7 @@
             // btn_Modifcar_GestionPuestos
             // 
             this.btn_Modifcar_GestionPuestos.Location = new System.Drawing.Point(495, 326);
-            this.btn_Modifcar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Modifcar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Modifcar_GestionPuestos.Name = "btn_Modifcar_GestionPuestos";
             this.btn_Modifcar_GestionPuestos.Size = new System.Drawing.Size(64, 24);
             this.btn_Modifcar_GestionPuestos.TabIndex = 30;
@@ -72,7 +72,7 @@
             // btn_Limpiar_GestionPuestos
             // 
             this.btn_Limpiar_GestionPuestos.Location = new System.Drawing.Point(495, 354);
-            this.btn_Limpiar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Limpiar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Limpiar_GestionPuestos.Name = "btn_Limpiar_GestionPuestos";
             this.btn_Limpiar_GestionPuestos.Size = new System.Drawing.Size(62, 23);
             this.btn_Limpiar_GestionPuestos.TabIndex = 29;
@@ -83,7 +83,7 @@
             // btn_Guardar_GestionPuestos
             // 
             this.btn_Guardar_GestionPuestos.Location = new System.Drawing.Point(495, 301);
-            this.btn_Guardar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Guardar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Guardar_GestionPuestos.Name = "btn_Guardar_GestionPuestos";
             this.btn_Guardar_GestionPuestos.Size = new System.Drawing.Size(61, 22);
             this.btn_Guardar_GestionPuestos.TabIndex = 28;
@@ -94,7 +94,7 @@
             // txt_DescripcionPuesto_GestionPuestos
             // 
             this.txt_DescripcionPuesto_GestionPuestos.Location = new System.Drawing.Point(145, 375);
-            this.txt_DescripcionPuesto_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_DescripcionPuesto_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.txt_DescripcionPuesto_GestionPuestos.Name = "txt_DescripcionPuesto_GestionPuestos";
             this.txt_DescripcionPuesto_GestionPuestos.Size = new System.Drawing.Size(317, 20);
             this.txt_DescripcionPuesto_GestionPuestos.TabIndex = 26;
@@ -136,7 +136,7 @@
             this.cmBox_Departamento_GestionPuestos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmBox_Departamento_GestionPuestos.FormattingEnabled = true;
             this.cmBox_Departamento_GestionPuestos.Location = new System.Drawing.Point(145, 37);
-            this.cmBox_Departamento_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmBox_Departamento_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.cmBox_Departamento_GestionPuestos.Name = "cmBox_Departamento_GestionPuestos";
             this.cmBox_Departamento_GestionPuestos.Size = new System.Drawing.Size(224, 21);
             this.cmBox_Departamento_GestionPuestos.TabIndex = 19;
@@ -157,7 +157,7 @@
             // 
             this.dtgv_GestionPustos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgv_GestionPustos.Location = new System.Drawing.Point(166, 86);
-            this.dtgv_GestionPustos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgv_GestionPustos.Margin = new System.Windows.Forms.Padding(2);
             this.dtgv_GestionPustos.Name = "dtgv_GestionPustos";
             this.dtgv_GestionPustos.ReadOnly = true;
             this.dtgv_GestionPustos.RowHeadersWidth = 51;
@@ -169,15 +169,16 @@
             // txtPuesto_GestionPuestos
             // 
             this.txtPuesto_GestionPuestos.Location = new System.Drawing.Point(145, 342);
-            this.txtPuesto_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPuesto_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.txtPuesto_GestionPuestos.Name = "txtPuesto_GestionPuestos";
             this.txtPuesto_GestionPuestos.Size = new System.Drawing.Size(103, 20);
             this.txtPuesto_GestionPuestos.TabIndex = 33;
+            this.txtPuesto_GestionPuestos.TextChanged += new System.EventHandler(this.txtPuesto_GestionPuestos_TextChanged);
             // 
             // btn_Agregar_GestionPuestos
             // 
             this.btn_Agregar_GestionPuestos.Location = new System.Drawing.Point(145, 401);
-            this.btn_Agregar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Agregar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Agregar_GestionPuestos.Name = "btn_Agregar_GestionPuestos";
             this.btn_Agregar_GestionPuestos.Size = new System.Drawing.Size(66, 26);
             this.btn_Agregar_GestionPuestos.TabIndex = 34;
@@ -188,7 +189,7 @@
             // btn_AceptarMOD_GestionPuestos
             // 
             this.btn_AceptarMOD_GestionPuestos.Location = new System.Drawing.Point(650, 298);
-            this.btn_AceptarMOD_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AceptarMOD_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AceptarMOD_GestionPuestos.Name = "btn_AceptarMOD_GestionPuestos";
             this.btn_AceptarMOD_GestionPuestos.Size = new System.Drawing.Size(106, 24);
             this.btn_AceptarMOD_GestionPuestos.TabIndex = 35;
@@ -199,7 +200,7 @@
             // btn_CancelarMOD_GestionPuestos
             // 
             this.btn_CancelarMOD_GestionPuestos.Location = new System.Drawing.Point(649, 354);
-            this.btn_CancelarMOD_GestionPuestos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_CancelarMOD_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CancelarMOD_GestionPuestos.Name = "btn_CancelarMOD_GestionPuestos";
             this.btn_CancelarMOD_GestionPuestos.Size = new System.Drawing.Size(114, 22);
             this.btn_CancelarMOD_GestionPuestos.TabIndex = 36;
@@ -228,7 +229,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmBox_Departamento_GestionPuestos);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "P_GestionPuestos";

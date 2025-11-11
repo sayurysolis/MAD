@@ -8,9 +8,9 @@ namespace NominaMAD.Entidad
 {
     public class EMPLEADOS
     {
-        public int empresaID { get; set; }
-        public int depID { get; set; }
-        public int puestoID{ get; set; }
+        public string empresaID { get; set; }
+        public string depID { get; set; }
+        public string puestoID{ get; set; }
         public bool gerente { get; set; }
 
         public int ID_Empleado { get; set;}
@@ -32,17 +32,17 @@ namespace NominaMAD.Entidad
         public Decimal SalarioDiarioIntegrado{ get; set; }
 
         public string Email { get; set; }
-        public int DireccionID{ get; set; }
-        public int TelefonoID{ get; set; }
+        public string Direccion{ get; set; }
+        public string Telefono{ get; set; }
 
         public bool estatus {  get; set; }
         public DateTime fechaIngreso { get; set; }
 
         public EMPLEADOS() {}
 
-        public EMPLEADOS (int empresaID, int depID, int puestoID, bool gerente, int iD_Empleado, string contrasena, string CURP, string RFC, string NSS, string nombre,
+        public EMPLEADOS (string empresaID, string depID, string puestoID, bool gerente, int iD_Empleado, string contrasena, string CURP, string RFC, string NSS, string nombre,
             string apellidoP, string apellidoM, DateTime fechaNacimiento, string banco, string numCuenta, decimal salarioDiario, decimal salarioDiarioIntegrado,
-            string email, int direccionID, int telefonoID, bool estatus, DateTime fechaIngreso)
+            string email, string direccion, string telefono, bool estatus, DateTime fechaIngreso)
         {
             this.empresaID = empresaID;
             this.depID = depID;
@@ -62,8 +62,8 @@ namespace NominaMAD.Entidad
             this.SalarioDiario = SalarioDiario;
             this.SalarioDiarioIntegrado = SalarioDiarioIntegrado;
             this.Email = Email;
-            this.DireccionID = DireccionID;
-            this.TelefonoID = TelefonoID;
+            this.Direccion = direccion;
+            this.Telefono = telefono;
             this.estatus = estatus;
             this.fechaIngreso = fechaIngreso;
         }

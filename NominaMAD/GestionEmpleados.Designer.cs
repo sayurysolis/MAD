@@ -83,7 +83,7 @@
             // 
             // btn_Regresar_GestionEmpleados
             // 
-            this.btn_Regresar_GestionEmpleados.Location = new System.Drawing.Point(268, 477);
+            this.btn_Regresar_GestionEmpleados.Location = new System.Drawing.Point(675, 491);
             this.btn_Regresar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Regresar_GestionEmpleados.Name = "btn_Regresar_GestionEmpleados";
             this.btn_Regresar_GestionEmpleados.Size = new System.Drawing.Size(93, 36);
@@ -94,7 +94,7 @@
             // 
             // btn_Modificar_GestionEmpleados
             // 
-            this.btn_Modificar_GestionEmpleados.Location = new System.Drawing.Point(8, 401);
+            this.btn_Modificar_GestionEmpleados.Location = new System.Drawing.Point(95, 459);
             this.btn_Modificar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Modificar_GestionEmpleados.Name = "btn_Modificar_GestionEmpleados";
             this.btn_Modificar_GestionEmpleados.Size = new System.Drawing.Size(78, 34);
@@ -107,7 +107,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(398, 388);
+            this.label17.Location = new System.Drawing.Point(73, 307);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(77, 17);
@@ -116,17 +116,17 @@
             // 
             // txt_Telefono_GestionEmpleados
             // 
-            this.txt_Telefono_GestionEmpleados.Location = new System.Drawing.Point(480, 387);
+            this.txt_Telefono_GestionEmpleados.Location = new System.Drawing.Point(173, 304);
             this.txt_Telefono_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Telefono_GestionEmpleados.Name = "txt_Telefono_GestionEmpleados";
-            this.txt_Telefono_GestionEmpleados.Size = new System.Drawing.Size(96, 20);
+            this.txt_Telefono_GestionEmpleados.Size = new System.Drawing.Size(156, 20);
             this.txt_Telefono_GestionEmpleados.TabIndex = 73;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(398, 352);
+            this.label16.Location = new System.Drawing.Point(92, 275);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(52, 17);
@@ -137,7 +137,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(387, 426);
+            this.label15.Location = new System.Drawing.Point(325, 418);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(239, 17);
@@ -147,27 +147,27 @@
             // dateTimer_FechaIngreEmpr_GestionEmpleados
             // 
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimer_FechaIngreEmpr_GestionEmpleados.Location = new System.Drawing.Point(642, 423);
+            this.dateTimer_FechaIngreEmpr_GestionEmpleados.Location = new System.Drawing.Point(568, 415);
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.Name = "dateTimer_FechaIngreEmpr_GestionEmpleados";
-            this.dateTimer_FechaIngreEmpr_GestionEmpleados.Size = new System.Drawing.Size(90, 20);
+            this.dateTimer_FechaIngreEmpr_GestionEmpleados.Size = new System.Drawing.Size(134, 20);
             this.dateTimer_FechaIngreEmpr_GestionEmpleados.TabIndex = 70;
             // 
             // CmBox_Puesto_GestionEmpleados
             // 
             this.CmBox_Puesto_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Puesto_GestionEmpleados.FormattingEnabled = true;
-            this.CmBox_Puesto_GestionEmpleados.Location = new System.Drawing.Point(91, 241);
+            this.CmBox_Puesto_GestionEmpleados.Location = new System.Drawing.Point(506, 172);
             this.CmBox_Puesto_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Puesto_GestionEmpleados.Name = "CmBox_Puesto_GestionEmpleados";
-            this.CmBox_Puesto_GestionEmpleados.Size = new System.Drawing.Size(158, 21);
+            this.CmBox_Puesto_GestionEmpleados.Size = new System.Drawing.Size(196, 21);
             this.CmBox_Puesto_GestionEmpleados.TabIndex = 69;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(16, 241);
+            this.label14.Location = new System.Drawing.Point(426, 172);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(68, 17);
@@ -178,26 +178,26 @@
             // 
             this.Cmbox_Departamento_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmbox_Departamento_GestionEmpleados.FormattingEnabled = true;
-            this.Cmbox_Departamento_GestionEmpleados.Location = new System.Drawing.Point(139, 201);
+            this.Cmbox_Departamento_GestionEmpleados.Location = new System.Drawing.Point(506, 135);
             this.Cmbox_Departamento_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.Cmbox_Departamento_GestionEmpleados.Name = "Cmbox_Departamento_GestionEmpleados";
-            this.Cmbox_Departamento_GestionEmpleados.Size = new System.Drawing.Size(140, 21);
+            this.Cmbox_Departamento_GestionEmpleados.Size = new System.Drawing.Size(196, 21);
             this.Cmbox_Departamento_GestionEmpleados.TabIndex = 67;
             this.Cmbox_Departamento_GestionEmpleados.SelectedIndexChanged += new System.EventHandler(this.Cmbox_Departamento_GestionEmpleados_SelectedIndexChanged_1);
             // 
             // txt_Email_GestionEmpleados
             // 
-            this.txt_Email_GestionEmpleados.Location = new System.Drawing.Point(454, 352);
+            this.txt_Email_GestionEmpleados.Location = new System.Drawing.Point(157, 272);
             this.txt_Email_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Email_GestionEmpleados.Name = "txt_Email_GestionEmpleados";
-            this.txt_Email_GestionEmpleados.Size = new System.Drawing.Size(186, 20);
+            this.txt_Email_GestionEmpleados.Size = new System.Drawing.Size(172, 20);
             this.txt_Email_GestionEmpleados.TabIndex = 66;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(10, 201);
+            this.label13.Location = new System.Drawing.Point(379, 139);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(115, 17);
@@ -206,17 +206,17 @@
             // 
             // txt_NumCuenta_GestionEmpleados
             // 
-            this.txt_NumCuenta_GestionEmpleados.Location = new System.Drawing.Point(540, 180);
+            this.txt_NumCuenta_GestionEmpleados.Location = new System.Drawing.Point(506, 239);
             this.txt_NumCuenta_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_NumCuenta_GestionEmpleados.Name = "txt_NumCuenta_GestionEmpleados";
-            this.txt_NumCuenta_GestionEmpleados.Size = new System.Drawing.Size(128, 20);
+            this.txt_NumCuenta_GestionEmpleados.Size = new System.Drawing.Size(196, 20);
             this.txt_NumCuenta_GestionEmpleados.TabIndex = 64;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(389, 180);
+            this.label12.Location = new System.Drawing.Point(348, 242);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(148, 17);
@@ -225,17 +225,18 @@
             // 
             // txt_Banco_GestionEmpleados
             // 
-            this.txt_Banco_GestionEmpleados.Location = new System.Drawing.Point(451, 146);
+            this.txt_Banco_GestionEmpleados.Location = new System.Drawing.Point(506, 204);
             this.txt_Banco_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Banco_GestionEmpleados.Name = "txt_Banco_GestionEmpleados";
-            this.txt_Banco_GestionEmpleados.Size = new System.Drawing.Size(174, 20);
+            this.txt_Banco_GestionEmpleados.Size = new System.Drawing.Size(196, 20);
             this.txt_Banco_GestionEmpleados.TabIndex = 62;
+            this.txt_Banco_GestionEmpleados.TextChanged += new System.EventHandler(this.txt_Banco_GestionEmpleados_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(388, 146);
+            this.label11.Location = new System.Drawing.Point(436, 204);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(58, 17);
@@ -244,17 +245,17 @@
             // 
             // txt_DomCompleto_GestionEmpleados
             // 
-            this.txt_DomCompleto_GestionEmpleados.Location = new System.Drawing.Point(539, 115);
+            this.txt_DomCompleto_GestionEmpleados.Location = new System.Drawing.Point(157, 242);
             this.txt_DomCompleto_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_DomCompleto_GestionEmpleados.Name = "txt_DomCompleto_GestionEmpleados";
-            this.txt_DomCompleto_GestionEmpleados.Size = new System.Drawing.Size(225, 20);
+            this.txt_DomCompleto_GestionEmpleados.Size = new System.Drawing.Size(172, 20);
             this.txt_DomCompleto_GestionEmpleados.TabIndex = 60;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(386, 115);
+            this.label10.Location = new System.Drawing.Point(2, 242);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(150, 17);
@@ -263,17 +264,17 @@
             // 
             // txt_RFC_GestionEmpleados
             // 
-            this.txt_RFC_GestionEmpleados.Location = new System.Drawing.Point(439, 80);
+            this.txt_RFC_GestionEmpleados.Location = new System.Drawing.Point(509, 103);
             this.txt_RFC_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_RFC_GestionEmpleados.Name = "txt_RFC_GestionEmpleados";
-            this.txt_RFC_GestionEmpleados.Size = new System.Drawing.Size(123, 20);
+            this.txt_RFC_GestionEmpleados.Size = new System.Drawing.Size(193, 20);
             this.txt_RFC_GestionEmpleados.TabIndex = 58;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(387, 81);
+            this.label9.Location = new System.Drawing.Point(451, 106);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 17);
@@ -282,7 +283,7 @@
             // 
             // txt_NSS_GestionEmpleados
             // 
-            this.txt_NSS_GestionEmpleados.Location = new System.Drawing.Point(628, 50);
+            this.txt_NSS_GestionEmpleados.Location = new System.Drawing.Point(625, 50);
             this.txt_NSS_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_NSS_GestionEmpleados.Name = "txt_NSS_GestionEmpleados";
             this.txt_NSS_GestionEmpleados.Size = new System.Drawing.Size(143, 20);
@@ -292,7 +293,7 @@
             // 
             this.LABEL_NSS_GestionEmpleados.AutoSize = true;
             this.LABEL_NSS_GestionEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LABEL_NSS_GestionEmpleados.Location = new System.Drawing.Point(384, 50);
+            this.LABEL_NSS_GestionEmpleados.Location = new System.Drawing.Point(382, 50);
             this.LABEL_NSS_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LABEL_NSS_GestionEmpleados.Name = "LABEL_NSS_GestionEmpleados";
             this.LABEL_NSS_GestionEmpleados.Size = new System.Drawing.Size(241, 17);
@@ -301,17 +302,17 @@
             // 
             // txt_Curp_GestionEmpleados
             // 
-            this.txt_Curp_GestionEmpleados.Location = new System.Drawing.Point(65, 326);
+            this.txt_Curp_GestionEmpleados.Location = new System.Drawing.Point(509, 74);
             this.txt_Curp_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Curp_GestionEmpleados.Name = "txt_Curp_GestionEmpleados";
-            this.txt_Curp_GestionEmpleados.Size = new System.Drawing.Size(160, 20);
+            this.txt_Curp_GestionEmpleados.Size = new System.Drawing.Size(193, 20);
             this.txt_Curp_GestionEmpleados.TabIndex = 54;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(5, 326);
+            this.label8.Location = new System.Drawing.Point(439, 75);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 17);
@@ -321,10 +322,10 @@
             // 
             // dateTimer_FechaNacim_GestionEmpleados
             // 
-            this.dateTimer_FechaNacim_GestionEmpleados.Location = new System.Drawing.Point(182, 284);
+            this.dateTimer_FechaNacim_GestionEmpleados.Location = new System.Drawing.Point(172, 201);
             this.dateTimer_FechaNacim_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimer_FechaNacim_GestionEmpleados.Name = "dateTimer_FechaNacim_GestionEmpleados";
-            this.dateTimer_FechaNacim_GestionEmpleados.Size = new System.Drawing.Size(91, 20);
+            this.dateTimer_FechaNacim_GestionEmpleados.Size = new System.Drawing.Size(157, 20);
             this.dateTimer_FechaNacim_GestionEmpleados.TabIndex = 52;
             this.dateTimer_FechaNacim_GestionEmpleados.ValueChanged += new System.EventHandler(this.dateTimer_FechaNacim_GestionEmpleados_ValueChanged);
             // 
@@ -332,7 +333,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(11, 286);
+            this.label7.Location = new System.Drawing.Point(5, 204);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(165, 17);
@@ -344,7 +345,7 @@
             this.txt_ApellMaterno_GestionEmpleados.Location = new System.Drawing.Point(157, 161);
             this.txt_ApellMaterno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ApellMaterno_GestionEmpleados.Name = "txt_ApellMaterno_GestionEmpleados";
-            this.txt_ApellMaterno_GestionEmpleados.Size = new System.Drawing.Size(150, 20);
+            this.txt_ApellMaterno_GestionEmpleados.Size = new System.Drawing.Size(172, 20);
             this.txt_ApellMaterno_GestionEmpleados.TabIndex = 50;
             // 
             // label6
@@ -360,10 +361,10 @@
             // 
             // txt_ApellPaterno_GestionEmpleados
             // 
-            this.txt_ApellPaterno_GestionEmpleados.Location = new System.Drawing.Point(145, 119);
+            this.txt_ApellPaterno_GestionEmpleados.Location = new System.Drawing.Point(157, 119);
             this.txt_ApellPaterno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ApellPaterno_GestionEmpleados.Name = "txt_ApellPaterno_GestionEmpleados";
-            this.txt_ApellPaterno_GestionEmpleados.Size = new System.Drawing.Size(164, 20);
+            this.txt_ApellPaterno_GestionEmpleados.Size = new System.Drawing.Size(172, 20);
             this.txt_ApellPaterno_GestionEmpleados.TabIndex = 48;
             // 
             // label5
@@ -379,17 +380,17 @@
             // 
             // txt_Nombres_GestionEmpleados
             // 
-            this.txt_Nombres_GestionEmpleados.Location = new System.Drawing.Point(101, 80);
+            this.txt_Nombres_GestionEmpleados.Location = new System.Drawing.Point(157, 78);
             this.txt_Nombres_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Nombres_GestionEmpleados.Name = "txt_Nombres_GestionEmpleados";
-            this.txt_Nombres_GestionEmpleados.Size = new System.Drawing.Size(195, 20);
+            this.txt_Nombres_GestionEmpleados.Size = new System.Drawing.Size(172, 20);
             this.txt_Nombres_GestionEmpleados.TabIndex = 46;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 80);
+            this.label4.Location = new System.Drawing.Point(52, 81);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 17);
@@ -398,7 +399,7 @@
             // 
             // txt_NumEmplea_GestionEmpleados
             // 
-            this.txt_NumEmplea_GestionEmpleados.Location = new System.Drawing.Point(243, 11);
+            this.txt_NumEmplea_GestionEmpleados.Location = new System.Drawing.Point(268, 10);
             this.txt_NumEmplea_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_NumEmplea_GestionEmpleados.Name = "txt_NumEmplea_GestionEmpleados";
             this.txt_NumEmplea_GestionEmpleados.Size = new System.Drawing.Size(148, 20);
@@ -418,7 +419,7 @@
             // 
             // btn_Agregar_GestionEmpleados
             // 
-            this.btn_Agregar_GestionEmpleados.Location = new System.Drawing.Point(8, 361);
+            this.btn_Agregar_GestionEmpleados.Location = new System.Drawing.Point(95, 419);
             this.btn_Agregar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Agregar_GestionEmpleados.Name = "btn_Agregar_GestionEmpleados";
             this.btn_Agregar_GestionEmpleados.Size = new System.Drawing.Size(78, 36);
@@ -429,7 +430,7 @@
             // 
             // btn_Buscar_GestionEmpleados
             // 
-            this.btn_Buscar_GestionEmpleados.Location = new System.Drawing.Point(412, 10);
+            this.btn_Buscar_GestionEmpleados.Location = new System.Drawing.Point(439, 10);
             this.btn_Buscar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Buscar_GestionEmpleados.Name = "btn_Buscar_GestionEmpleados";
             this.btn_Buscar_GestionEmpleados.Size = new System.Drawing.Size(72, 20);
@@ -440,7 +441,7 @@
             // 
             // btn_Eliminar_GestionEmpleados
             // 
-            this.btn_Eliminar_GestionEmpleados.Location = new System.Drawing.Point(8, 440);
+            this.btn_Eliminar_GestionEmpleados.Location = new System.Drawing.Point(95, 498);
             this.btn_Eliminar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Eliminar_GestionEmpleados.Name = "btn_Eliminar_GestionEmpleados";
             this.btn_Eliminar_GestionEmpleados.Size = new System.Drawing.Size(76, 37);
@@ -451,7 +452,7 @@
             // 
             // btn_AceptarMOD_GestionEmpleados
             // 
-            this.btn_AceptarMOD_GestionEmpleados.Location = new System.Drawing.Point(110, 428);
+            this.btn_AceptarMOD_GestionEmpleados.Location = new System.Drawing.Point(439, 467);
             this.btn_AceptarMOD_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AceptarMOD_GestionEmpleados.Name = "btn_AceptarMOD_GestionEmpleados";
             this.btn_AceptarMOD_GestionEmpleados.Size = new System.Drawing.Size(138, 26);
@@ -462,7 +463,7 @@
             // 
             // btn_CancelarMOD_GestionEmpleados
             // 
-            this.btn_CancelarMOD_GestionEmpleados.Location = new System.Drawing.Point(110, 468);
+            this.btn_CancelarMOD_GestionEmpleados.Location = new System.Drawing.Point(439, 507);
             this.btn_CancelarMOD_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CancelarMOD_GestionEmpleados.Name = "btn_CancelarMOD_GestionEmpleados";
             this.btn_CancelarMOD_GestionEmpleados.Size = new System.Drawing.Size(138, 26);
@@ -492,7 +493,7 @@
             // 
             // btn_AgregarAceptar_GestionEmpleados
             // 
-            this.btn_AgregarAceptar_GestionEmpleados.Location = new System.Drawing.Point(118, 361);
+            this.btn_AgregarAceptar_GestionEmpleados.Location = new System.Drawing.Point(314, 468);
             this.btn_AgregarAceptar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AgregarAceptar_GestionEmpleados.Name = "btn_AgregarAceptar_GestionEmpleados";
             this.btn_AgregarAceptar_GestionEmpleados.Size = new System.Drawing.Size(80, 25);
@@ -503,7 +504,7 @@
             // 
             // btn_AgregarCancelar_GestionEmpleados
             // 
-            this.btn_AgregarCancelar_GestionEmpleados.Location = new System.Drawing.Point(118, 398);
+            this.btn_AgregarCancelar_GestionEmpleados.Location = new System.Drawing.Point(314, 505);
             this.btn_AgregarCancelar_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AgregarCancelar_GestionEmpleados.Name = "btn_AgregarCancelar_GestionEmpleados";
             this.btn_AgregarCancelar_GestionEmpleados.Size = new System.Drawing.Size(80, 25);
@@ -516,7 +517,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(391, 288);
+            this.label18.Location = new System.Drawing.Point(444, 342);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(67, 17);
@@ -527,7 +528,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(388, 253);
+            this.label19.Location = new System.Drawing.Point(365, 307);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(186, 17);
@@ -538,7 +539,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(389, 214);
+            this.label20.Location = new System.Drawing.Point(382, 275);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(112, 17);
@@ -547,35 +548,35 @@
             // 
             // txt_SalarioDiario_GestionEmpleados
             // 
-            this.txt_SalarioDiario_GestionEmpleados.Location = new System.Drawing.Point(506, 213);
+            this.txt_SalarioDiario_GestionEmpleados.Location = new System.Drawing.Point(506, 272);
             this.txt_SalarioDiario_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SalarioDiario_GestionEmpleados.Name = "txt_SalarioDiario_GestionEmpleados";
-            this.txt_SalarioDiario_GestionEmpleados.Size = new System.Drawing.Size(134, 20);
+            this.txt_SalarioDiario_GestionEmpleados.Size = new System.Drawing.Size(196, 20);
             this.txt_SalarioDiario_GestionEmpleados.TabIndex = 90;
             // 
             // txt_SalarioDIntegrado_GestionEmpleados
             // 
-            this.txt_SalarioDIntegrado_GestionEmpleados.Location = new System.Drawing.Point(576, 253);
+            this.txt_SalarioDIntegrado_GestionEmpleados.Location = new System.Drawing.Point(555, 304);
             this.txt_SalarioDIntegrado_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SalarioDIntegrado_GestionEmpleados.Name = "txt_SalarioDIntegrado_GestionEmpleados";
-            this.txt_SalarioDIntegrado_GestionEmpleados.Size = new System.Drawing.Size(134, 20);
+            this.txt_SalarioDIntegrado_GestionEmpleados.Size = new System.Drawing.Size(147, 20);
             this.txt_SalarioDIntegrado_GestionEmpleados.TabIndex = 91;
             // 
             // CmBox_Estatus_GestionEmpleados
             // 
             this.CmBox_Estatus_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Estatus_GestionEmpleados.FormattingEnabled = true;
-            this.CmBox_Estatus_GestionEmpleados.Location = new System.Drawing.Point(458, 288);
+            this.CmBox_Estatus_GestionEmpleados.Location = new System.Drawing.Point(555, 338);
             this.CmBox_Estatus_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Estatus_GestionEmpleados.Name = "CmBox_Estatus_GestionEmpleados";
-            this.CmBox_Estatus_GestionEmpleados.Size = new System.Drawing.Size(114, 21);
+            this.CmBox_Estatus_GestionEmpleados.Size = new System.Drawing.Size(147, 21);
             this.CmBox_Estatus_GestionEmpleados.TabIndex = 92;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(391, 318);
+            this.label21.Location = new System.Drawing.Point(426, 380);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(113, 17);
@@ -587,17 +588,17 @@
             // 
             this.CmBox_Turno_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Turno_GestionEmpleados.FormattingEnabled = true;
-            this.CmBox_Turno_GestionEmpleados.Location = new System.Drawing.Point(508, 318);
+            this.CmBox_Turno_GestionEmpleados.Location = new System.Drawing.Point(555, 376);
             this.CmBox_Turno_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Turno_GestionEmpleados.Name = "CmBox_Turno_GestionEmpleados";
-            this.CmBox_Turno_GestionEmpleados.Size = new System.Drawing.Size(105, 21);
+            this.CmBox_Turno_GestionEmpleados.Size = new System.Drawing.Size(147, 21);
             this.CmBox_Turno_GestionEmpleados.TabIndex = 94;
             // 
             // P_GestionEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 522);
+            this.ClientSize = new System.Drawing.Size(813, 552);
             this.ControlBox = false;
             this.Controls.Add(this.CmBox_Turno_GestionEmpleados);
             this.Controls.Add(this.label21);

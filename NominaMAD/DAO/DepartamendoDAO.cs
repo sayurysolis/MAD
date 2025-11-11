@@ -51,9 +51,6 @@ namespace NominaMAD.DAO
 
                     lista.Add(depa);
                 }
-
-
-
             }
 
             return lista;
@@ -74,11 +71,7 @@ namespace NominaMAD.DAO
         }
 
 
-
-        public static void BorrarDepartamento
-
-
-
+        //public static void BorrarDepartamento
 
     }
 }

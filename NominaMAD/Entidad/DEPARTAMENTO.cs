@@ -11,7 +11,6 @@ namespace NominaMAD.Entidad
     {
         public int ID_Departamento { get; set; }
         public string nombre { get; set; }
-
         public bool estado {  get; set; }
         public string EmpresaID { get; set; }
 

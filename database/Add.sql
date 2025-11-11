@@ -7,12 +7,10 @@ values('DSB Topografía',
 'HEEV-800425-914',
 '10/03/ 2014');
 
-
 -- en caso de hacer delete
-DELETE FROM Empresa;
-DBCC CHECKIDENT ('Empresa', RESEED, 0);
+--DELETE FROM Empresa;
+--DBCC CHECKIDENT ('Empresa', RESEED, 0);
 GO
-
 
 CREATE PROCEDURE sp_AddDepartamento
 @nombre NVARCHAR(100)
@@ -24,11 +22,20 @@ END;
 GO
 
 CREATE PROCEDURE sp_AddPuesto
-	@ID Int,
-	@Nombre VARCHAR(30),
-	@Descripcion VARCHAR(MAX),
-	@Dpartamento INT,
+    @Nombre VARCHAR(30),
+    @Descripcion VARCHAR(MAX),
+	@DepartamentoID int
+	
+AS
+BEGIN
+    INSERT INTO Puesto(Nombre, Descripcion,EmpresaID,DepartamentoID)
+    VALUES ( @Nombre, @Descripcion,1,@DepartamentoID);
+END;
 GO
+
+
+
+
 
 
 

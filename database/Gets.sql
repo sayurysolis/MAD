@@ -17,9 +17,8 @@ FROM Departamento d
 JOIN Empresa e ON d.EmpresaID = e.ID_Empresa
 GO
 
-SELECT * FROM Departamento
-DROP VIEW vw_DepartamentoEmpresa
 
+CREATE VIEW vw_DepPuesto AS
 
-UPDATE Departamento SET estado= 0
-WHERE ID_Departamento LIKe 10
+SELECT 
+    

@@ -150,9 +150,9 @@ namespace NominaMAD
             // delete from Departamento where NombreDepartamento = 'asd'
             using (SqlConnection cn = BD_Conexion.ObtenerConexion())
             {
-                SqlCommand cmd = new SqlCommand("delete from Departamento where NombreDepartamento = 'asd'", cn);
+                SqlCommand cmd = new SqlCommand("delete from Departamento where Nombre = 'asd'", cn);
                 cmd.CommandType = CommandType.Text;
-                cn.Open();
+                
                 cmd.ExecuteNonQuery();
                 mostrarTablaDepart();
             }
@@ -163,11 +163,11 @@ namespace NominaMAD
 
             using (SqlConnection cn = BD_Conexion.ObtenerConexion())
             {
-                //SqlCommand cmd = new SqlCommand("update Departamento set NombreDepartamento='" + txt_Departamento_GestDepar.Text + "', SueldoBase =" + txt_SueldoBase_GestionDepar.Text + " where NombreDepartamento='" + modificarOpcion + "'", cn);
-                SqlCommand cmd = new SqlCommand("UPDATE Departamento SET NombreDepartamento = '" + txt_Departamento_GestDepar.Text + "' WHERE NombreDepartamento = '" + modificarOpcion + "'", cn);
+                
+                SqlCommand cmd = new SqlCommand("UPDATE Departamento SET Nombre = '" + txt_Departamento_GestDepar.Text + "' WHERE Nombre = '" + modificarOpcion + "'", cn);
 
                 cmd.CommandType = CommandType.Text;
-                cn.Open();
+                
                 cmd.ExecuteNonQuery();
                 mostrarTablaDepart();
             }
@@ -243,23 +243,14 @@ namespace NominaMAD
             {
                 //limpa txt
                 txt_Departamento_GestDepar.Text = "";
-               //txt_SueldoBase_GestionDepar.Text = "";
-                //txt_Empleados_GestionDepar.Text = "";
-                //ingresa datos en los txt
-                //txt_Departamento_GestDepar.Text = (string)dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[0].Value;
-                //txt_SueldoBase_GestionDepar.Text = (string)dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[1].Value;
-                //txt_Empleados_GestionDepar.Text = (string)dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[2].Value;
+               
 
                 txt_Departamento_GestDepar.Text = dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[1].Value.ToString();
-               // txt_SueldoBase_GestionDepar.Text = dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[2].Value.ToString();
-               // txt_Empleados_GestionDepar.Text = dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[2].Value.ToString();
-
+              
 
                 //desabilita txt
                 txt_Departamento_GestDepar.Enabled = false;
-                //txt_SueldoBase_GestionDepar.Enabled = false;
-                //txt_Empleados_GestionDepar.Enabled = false;
-                //muestra boton modificar y oculta los demas
+               
                 btn_Guardar_GestionDepar.Visible = false;
                 btn_limpiar_GestionDepar.Visible = false;
                 btn_Agregar_GestionDepar.Visible = true;
