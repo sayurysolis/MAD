@@ -80,10 +80,10 @@
       <DependentUpon>HeadCounter.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\BD_Conexion.cs" />
-    <Compile Include="RH.cs">
+    <Compile Include="quitar\RH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RH.Designer.cs">
+    <Compile Include="quitar\RH.Designer.cs">
       <DependentUpon>RH.cs</DependentUpon>
     </Compile>
     <Compile Include="Reporte General Nomina.cs">
@@ -122,10 +122,10 @@
     <Compile Include="GestionDepartamentos.Designer.cs">
       <DependentUpon>GestionDepartamentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Meenu2.cs">
+    <Compile Include="quitar\Meenu2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Meenu2.Designer.cs">
+    <Compile Include="quitar\Meenu2.Designer.cs">
       <DependentUpon>Meenu2.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu1.cs">
@@ -151,7 +151,7 @@
     <EmbeddedResource Include="HeadCounter.resx">
       <DependentUpon>HeadCounter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RH.resx">
+    <EmbeddedResource Include="quitar\RH.resx">
       <DependentUpon>RH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte General Nomina.resx">
@@ -172,7 +172,7 @@
     <EmbeddedResource Include="GestionDepartamentos.resx">
       <DependentUpon>GestionDepartamentos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Meenu2.resx">
+    <EmbeddedResource Include="quitar\Meenu2.resx">
       <DependentUpon>Meenu2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu1.resx">

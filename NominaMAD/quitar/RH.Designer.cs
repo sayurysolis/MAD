@@ -45,35 +45,40 @@
             // dgv_RH
             // 
             this.dgv_RH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_RH.Location = new System.Drawing.Point(12, 171);
+            this.dgv_RH.Location = new System.Drawing.Point(9, 139);
+            this.dgv_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgv_RH.Name = "dgv_RH";
             this.dgv_RH.RowHeadersWidth = 51;
             this.dgv_RH.RowTemplate.Height = 24;
             this.dgv_RH.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_RH.Size = new System.Drawing.Size(469, 247);
+            this.dgv_RH.Size = new System.Drawing.Size(352, 201);
             this.dgv_RH.TabIndex = 0;
             this.dgv_RH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_RH_CellClick);
             this.dgv_RH.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_RH_CellContentClick);
             // 
             // txt_Usuario_RH
             // 
-            this.txt_Usuario_RH.Location = new System.Drawing.Point(110, 21);
+            this.txt_Usuario_RH.Location = new System.Drawing.Point(82, 17);
+            this.txt_Usuario_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Usuario_RH.Name = "txt_Usuario_RH";
-            this.txt_Usuario_RH.Size = new System.Drawing.Size(151, 22);
+            this.txt_Usuario_RH.Size = new System.Drawing.Size(114, 20);
             this.txt_Usuario_RH.TabIndex = 1;
+            this.txt_Usuario_RH.TextChanged += new System.EventHandler(this.txt_Usuario_RH_TextChanged);
             // 
             // txt_Contra_RH
             // 
-            this.txt_Contra_RH.Location = new System.Drawing.Point(401, 21);
+            this.txt_Contra_RH.Location = new System.Drawing.Point(301, 17);
+            this.txt_Contra_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Contra_RH.Name = "txt_Contra_RH";
-            this.txt_Contra_RH.Size = new System.Drawing.Size(158, 22);
+            this.txt_Contra_RH.Size = new System.Drawing.Size(120, 20);
             this.txt_Contra_RH.TabIndex = 2;
             // 
             // btn_AcepartAgre_RH
             // 
-            this.btn_AcepartAgre_RH.Location = new System.Drawing.Point(139, 72);
+            this.btn_AcepartAgre_RH.Location = new System.Drawing.Point(104, 58);
+            this.btn_AcepartAgre_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_AcepartAgre_RH.Name = "btn_AcepartAgre_RH";
-            this.btn_AcepartAgre_RH.Size = new System.Drawing.Size(113, 32);
+            this.btn_AcepartAgre_RH.Size = new System.Drawing.Size(85, 26);
             this.btn_AcepartAgre_RH.TabIndex = 3;
             this.btn_AcepartAgre_RH.Text = "Aceptar";
             this.btn_AcepartAgre_RH.UseVisualStyleBackColor = true;
@@ -82,26 +87,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 24);
+            this.label1.Location = new System.Drawing.Point(25, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 16);
+            this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Usuario:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(295, 25);
+            this.label2.Location = new System.Drawing.Point(221, 20);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Contraseña:";
             // 
             // btn_Modificar_RH
             // 
-            this.btn_Modificar_RH.Location = new System.Drawing.Point(282, 72);
+            this.btn_Modificar_RH.Location = new System.Drawing.Point(212, 58);
+            this.btn_Modificar_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Modificar_RH.Name = "btn_Modificar_RH";
-            this.btn_Modificar_RH.Size = new System.Drawing.Size(119, 32);
+            this.btn_Modificar_RH.Size = new System.Drawing.Size(89, 26);
             this.btn_Modificar_RH.TabIndex = 6;
             this.btn_Modificar_RH.Text = "Modificar";
             this.btn_Modificar_RH.UseVisualStyleBackColor = true;
@@ -109,9 +117,10 @@
             // 
             // btn_AcepatarMOD_RH
             // 
-            this.btn_AcepatarMOD_RH.Location = new System.Drawing.Point(208, 127);
+            this.btn_AcepatarMOD_RH.Location = new System.Drawing.Point(156, 103);
+            this.btn_AcepatarMOD_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_AcepatarMOD_RH.Name = "btn_AcepatarMOD_RH";
-            this.btn_AcepatarMOD_RH.Size = new System.Drawing.Size(152, 26);
+            this.btn_AcepatarMOD_RH.Size = new System.Drawing.Size(114, 21);
             this.btn_AcepatarMOD_RH.TabIndex = 7;
             this.btn_AcepatarMOD_RH.Text = "Aceptar Modicacion";
             this.btn_AcepatarMOD_RH.UseVisualStyleBackColor = true;
@@ -119,9 +128,10 @@
             // 
             // btn_CancelarMOD_RH
             // 
-            this.btn_CancelarMOD_RH.Location = new System.Drawing.Point(16, 126);
+            this.btn_CancelarMOD_RH.Location = new System.Drawing.Point(12, 102);
+            this.btn_CancelarMOD_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_CancelarMOD_RH.Name = "btn_CancelarMOD_RH";
-            this.btn_CancelarMOD_RH.Size = new System.Drawing.Size(162, 27);
+            this.btn_CancelarMOD_RH.Size = new System.Drawing.Size(122, 22);
             this.btn_CancelarMOD_RH.TabIndex = 8;
             this.btn_CancelarMOD_RH.Text = "Cancelar";
             this.btn_CancelarMOD_RH.UseVisualStyleBackColor = true;
@@ -129,9 +139,10 @@
             // 
             // btn_Agre_RH
             // 
-            this.btn_Agre_RH.Location = new System.Drawing.Point(16, 72);
+            this.btn_Agre_RH.Location = new System.Drawing.Point(12, 58);
+            this.btn_Agre_RH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Agre_RH.Name = "btn_Agre_RH";
-            this.btn_Agre_RH.Size = new System.Drawing.Size(95, 32);
+            this.btn_Agre_RH.Size = new System.Drawing.Size(71, 26);
             this.btn_Agre_RH.TabIndex = 9;
             this.btn_Agre_RH.Text = "Agregar";
             this.btn_Agre_RH.UseVisualStyleBackColor = true;
@@ -139,9 +150,10 @@
             // 
             // btn_Regresar_RHbutton1
             // 
-            this.btn_Regresar_RHbutton1.Location = new System.Drawing.Point(208, 439);
+            this.btn_Regresar_RHbutton1.Location = new System.Drawing.Point(156, 357);
+            this.btn_Regresar_RHbutton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Regresar_RHbutton1.Name = "btn_Regresar_RHbutton1";
-            this.btn_Regresar_RHbutton1.Size = new System.Drawing.Size(98, 36);
+            this.btn_Regresar_RHbutton1.Size = new System.Drawing.Size(74, 29);
             this.btn_Regresar_RHbutton1.TabIndex = 10;
             this.btn_Regresar_RHbutton1.Text = "Regresar";
             this.btn_Regresar_RHbutton1.UseVisualStyleBackColor = true;
@@ -149,9 +161,9 @@
             // 
             // P_RH
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 489);
+            this.ClientSize = new System.Drawing.Size(430, 397);
             this.ControlBox = false;
             this.Controls.Add(this.btn_Regresar_RHbutton1);
             this.Controls.Add(this.btn_Agre_RH);
@@ -164,6 +176,7 @@
             this.Controls.Add(this.txt_Contra_RH);
             this.Controls.Add(this.txt_Usuario_RH);
             this.Controls.Add(this.dgv_RH);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "P_RH";

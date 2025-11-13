@@ -40,7 +40,6 @@ namespace NominaMAD
             //Que no se vea
             btn_Guardar_GestionDepar.Visible = false;
             btn_Modificar_GestionDepar.Visible = false;
-            btn_limpiar_GestionDepar.Visible = false;
             btn_AceptarMod_GestionDepar.Visible = false;
             btn_CancelarMod_GestionDepar.Visible = false;
 
@@ -52,12 +51,11 @@ namespace NominaMAD
         private void mostrarTablaDepart()
         {
             dtgv_GestionDepar.DataSource = DepartamentoDAO.Get_Departamento();
+            dtgv_GestionDepar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
         bool existe = false;
         private void ValidarExistencia()
         {
-            //bool existe = false;
-
             // Recorrer cada fila en el DataGridView
             foreach (DataGridViewRow fila in dtgv_GestionDepar.Rows)
             {
@@ -78,7 +76,7 @@ namespace NominaMAD
                 //mostrar botones
                 btn_Guardar_GestionDepar.Visible = true;
                 btn_Modificar_GestionDepar.Visible = false;
-                btn_limpiar_GestionDepar.Visible = true;
+                //btn_eliminar.Visible = true;
                 btn_Agregar_GestionDepar.Visible = false;
                 btn_AceptarMod_GestionDepar.Visible = false;
                 btn_CancelarMod_GestionDepar.Visible = false;
@@ -88,6 +86,7 @@ namespace NominaMAD
                
            
         }
+
 
         private void btn_Guardar_GestionDepar_Click(object sender, EventArgs e)                   
         {
@@ -105,108 +104,70 @@ namespace NominaMAD
                     DepartamentoDAO.Add_Departamento(depa);
                     txt_Departamento_GestDepar.Text = "";
                     mostrarTablaDepart();
-
-
                 }
                 else { MessageBox.Show("Este departamento ya existe. Por favor, ingresa un departamento diferente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); existe = false; }
             }
         }
-
         private void btn_Modificar_GestionDepar_Click(object sender, EventArgs e)
         {
-            // update Departamento set NombreDepartamento='zxc', SueldoBase = 123 where NombreDepartamento='vxcv'
+            
             modificarOpcion = txt_Departamento_GestDepar.Text;
             txt_Departamento_GestDepar.Enabled = true;
-           // txt_SueldoBase_GestionDepar.Enabled = true;
-            //txt_Empleados_GestionDepar.Enabled = true;
-
             btn_Agregar_GestionDepar.Visible = false;
-
             btn_AceptarMod_GestionDepar.Visible = true;
             btn_CancelarMod_GestionDepar.Visible = true;
             btn_Modificar_GestionDepar.Visible = false;
+          
         }
-
-        private void btn_limpiar_GestionDepar_Click(object sender, EventArgs e)
-        {
-            txt_Departamento_GestDepar.Text = "";
-           // txt_SueldoBase_GestionDepar.Text = "";
-            //txt_Empleados_GestionDepar.Text = "";
-            txt_Departamento_GestDepar.Enabled = false;
-           // txt_SueldoBase_GestionDepar.Enabled = false;
-          //  txt_Empleados_GestionDepar.Enabled = false;
-
-            //oculta botones
-            btn_Guardar_GestionDepar.Visible = false;
-            btn_Modificar_GestionDepar.Visible = false;
-            btn_AceptarMod_GestionDepar.Visible = false;
-            btn_CancelarMod_GestionDepar.Visible = false;
-            btn_limpiar_GestionDepar.Visible = false;
-            btn_Agregar_GestionDepar.Visible = true;
-        }
-        private void eliminar()
-        {
-
-            // delete from Departamento where NombreDepartamento = 'asd'
-            using (SqlConnection cn = BD_Conexion.ObtenerConexion())
-            {
-                SqlCommand cmd = new SqlCommand("delete from Departamento where Nombre = 'asd'", cn);
-                cmd.CommandType = CommandType.Text;
-                
-                cmd.ExecuteNonQuery();
-                mostrarTablaDepart();
-            }
-        }
-
         private void btn_AceptarMod_GestionDepar_Click(object sender, EventArgs e)
         {
+          
+                int idDepa = Convert.ToInt32(dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[0].Value);
+                string nuevoNombre = txt_Departamento_GestDepar.Text.Trim();
+                DEPARTAMENTO depa = new DEPARTAMENTO
+                {
+                    ID_Departamento = idDepa,
+                    nombre = nuevoNombre
+                };
 
-            using (SqlConnection cn = BD_Conexion.ObtenerConexion())
+                DepartamentoDAO.EditarDepartamento(depa); 
+
+                mostrarTablaDepart();
+
+                txt_Departamento_GestDepar.Text = "";
+                txt_Departamento_GestDepar.Enabled = false;
+                btn_Guardar_GestionDepar.Visible = false;
+                btn_Modificar_GestionDepar.Visible = false;
+                btn_AceptarMod_GestionDepar.Visible = false;
+                btn_CancelarMod_GestionDepar.Visible = false;
+                btn_Agregar_GestionDepar.Visible = true;
+                   
+        }
+        private void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            if (ColumnaSeleccionada != -1)
             {
-                
-                SqlCommand cmd = new SqlCommand("UPDATE Departamento SET Nombre = '" + txt_Departamento_GestDepar.Text + "' WHERE Nombre = '" + modificarOpcion + "'", cn);
-
-                cmd.CommandType = CommandType.Text;
-                
-                cmd.ExecuteNonQuery();
+                int idSeleccionado = Convert.ToInt32(dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[0].Value);
+                DepartamentoDAO.EliminarDep(idSeleccionado);
                 mostrarTablaDepart();
             }
+            else
+            {
+                MessageBox.Show("Selecciona un departamento antes de eliminar.");
+            }
 
-            txt_Departamento_GestDepar.Text = "";
-            //txt_SueldoBase_GestionDepar.Text = "";
-           // txt_Empleados_GestionDepar.Text = "";
-            txt_Departamento_GestDepar.Enabled = false;
-           // txt_SueldoBase_GestionDepar.Enabled = false;
-            //txt_Empleados_GestionDepar.Enabled = false;
-
-            //oculta botones
-            btn_Guardar_GestionDepar.Visible = false;
-            btn_Modificar_GestionDepar.Visible = false;
-            btn_AceptarMod_GestionDepar.Visible = false;
-            btn_CancelarMod_GestionDepar.Visible = false;
-            btn_limpiar_GestionDepar.Visible = false;
-            btn_Agregar_GestionDepar.Visible = true;
-            mostrarTablaDepart();
         }
-
         private void btn_CancelarMod_GestionDepar_Click(object sender, EventArgs e)
         {
             txt_Departamento_GestDepar.Text = "";
-            //txt_SueldoBase_GestionDepar.Text = "";
-            //txt_Empleados_GestionDepar.Text = "";
             txt_Departamento_GestDepar.Enabled = false;
-            //txt_SueldoBase_GestionDepar.Enabled = false;
-            ///txt_Empleados_GestionDepar.Enabled = false;
-
             //oculta botones
             btn_Guardar_GestionDepar.Visible = false;
             btn_Modificar_GestionDepar.Visible = false;
             btn_AceptarMod_GestionDepar.Visible = false;
             btn_CancelarMod_GestionDepar.Visible = false;
-            btn_limpiar_GestionDepar.Visible = false;
             btn_Agregar_GestionDepar.Visible = true;
         }
-
         private void btn_Regresar_GestionDepar_Click(object sender, EventArgs e)
         {
             if (P_Inicio.MMenuAoE == 1)
@@ -233,7 +194,6 @@ namespace NominaMAD
                 }
             }
         }
-
         private void dtgv_GestionDepar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -243,31 +203,18 @@ namespace NominaMAD
             {
                 //limpa txt
                 txt_Departamento_GestDepar.Text = "";
-               
-
                 txt_Departamento_GestDepar.Text = dtgv_GestionDepar.Rows[ColumnaSeleccionada].Cells[1].Value.ToString();
-              
-
                 //desabilita txt
                 txt_Departamento_GestDepar.Enabled = false;
-               
+
                 btn_Guardar_GestionDepar.Visible = false;
-                btn_limpiar_GestionDepar.Visible = false;
                 btn_Agregar_GestionDepar.Visible = true;
                 btn_Modificar_GestionDepar.Visible = true;
                 btn_AceptarMod_GestionDepar.Visible = false;
                 btn_CancelarMod_GestionDepar.Visible = false;
             }
         }
-
-        private void txt_Departamento_GestDepar_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtgv_GestionDepar_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
+     
     }
 }

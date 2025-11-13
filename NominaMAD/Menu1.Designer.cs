@@ -39,7 +39,6 @@
             this.btn_ConceptosDedPer_MENU1 = new System.Windows.Forms.Button();
             this.btn_GenerarNomina_MENU1 = new System.Windows.Forms.Button();
             this.btn_Empresa_MENU1 = new System.Windows.Forms.Button();
-            this.btn_RH_MENU1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -168,17 +167,6 @@
             this.btn_Empresa_MENU1.UseVisualStyleBackColor = true;
             this.btn_Empresa_MENU1.Click += new System.EventHandler(this.btn_Empresa_MENU1_Click);
             // 
-            // btn_RH_MENU1
-            // 
-            this.btn_RH_MENU1.Location = new System.Drawing.Point(248, 275);
-            this.btn_RH_MENU1.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_RH_MENU1.Name = "btn_RH_MENU1";
-            this.btn_RH_MENU1.Size = new System.Drawing.Size(176, 24);
-            this.btn_RH_MENU1.TabIndex = 29;
-            this.btn_RH_MENU1.Text = "RH";
-            this.btn_RH_MENU1.UseVisualStyleBackColor = true;
-            this.btn_RH_MENU1.Click += new System.EventHandler(this.btn_RH_MENU1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -198,7 +186,6 @@
             this.ClientSize = new System.Drawing.Size(506, 407);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btn_RH_MENU1);
             this.Controls.Add(this.btn_Empresa_MENU1);
             this.Controls.Add(this.btn_GenerarNomina_MENU1);
             this.Controls.Add(this.btn_ConceptosDedPer_MENU1);
@@ -233,7 +220,6 @@
         private System.Windows.Forms.Button btn_ConceptosDedPer_MENU1;
         private System.Windows.Forms.Button btn_GenerarNomina_MENU1;
         private System.Windows.Forms.Button btn_Empresa_MENU1;
-        private System.Windows.Forms.Button btn_RH_MENU1;
         
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox_Admin_MENU1;

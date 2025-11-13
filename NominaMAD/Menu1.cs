@@ -37,14 +37,8 @@ namespace NominaMAD
         }
         private void btn_GestionDepar_MENU1_Click(object sender, EventArgs e)
         {
-            // Crear una instancia del nuevo formulario
             P_GestionDepar p_GestionDepar = new P_GestionDepar();
-
-
-            // Ocultar el formulario actual (Form1)
             this.Hide();
-
-            // Mostrar el nuevo formulario
             p_GestionDepar.ShowDialog();
         }
         private void btn_GestionPuestos_MENU1_Click(object sender, EventArgs e)
@@ -100,16 +94,7 @@ namespace NominaMAD
             this.Hide();
             // Mostrar el nuevo formulario
             p_GenerarNomina.ShowDialog();
-        }
-        private void btn_RH_MENU1_Click(object sender, EventArgs e)
-        {
-            // Crear una instancia del nuevo formulario
-            P_RH p_RH = new P_RH();
-            // Ocultar el formulario actual (Form1)
-            this.Hide();
-            // Mostrar el nuevo formulario
-            p_RH.ShowDialog();
-        }
+        }        
         private void btn_Salir_MENU1_Click(object sender, EventArgs e)
         {
             P_Inicio p_Inicio = new P_Inicio();
@@ -119,15 +104,6 @@ namespace NominaMAD
             // Mostrar el nuevo formulario
             p_Inicio.ShowDialog();
         }
-
-
-
-
-
-
-
-
-
         private void label2_Click(object sender, EventArgs e)
         {
             
@@ -137,4 +113,17 @@ namespace NominaMAD
 
         }
     }
+
 }
+
+
+
+/*private void btn_RH_MENU1_Click(object sender, EventArgs e)
+        {
+            // Crear una instancia del nuevo formulario
+            P_RH p_RH = new P_RH();
+            // Ocultar el formulario actual (Form1)
+            this.Hide();
+            // Mostrar el nuevo formulario
+            p_RH.ShowDialog();
+        }*/

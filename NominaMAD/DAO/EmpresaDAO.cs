@@ -34,8 +34,6 @@ namespace NominaMAD.DAO
             }
                 return retorno;
         }
-
-
         public static EMPRESAS ObtenerEmpresas()
         {
             EMPRESAS empresa = null;
@@ -50,6 +48,7 @@ namespace NominaMAD.DAO
                     empresa = new EMPRESAS
                     {
                         //ID= Convert.ToInt32(reader["EmpresaID"]),
+                        nombre = reader["nombre"].ToString(),
                         RazonSocial = reader["RazonSocial"].ToString(),
                         DomicilioFiscal = reader["DomicilioFiscal"].ToString(),
                         contacto = reader["Contacto"].ToString(),
@@ -58,13 +57,32 @@ namespace NominaMAD.DAO
                         fechaInicio = Convert.ToDateTime(reader["FechaInicio"])
                     };
                 }
-
-
             }
                 return empresa;
         }
-        
+        public static int EditarEmpresa(EMPRESAS empresa)
+        {
+            int retorno = 0;
+
+            using (SqlConnection conexion = BD_Conexion.ObtenerConexion())
+            {
+                SqlCommand comando = new SqlCommand("sp_EditEmpresa", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@nombre", empresa.nombre);
+                comando.Parameters.AddWithValue("@RazonSocial", empresa.RazonSocial);
+                comando.Parameters.AddWithValue("@DomicilioFiscal", empresa.DomicilioFiscal);
+                comando.Parameters.AddWithValue("@Contacto", empresa.contacto);
+                comando.Parameters.AddWithValue("@RegistroPatronal", empresa.registroPatronal);
+                comando.Parameters.AddWithValue("@RFC", empresa.RFC);
+
+                retorno = comando.ExecuteNonQuery();
+            }
+
+            return retorno;
+        }
+
+
         // public static int borrarEmpresa(){}
-        
+
     }
 }

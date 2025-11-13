@@ -30,33 +30,75 @@ namespace NominaMAD.DAO
             return retorno;
         }
 
-        /*public static List<Pue> get_Puesto()
+        public static List<PUESTO> GetPuestos()
         {
-            List<DEPARTAMENTO> lista = new List<DEPARTAMENTO>();
+            List<PUESTO> lista = new List<PUESTO>();
 
             using (SqlConnection conexion = BD_Conexion.ObtenerConexion())
             {
-                string query = "SELECT * FROM vw_DepartamentoEmpresa";
-                SqlCommand comando = new SqlCommand(query, conexion);
+                SqlCommand comando = new SqlCommand("sp_GetPuestos", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
 
                 SqlDataReader reader = comando.ExecuteReader();
-
                 while (reader.Read())
                 {
-                    DEPARTAMENTO depa = new DEPARTAMENTO();
-                    depa.ID_Departamento = reader.GetInt32(0);
-                    depa.nombre = reader.GetString(1);
-                    depa.estado = reader.GetBoolean(2);
-                    depa.EmpresaID = reader.GetString(3);
-
-                    lista.Add(depa);
+                    PUESTO p = new PUESTO
+                    {
+                        ID_Puesto = reader.GetInt32(0),
+                        Nombre = reader.GetString(1),
+                        Descripcion = reader.GetString(2),
+                        estatus = reader.GetString(3),
+                        EmpresaID = reader.GetString(4),
+                        DepartamentoID = reader.GetString(5)
+                    };
+                    lista.Add(p);
                 }
             }
 
             return lista;
-        }*/
+        }
 
+        public static string ObtenerNombrePorID(int idDepartamento)
+        {
+            using (SqlConnection cn = BD_Conexion.ObtenerConexion())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT nombre FROM Departamento WHERE ID_Departamento = @ID", cn);
+                cmd.Parameters.AddWithValue("@ID", idDepartamento);
+                return cmd.ExecuteScalar()?.ToString() ?? "";
+            }
+        }
 
+        public static void EditarPuesto(PUESTO puesto)
+        {
+            using (SqlConnection conexion = BD_Conexion.ObtenerConexion())
+            {
+                SqlCommand comando = new SqlCommand("sp_EditarPuesto", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
 
+                comando.Parameters.AddWithValue("@ID_Puesto", puesto.ID_Puesto);
+                comando.Parameters.AddWithValue("@Nombre", puesto.Nombre);
+                comando.Parameters.AddWithValue("@Descripcion", puesto.Descripcion);
+                comando.Parameters.AddWithValue("@DepartamentoID", puesto.DepartamentoID);
+
+                comando.ExecuteNonQuery();
+            }
+        }
+
+        public static void BajaPuesto(int idPuesto)
+        {
+            using (SqlConnection conexion = BD_Conexion.ObtenerConexion())
+            {
+                SqlCommand comando = new SqlCommand("sp_BajaPuesto", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@ID_Puesto", idPuesto);
+
+                comando.ExecuteNonQuery();
+            }
+        }
     }
 }
+
+
+ 
+

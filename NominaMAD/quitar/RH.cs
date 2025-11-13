@@ -314,5 +314,10 @@ namespace NominaMAD
                 }
             }
         }
+
+        private void txt_Usuario_RH_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

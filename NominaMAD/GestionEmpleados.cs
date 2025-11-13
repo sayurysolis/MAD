@@ -54,7 +54,7 @@ namespace NominaMAD
             txt_SalarioDiario_GestionEmpleados.Enabled = false;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
             CmBox_Estatus_GestionEmpleados.Enabled = false;
-            CmBox_Turno_GestionEmpleados.Enabled=false;
+            //CmBox_Turno_GestionEmpleados.Enabled=false;
 
             btn_Modificar_GestionEmpleados.Visible = false;
             //btn_Agregar_GestionEmpleados.Visible = false;
@@ -198,7 +198,7 @@ namespace NominaMAD
             txt_SalarioDiario_GestionEmpleados.Enabled = true;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
             CmBox_Estatus_GestionEmpleados.Enabled = true;
-            CmBox_Turno_GestionEmpleados.Enabled = true;
+            //CmBox_Turno_GestionEmpleados.Enabled = true;
 
             btn_Modificar_GestionEmpleados.Visible = false;
             btn_Agregar_GestionEmpleados.Visible = false;
@@ -316,7 +316,7 @@ namespace NominaMAD
             txt_SalarioDiario_GestionEmpleados.Enabled = false;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
             CmBox_Estatus_GestionEmpleados.Enabled = false;
-            CmBox_Turno_GestionEmpleados.Enabled = false;
+            //CmBox_Turno_GestionEmpleados.Enabled = false;
 
             btn_Modificar_GestionEmpleados.Visible = false;
             btn_Agregar_GestionEmpleados.Visible = true;
@@ -462,7 +462,7 @@ namespace NominaMAD
             txt_SalarioDiario_GestionEmpleados.Clear();
             txt_SalarioDIntegrado_GestionEmpleados.Clear();
             CmBox_Estatus_GestionEmpleados.SelectedIndex = -1;//Es la manera correcta de dejar el ComboBox en un estado sin selección.
-            CmBox_Turno_GestionEmpleados.SelectedIndex = -1;
+            //CmBox_Turno_GestionEmpleados.SelectedIndex = -1;
         }
 
         private void btn_Agregar_GestionEmpleados_Click(object sender, EventArgs e)
@@ -495,7 +495,7 @@ namespace NominaMAD
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
             CmBox_Estatus_GestionEmpleados.Enabled = false;
             CmBox_Estatus_GestionEmpleados.SelectedIndex = 0; // Seleccionar "Activo" por defecto
-            CmBox_Turno_GestionEmpleados.Enabled = true;
+            //CmBox_Turno_GestionEmpleados.Enabled = true;
 
             btn_Modificar_GestionEmpleados.Visible = false;
             btn_Agregar_GestionEmpleados.Visible = false;
@@ -609,7 +609,7 @@ namespace NominaMAD
             txt_SalarioDiario_GestionEmpleados.Enabled = false;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
             CmBox_Estatus_GestionEmpleados.Enabled = false;
-            CmBox_Turno_GestionEmpleados.Enabled = false;
+            //CmBox_Turno_GestionEmpleados.Enabled = false;
 
             btn_Modificar_GestionEmpleados.Visible = false;
             btn_Agregar_GestionEmpleados.Visible = true;
@@ -643,7 +643,7 @@ namespace NominaMAD
             txt_SalarioDiario_GestionEmpleados.Enabled = false;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
             CmBox_Estatus_GestionEmpleados.Enabled = false;
-            CmBox_Turno_GestionEmpleados.Enabled = false;
+            //CmBox_Turno_GestionEmpleados.Enabled = false;
 
             btn_Modificar_GestionEmpleados.Visible = false;
             btn_Agregar_GestionEmpleados.Visible = true;
@@ -811,6 +811,11 @@ namespace NominaMAD
         }
 
         private void txt_Banco_GestionEmpleados_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

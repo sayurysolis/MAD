@@ -30,7 +30,6 @@
         {
             this.btn_Regresar_GestionPuestos = new System.Windows.Forms.Button();
             this.btn_Modifcar_GestionPuestos = new System.Windows.Forms.Button();
-            this.btn_Limpiar_GestionPuestos = new System.Windows.Forms.Button();
             this.btn_Guardar_GestionPuestos = new System.Windows.Forms.Button();
             this.txt_DescripcionPuesto_GestionPuestos = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@
             this.btn_Agregar_GestionPuestos = new System.Windows.Forms.Button();
             this.btn_AceptarMOD_GestionPuestos = new System.Windows.Forms.Button();
             this.btn_CancelarMOD_GestionPuestos = new System.Windows.Forms.Button();
+            this.btn_eliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_GestionPustos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,17 +68,6 @@
             this.btn_Modifcar_GestionPuestos.Text = "Modificar";
             this.btn_Modifcar_GestionPuestos.UseVisualStyleBackColor = true;
             this.btn_Modifcar_GestionPuestos.Click += new System.EventHandler(this.btn_Modifcar_GestionPuestos_Click);
-            // 
-            // btn_Limpiar_GestionPuestos
-            // 
-            this.btn_Limpiar_GestionPuestos.Location = new System.Drawing.Point(495, 354);
-            this.btn_Limpiar_GestionPuestos.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_Limpiar_GestionPuestos.Name = "btn_Limpiar_GestionPuestos";
-            this.btn_Limpiar_GestionPuestos.Size = new System.Drawing.Size(62, 23);
-            this.btn_Limpiar_GestionPuestos.TabIndex = 29;
-            this.btn_Limpiar_GestionPuestos.Text = "Limpiar";
-            this.btn_Limpiar_GestionPuestos.UseVisualStyleBackColor = true;
-            this.btn_Limpiar_GestionPuestos.Click += new System.EventHandler(this.btn_Limpiar_GestionPuestos_Click);
             // 
             // btn_Guardar_GestionPuestos
             // 
@@ -140,7 +129,6 @@
             this.cmBox_Departamento_GestionPuestos.Name = "cmBox_Departamento_GestionPuestos";
             this.cmBox_Departamento_GestionPuestos.Size = new System.Drawing.Size(224, 21);
             this.cmBox_Departamento_GestionPuestos.TabIndex = 19;
-            this.cmBox_Departamento_GestionPuestos.SelectedIndexChanged += new System.EventHandler(this.cmBox_Departamento_GestionPuestos_SelectedIndexChanged_1);
             // 
             // label2
             // 
@@ -156,13 +144,13 @@
             // dtgv_GestionPustos
             // 
             this.dtgv_GestionPustos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgv_GestionPustos.Location = new System.Drawing.Point(166, 86);
+            this.dtgv_GestionPustos.Location = new System.Drawing.Point(56, 86);
             this.dtgv_GestionPustos.Margin = new System.Windows.Forms.Padding(2);
             this.dtgv_GestionPustos.Name = "dtgv_GestionPustos";
             this.dtgv_GestionPustos.ReadOnly = true;
             this.dtgv_GestionPustos.RowHeadersWidth = 51;
             this.dtgv_GestionPustos.RowTemplate.Height = 24;
-            this.dtgv_GestionPustos.Size = new System.Drawing.Size(472, 169);
+            this.dtgv_GestionPustos.Size = new System.Drawing.Size(658, 169);
             this.dtgv_GestionPustos.TabIndex = 32;
             this.dtgv_GestionPustos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_GestionPustos_CellClick);
             // 
@@ -173,7 +161,6 @@
             this.txtPuesto_GestionPuestos.Name = "txtPuesto_GestionPuestos";
             this.txtPuesto_GestionPuestos.Size = new System.Drawing.Size(103, 20);
             this.txtPuesto_GestionPuestos.TabIndex = 33;
-            this.txtPuesto_GestionPuestos.TextChanged += new System.EventHandler(this.txtPuesto_GestionPuestos_TextChanged);
             // 
             // btn_Agregar_GestionPuestos
             // 
@@ -208,12 +195,23 @@
             this.btn_CancelarMOD_GestionPuestos.UseVisualStyleBackColor = true;
             this.btn_CancelarMOD_GestionPuestos.Click += new System.EventHandler(this.btn_CancelarMOD_GestionPuestos_Click);
             // 
+            // btn_eliminar
+            // 
+            this.btn_eliminar.Location = new System.Drawing.Point(499, 369);
+            this.btn_eliminar.Name = "btn_eliminar";
+            this.btn_eliminar.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminar.TabIndex = 37;
+            this.btn_eliminar.Text = "Eliminar";
+            this.btn_eliminar.UseVisualStyleBackColor = true;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click_1);
+            // 
             // P_GestionPuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(786, 505);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.btn_CancelarMOD_GestionPuestos);
             this.Controls.Add(this.btn_AceptarMOD_GestionPuestos);
             this.Controls.Add(this.btn_Agregar_GestionPuestos);
@@ -221,7 +219,6 @@
             this.Controls.Add(this.dtgv_GestionPustos);
             this.Controls.Add(this.btn_Regresar_GestionPuestos);
             this.Controls.Add(this.btn_Modifcar_GestionPuestos);
-            this.Controls.Add(this.btn_Limpiar_GestionPuestos);
             this.Controls.Add(this.btn_Guardar_GestionPuestos);
             this.Controls.Add(this.txt_DescripcionPuesto_GestionPuestos);
             this.Controls.Add(this.label5);
@@ -245,7 +242,6 @@
 
         private System.Windows.Forms.Button btn_Regresar_GestionPuestos;
         private System.Windows.Forms.Button btn_Modifcar_GestionPuestos;
-        private System.Windows.Forms.Button btn_Limpiar_GestionPuestos;
         private System.Windows.Forms.Button btn_Guardar_GestionPuestos;
         private System.Windows.Forms.TextBox txt_DescripcionPuesto_GestionPuestos;
         private System.Windows.Forms.Label label5;
@@ -258,5 +254,6 @@
         private System.Windows.Forms.Button btn_Agregar_GestionPuestos;
         private System.Windows.Forms.Button btn_AceptarMOD_GestionPuestos;
         private System.Windows.Forms.Button btn_CancelarMOD_GestionPuestos;
+        private System.Windows.Forms.Button btn_eliminar;
     }
 }

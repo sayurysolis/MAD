@@ -6,7 +6,6 @@ values('DSB Topografía',
 'D41-13615-10-5',
 'HEEV-800425-914',
 '10/03/ 2014');
-
 -- en caso de hacer delete
 --DELETE FROM Empresa;
 --DBCC CHECKIDENT ('Empresa', RESEED, 0);
@@ -22,10 +21,9 @@ END;
 GO
 
 CREATE PROCEDURE sp_AddPuesto
-    @Nombre VARCHAR(30),
+	@Nombre VARCHAR(30),
     @Descripcion VARCHAR(MAX),
-	@DepartamentoID int
-	
+	@DepartamentoID INT
 AS
 BEGIN
     INSERT INTO Puesto(Nombre, Descripcion,EmpresaID,DepartamentoID)
@@ -33,51 +31,75 @@ BEGIN
 END;
 GO
 
-
-
-
-
-
-
-
-/*CREATE PROCEDURE SP_AddEmpleado 
-	@EmpresaID INT,
-	@DepID INT,
-	@PuestoID INT,
-	@Gerente  BIT,--1 Gerente, 0 empleado
-
-	@ID_Empleado INT ,--Numero de empleado
-	@Contrasena NVARCHAR(20),
-
-	
-	@CURP VARCHAR(18),
-	@NSS VARCHAR(11),
-	@RFC VARCHAR (13),
-	
+CREATE PROCEDURE sp_AddEmpleado
 	@Nombre NVARCHAR(MAX),
 	@ApellidoPaterno NVARCHAR(50),
 	@ApellidoMaterno NVARCHAR(50),
 	@FechaNacimiento DATE,
-	
+	---------------
+	@DepID INT,
+	@PuestoID INT,
+	---------------
+	@CURP VARCHAR(18),
+	@NSS VARCHAR(11),
+	@RFC VARCHAR (13),
+
 	@Banco NVARCHAR(30),
 	@NumeroCuenta VARCHAR(20),
 	@SalarioDiario DECIMAL (10,2),
 	@SalarioDiarioIntegrado DECIMAL (10,2),
-	
+	--/////////////////////////////--
+	@calle NVARCHAR (30),
+	@numero INT,
+	@colonia NVARCHAR(50),
+	@municipio NVARCHAR(50),
+	@estado NVARCHAR (30),
+	@codigoPostal VARCHAR(6),
+	--/////////////////////////////--
 	@Email NVARCHAR(50),
-	@DireccionID INT,
-	@TelefonoID INT,
-	
-	@estatus BIT, -- 1 para activo 0 para inactivo
-	@FechaIngreso DATE,
+	@Telefono VARCHAR(10),
+	@FechaIngreso DATE
 AS
-BEGIN 
-	SET
-	 
+BEGIN
+	INSERT INTO Empleado(Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,
+						 EmpresaID,DepID,PuestoID,CURP,NSS,RFC,
+						 Banco,NumeroCuenta,SalarioDiario,SalarioDiarioIntegrado,
+						 calle,numero,colonia,municipio,estado,codigoPostal,
+						 Email,Telefono,FechaIngreso)
 
+	VALUES (@Nombre,@ApellidoPaterno,@ApellidoMaterno,@FechaNacimiento,
+			1,@DepID,@PuestoID,@CURP,@NSS,@RFC,
+			@Banco,@NumeroCuenta,@SalarioDiario,@SalarioDiarioIntegrado,
+			@calle,@numero,@colonia,@municipio,@estado,@codigoPostal,
+			@Email,@Telefono,@FechaIngreso);
+END;
+GO
 
-GO*/
+CREATE PROCEDURE sp_AddConceptos
+	@Tipo BIT,
+	@nombre NVARCHAR(100),
+	@EsPorcetanje BIT,
+	@Valor DECIMAL (10,2),
+	@General BIT 
+AS
+BEGIN
+	INSERT INTO  Conceptos(Tipo,nombre,EsPorcetanje,Valor,General)
+	VALUES(@Tipo,@nombre,@EsPorcetanje,@Valor,@General);
+END;
+GO
 
+CREATE PROCEDURE sp_CrearPrimerPeriodo
+    @Mes INT,
+    @Anio INT
+AS
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM Periodo)
+    BEGIN
+        INSERT INTO Periodo (Mes,Anio)
+        VALUES (@Mes, @Anio);
+    END
+END;
+GO
 
 
 
