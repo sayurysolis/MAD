@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NominaMAD.Entidad;
+using NominaMAD.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,111 +43,72 @@ namespace NominaMAD
             btn_ModCancelar_ConceptosDP.Visible = false;
             btn_Eliminar_ConceptosDP.Visible = false;
         }
-        string Conexion = "Data Source=RAGE-PC\\SQLEXPRESS;Initial Catalog=DSB_topografia;Integrated Security=True";
+        
         string modificarOpcion;
 
-        private void label2_Click(object sender, EventArgs e)
+        private void P_ConceptosDP_Load(object sender, EventArgs e)
         {
+            txt_NombreCon_ConceptosDP.MaxLength = 30;
 
+            CmBox_Concepto_ConceptosDP.Items.Add("Deducción");
+            CmBox_Concepto_ConceptosDP.Items.Add("Percepción");
+
+            CmBox_Tipo_ConceptosDP.Items.Add("Monto");
+            CmBox_Tipo_ConceptosDP.Items.Add("Porcentaje");
+
+            CmBox_Tipo_ConceptosDP.SelectedIndexChanged += CmBox_Tipo_ConceptosDP_SelectedIndexChanged;
         }
+        private void CmBox_Tipo_ConceptosDP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Ocultar y deshabilitar ambos al inicio
+            labelMonto.Visible = false;
+            txt_Monto_ConceptosDP.Visible = false;
+            txt_Monto_ConceptosDP.Enabled = false;
 
+            labelPorcentaje.Visible = false;
+            txt_Porcentaje_ConceptosDP.Visible = false;
+            txt_Porcentaje_ConceptosDP.Enabled = false;
+
+            int index = CmBox_Tipo_ConceptosDP.SelectedIndex;
+            if (index == 0) // Monto
+            {
+                labelMonto.Visible = true;
+                txt_Monto_ConceptosDP.Visible = true;
+                txt_Monto_ConceptosDP.Enabled = true;
+                txt_Monto_ConceptosDP.Focus();
+            }
+            else if (index == 1) // Porcentaje
+            {
+                labelPorcentaje.Visible = true;
+                txt_Porcentaje_ConceptosDP.Visible = true;
+                txt_Porcentaje_ConceptosDP.Enabled = true;
+                txt_Porcentaje_ConceptosDP.Focus();
+            }
+        }
         private void CmBox_Concepto_ConceptosDP_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void P_ConceptosDP_Load(object sender, EventArgs e)
+        private void HabilitarCampos(bool habilitar)
         {
-            txt_NombreCon_ConceptosDP.MaxLength = 30;
-            // Llena el ComboBox con "Deducción" y "Percepción"
-            CmBox_Concepto_ConceptosDP.Items.Add("Deducción");
-            CmBox_Concepto_ConceptosDP.Items.Add("Percepción");
-            CmBox_Tipo_ConceptosDP.Items.Add("Monto");
-            CmBox_Tipo_ConceptosDP.Items.Add("Porcentaje");
-            // Suscribe el evento después de que el ComboBox esté lleno
-            CmBox_Tipo_ConceptosDP.SelectedIndexChanged += CmBox_Tipo_ConceptosDP_SelectedIndexChanged;
+            label1.Enabled = habilitar;
+            CmBox_Concepto_ConceptosDP.Enabled = habilitar;
+            label2.Enabled = habilitar;
+            CmBox_Tipo_ConceptosDP.Enabled = habilitar;
+            label3.Enabled = habilitar;
+            txt_NombreCon_ConceptosDP.Enabled = habilitar;
 
-        }
+            labelMonto.Enabled = habilitar;
+            txt_Monto_ConceptosDP.Enabled = habilitar;
 
-        private void mostrarTablaDP()
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection(Conexion))
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM PercepcionesDeduccion", cn);
-                da.SelectCommand.CommandType = CommandType.Text;
-                
-                da.Fill(dt);
-                dtgv_ConceptosDP.DataSource = dt;
-
-            }
-        }
-
-        private void CmBox_Tipo_ConceptosDP_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Verifica si hay un elemento seleccionado antes de continuar
-            if (CmBox_Tipo_ConceptosDP.SelectedItem == null)
-            {
-                return; // No hacer nada si no hay ningún elemento seleccionado
-            }
-            // Aquí va el código que deseas ejecutar cuando cambie la selección
-            string seleccion = CmBox_Tipo_ConceptosDP.SelectedItem.ToString();
-
-            if(seleccion == "Monto")
-            {
-                //labelMonto.Enabled = true;
-                //txt_Monto_ConceptosDP.Enabled = true;
-                //labelPorcentaje.Enabled = false;
-                //txt_Porcentaje_ConceptosDP.Enabled=false;
-                labelMonto.Visible = true;
-                txt_Monto_ConceptosDP.Visible = true;
-                labelPorcentaje.Visible = false;
-                txt_Porcentaje_ConceptosDP.Visible = false;
-            }
-            else
-            {
-                if(seleccion == "Porcentaje")
-                {
-                    labelMonto.Visible = false;
-                    txt_Monto_ConceptosDP.Visible = false;
-                    labelPorcentaje.Visible = true;
-                    txt_Porcentaje_ConceptosDP.Visible = true;
-                }
-
-            }
-
-            //MessageBox.Show("Has seleccionado: " + seleccion);
-
-        }
-
-        private void btn_Agregar_ConceptosDP_Click(object sender, EventArgs e)
-        {
-            label1.Enabled = true;
-            CmBox_Concepto_ConceptosDP.Enabled = true;
-            label2.Enabled = true;
-            CmBox_Tipo_ConceptosDP.Enabled = true;
-            label3.Enabled = true;
-            txt_NombreCon_ConceptosDP.Enabled = true;
-
-            labelMonto.Visible = false;
-            txt_Monto_ConceptosDP.Visible = false;
-            labelPorcentaje.Visible = false;
-            txt_Porcentaje_ConceptosDP.Visible = false;
-
-            btn_Agregar_ConceptosDP.Visible = false;
-            btn_Aceptar_ConceptosDP.Visible = true;
-            btn_Cancelar_ConceptosDP.Visible = true;
-            btn_Modificar_ConceptosDP.Visible = false;
-            btn_ModAceptar_ConceptosDP.Visible = false;
-            btn_ModCancelar_ConceptosDP.Visible = false;
-            btn_Eliminar_ConceptosDP.Visible = false;
-
-            //MessageBox.Show("Agregado Correctamente");
+            labelPorcentaje.Enabled = habilitar;
+            txt_Porcentaje_ConceptosDP.Enabled = habilitar;
         }
 
         private bool ValidarCampos()
         {
-            // Validar que se haya seleccionado un departamento y un puesto
+            //Validar que se haya seleccionado un departamento y un puesto
             if (CmBox_Concepto_ConceptosDP.SelectedIndex == -1 ||
                 CmBox_Tipo_ConceptosDP.SelectedIndex == -1)
             {
@@ -180,61 +143,13 @@ namespace NominaMAD
                 }
             }
 
-           
 
-            
+
+
 
 
             return true; // Todos los campos están completos
         }
-
-        private void btn_Aceptar_ConceptosDP_Click(object sender, EventArgs e)
-        {
-            if (!ValidarCampos()) return;
-
-            string tipo = CmBox_Concepto_ConceptosDP.SelectedItem.ToString() == "Percepción" ? "P" : "D";
-            string nombre = txt_NombreCon_ConceptosDP.Text;
-            bool esPorcentaje = CmBox_Tipo_ConceptosDP.SelectedItem.ToString() == "Porcentaje";
-            decimal valor;
-
-            if (esPorcentaje)
-            {
-                if (!decimal.TryParse(txt_Porcentaje_ConceptosDP.Text, out valor))
-                {
-                    MessageBox.Show("Porcentaje inválido.");
-                    return;
-                }
-            }
-            else
-            {
-                if (!decimal.TryParse(txt_Monto_ConceptosDP.Text, out valor))
-                {
-                    MessageBox.Show("Monto inválido.");
-                    return;
-                }
-            }
-
-            using (SqlConnection cn = new SqlConnection(Conexion))
-            {
-                string query = "INSERT INTO PercepcionesDeduccion (Tipo, nombre, EsPorcetanje, Valor) VALUES (@Tipo, @Nombre, @EsPorcentaje, @Valor)";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@Tipo", tipo);
-                cmd.Parameters.AddWithValue("@Nombre", nombre);
-                cmd.Parameters.AddWithValue("@Valor", valor);
-                cmd.Parameters.AddWithValue("@EsPorcentaje", esPorcentaje);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
-                cn.Close();
-            }
-
-            MessageBox.Show("Concepto registrado correctamente.");
-            LimpiarCampos();
-            mostrarTablaDP();
-        }
-
-
-        // Función para limpiar los campos después de la inserción
         private void LimpiarCampos()
         {
             CmBox_Concepto_ConceptosDP.SelectedIndex = -1;
@@ -268,10 +183,150 @@ namespace NominaMAD
             btn_ModCancelar_ConceptosDP.Visible = false;
             btn_Eliminar_ConceptosDP.Visible = false;
         }
+            
 
+
+       
+
+        private void btn_Agregar_ConceptosDP_Click(object sender, EventArgs e)
+        {
+            HabilitarCampos(true);
+
+            btn_Agregar_ConceptosDP.Visible = false;
+            btn_Aceptar_ConceptosDP.Visible = true;
+            btn_Cancelar_ConceptosDP.Visible = true;
+
+            if (CmBox_Tipo_ConceptosDP.SelectedIndex != -1)
+                CmBox_Tipo_ConceptosDP_SelectedIndexChanged(null, null);
+
+
+        }
+        private void btn_Aceptar_ConceptosDP_Click(object sender, EventArgs e)
+        {
+            if (!ValidarCampos()) return;
+
+            decimal valor = 0;
+            if (CmBox_Tipo_ConceptosDP.SelectedIndex == 0) // Monto
+                valor = decimal.Parse(txt_Monto_ConceptosDP.Text);
+            else // Porcentaje
+                valor = decimal.Parse(txt_Porcentaje_ConceptosDP.Text);
+
+            Concepto concepto = new Concepto
+            {
+                Tipo = CmBox_Concepto_ConceptosDP.SelectedIndex == 1, // Percepción = true
+                Nombre = txt_NombreCon_ConceptosDP.Text,
+                EsPorcentaje = CmBox_Tipo_ConceptosDP.SelectedIndex == 1,
+                Valor = valor,
+                General = cadames.Checked
+            };
+
+            try
+            {
+                ConceptoDAO dao = new ConceptoDAO();
+                // dao.AgregarConcepto(concepto);
+
+                MessageBox.Show("Concepto agregado correctamente.");
+                LimpiarCampos();
+                // mostrarTablaDP();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar concepto: " + ex.Message);
+            }
+        }
         private void btn_Cancelar_ConceptosDP_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+        }
+
+
+        //Variable para almacenar el ID del concepto seleccionado
+        private int idConceptoSeleccionado = -1;
+    
+
+        private void btn_Modificar_ConceptosDP_Click(object sender, EventArgs e)
+        {
+            if (idConceptoSeleccionado == -1)
+            {
+                MessageBox.Show("Seleccione un concepto para modificar.");
+                return;
+            }
+
+            HabilitarCampos(true);
+
+            btn_Modificar_ConceptosDP.Visible = false;
+            btn_ModAceptar_ConceptosDP.Visible = true;
+            btn_ModCancelar_ConceptosDP.Visible = true;
+
+            if (CmBox_Tipo_ConceptosDP.SelectedIndex != -1)
+                CmBox_Tipo_ConceptosDP_SelectedIndexChanged(null, null);
+
+        }
+        private void btn_ModAceptar_ConceptosDP_Click(object sender, EventArgs e)
+        {
+            if (!ValidarCampos()) return;
+
+            decimal valor = 0;
+            if (CmBox_Tipo_ConceptosDP.SelectedIndex == 0) // Monto
+                valor = decimal.Parse(txt_Monto_ConceptosDP.Text);
+            else // Porcentaje
+                valor = decimal.Parse(txt_Porcentaje_ConceptosDP.Text);
+
+            Concepto concepto = new Concepto
+            {
+                ID_Conceptos = idConceptoSeleccionado,
+                Tipo = CmBox_Concepto_ConceptosDP.SelectedIndex == 1,
+                Nombre = txt_NombreCon_ConceptosDP.Text,
+                EsPorcentaje = CmBox_Tipo_ConceptosDP.SelectedIndex == 1,
+                Valor = valor,
+                General = cadames.Checked
+            };
+
+            try
+            {
+                ConceptoDAO.EditarConcepto(concepto);
+
+
+                MessageBox.Show("Concepto modificado correctamente.");
+                LimpiarCampos();
+                // mostrarTablaDP();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar concepto: " + ex.Message);
+            }
+        }
+        private void btn_ModCancelar_ConceptosDP_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void btn_Eliminar_ConceptosDP_Click(object sender, EventArgs e)
+        {
+            if (idConceptoSeleccionado == -1)
+            {
+                MessageBox.Show("Seleccione un concepto para eliminar.");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("¿Está seguro de eliminar este concepto?", "Confirmar", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    ConceptoDAO dao = new ConceptoDAO();
+                     dao.BajaConcepto (idConceptoSeleccionado);
+
+                    MessageBox.Show("Concepto eliminado correctamente.");
+                    LimpiarCampos();
+                    // mostrarTablaDP();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar concepto: " + ex.Message);
+                }
+            }
+        
         }
 
         private void btn_Regresar_ConceptosDP_Click(object sender, EventArgs e)
@@ -279,10 +334,7 @@ namespace NominaMAD
             if (P_Inicio.MMenuAoE == 1)
             {
                 P_Menu1 p_Menu1 = new P_Menu1();
-                // Ocultar el formulario actual (Form1)
                 this.Hide();
-
-                // Mostrar el nuevo formulario
                 p_Menu1.ShowDialog();
 
             }
@@ -291,17 +343,39 @@ namespace NominaMAD
                 if (P_Inicio.MMenuAoE == 2)
                 {
                     P_Menu2 p_Menu2 = new P_Menu2();
-                    // Ocultar el formulario actual (Form1)
                     this.Hide();
-
-                    // Mostrar el nuevo formulario
                     p_Menu2.ShowDialog();
 
                 }
             }
         }
-        // Variable para almacenar el ID del concepto seleccionado
-        private int idConceptoSeleccionado = -1;
+
+
+
+
+
+        private void dtgv_ConceptosDP_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void txt_Porcentaje_ConceptosDP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void txt_Monto_ConceptosDP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void txt_NombreCon_ConceptosDP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mostrarTablaDP()
+        {
+            ConceptoDAO dao = new ConceptoDAO();
+            dtgv_ConceptosDP.DataSource = dao.ObtenerConceptos();
+        }
         private void dtgv_ConceptosDP_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -340,13 +414,14 @@ namespace NominaMAD
 
                 DataGridViewRow row = dtgv_ConceptosDP.Rows[e.RowIndex];
                 // Almacenar el id_PD del concepto seleccionado
-                idConceptoSeleccionado = Convert.ToInt32(row.Cells["ID_PercDed"].Value);
+                idConceptoSeleccionado = Convert.ToInt32(row.Cells["ID_Conceptos"].Value);
 
 
                 CmBox_Concepto_ConceptosDP.SelectedItem = row.Cells["Tipo"].Value.ToString() == "P" ? "Percepción" : "Deducción";
                 txt_NombreCon_ConceptosDP.Text = row.Cells["nombre"].Value.ToString();
 
-                bool esPorcentaje = Convert.ToBoolean(row.Cells["EsPorcetanje"].Value);
+                bool esPorcentaje = Convert.ToBoolean(row.Cells["EsPorcentaje"].Value);
+
                 if (esPorcentaje)
                 {
                     CmBox_Tipo_ConceptosDP.SelectedItem = "Porcentaje";
@@ -371,187 +446,20 @@ namespace NominaMAD
             }
         }
 
-        private void btn_Modificar_ConceptosDP_Click(object sender, EventArgs e)
+        private void cadames_CheckedChanged(object sender, EventArgs e)
         {
-
-            label1.Enabled = true;
-            CmBox_Concepto_ConceptosDP.Enabled = true;
-            label2.Enabled = true;
-            CmBox_Tipo_ConceptosDP.Enabled = true;
-            label3.Enabled = true;
-            txt_NombreCon_ConceptosDP.Enabled = true;
-            labelMonto.Enabled = true;
-            txt_Monto_ConceptosDP.Enabled = true;
-            labelPorcentaje.Enabled = true;
-            txt_Porcentaje_ConceptosDP.Enabled = true;
-
-            
-
-            btn_Agregar_ConceptosDP.Visible = false;
-            btn_Aceptar_ConceptosDP.Visible =false;
-            btn_Cancelar_ConceptosDP.Visible = false;
-            btn_Modificar_ConceptosDP.Visible = false;
-            btn_ModAceptar_ConceptosDP.Visible = true;
-            btn_ModCancelar_ConceptosDP.Visible =true;
-            btn_Eliminar_ConceptosDP.Visible = false;
-
-        }
-
-        private void btn_ModAceptar_ConceptosDP_Click(object sender, EventArgs e)
-        {
-            // Validar los campos antes de continuar
-            if (!ValidarCampos())
+            // Si está marcado, el concepto es general (aplica cada mes)
+            if (cadames.Checked)
             {
-                return;
-            }
-
-            // Obtener valores desde los controles
-            string concepto = CmBox_Concepto_ConceptosDP.SelectedItem.ToString(); // "Percepción" o "Deducción"
-            string tipo = CmBox_Tipo_ConceptosDP.SelectedItem.ToString();         // "Monto" o "Porcentaje"
-            string nombreConcepto = txt_NombreCon_ConceptosDP.Text;
-
-            // Convertir tipo a 'P' o 'D'
-            string tipoBD = concepto == "Percepción" ? "P" : "D";
-            bool esPorcentaje = tipo == "Porcentaje";
-
-            // Obtener valor numérico
-            decimal valor;
-            if (esPorcentaje)
-            {
-                if (!decimal.TryParse(txt_Porcentaje_ConceptosDP.Text, out valor))
-                {
-                    MessageBox.Show("Porcentaje inválido.");
-                    return;
-                }
+                // Aquí activas/desactivas campos si quieres
+                txt_Monto_ConceptosDP.Enabled = true;
+                txt_Porcentaje_ConceptosDP.Enabled = true;
             }
             else
             {
-                if (!decimal.TryParse(txt_Monto_ConceptosDP.Text, out valor))
-                {
-                    MessageBox.Show("Monto inválido.");
-                    return;
-                }
+                // Si no está marcado, solo permites campos según tipo
+                CmBox_Tipo_ConceptosDP_SelectedIndexChanged(sender, e);
             }
-
-            // Actualizar en la base de datos
-            using (SqlConnection cn = new SqlConnection(Conexion))
-            {
-                string query = @"UPDATE PercepcionesDeduccion 
-                         SET Tipo = @Tipo, nombre = @Nombre, EsPorcetanje = @EsPorcentaje, Valor = @Valor 
-                         WHERE ID_PercDed = @ID";
-
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@Tipo", tipoBD);
-                cmd.Parameters.AddWithValue("@Nombre", nombreConcepto);
-                cmd.Parameters.AddWithValue("@EsPorcentaje", esPorcentaje);
-                cmd.Parameters.AddWithValue("@Valor", valor);
-                cmd.Parameters.AddWithValue("@ID", idConceptoSeleccionado);
-
-                cn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                cn.Close();
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Concepto modificado exitosamente.");
-                    LimpiarCampos();
-                    mostrarTablaDP(); // Refresca el DataGridView
-                }
-                else
-                {
-                    MessageBox.Show("Error al modificar el concepto.");
-                }
-            }
-        }
-
-
-        private void btn_ModCancelar_ConceptosDP_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
-
-        private void btn_Eliminar_ConceptosDP_Click(object sender, EventArgs e)
-        {
-            // Verifica que se haya seleccionado un concepto
-            if (idConceptoSeleccionado == -1)
-            {
-                MessageBox.Show("Por favor, selecciona un concepto para eliminar.");
-                return;
-            }
-
-            // Muestra un mensaje de confirmación antes de eliminar
-            DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que deseas eliminar este concepto?",
-                                                        "Confirmar Eliminación",
-                                                        MessageBoxButtons.YesNo,
-                                                        MessageBoxIcon.Warning);
-
-            if (confirmacion == DialogResult.Yes)
-            {
-                using (SqlConnection cn = new SqlConnection(Conexion))
-                {
-                    // Comando SQL corregido para eliminar de la tabla correcta
-                    string query = "DELETE FROM PercepcionesDeduccion WHERE ID_PercDed = @ID";
-                    SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@ID", idConceptoSeleccionado);
-
-                    cn.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    cn.Close();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Concepto eliminado exitosamente.");
-                        LimpiarCampos();
-                        mostrarTablaDP(); // Actualizar el DataGridView
-                        idConceptoSeleccionado = -1; // Resetear el ID después de eliminar
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al eliminar el concepto.");
-                    }
-                }
-            }
-        }
-
-
-        private void dtgv_ConceptosDP_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void txt_Porcentaje_ConceptosDP_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_Monto_ConceptosDP_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_NombreCon_ConceptosDP_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelPorcentaje_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelMonto_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

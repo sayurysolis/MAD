@@ -81,37 +81,33 @@ namespace NominaMAD
         {
             using (SqlConnection cn = BD_Conexion.ObtenerConexion())
             {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("sp_GetDepartamento", cn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    cmBox_Departamento_GestionPuestos.Items.Clear();
+                SqlCommand cmd = new SqlCommand("sp_GetDepartamento", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                cmBox_Departamento_GestionPuestos.Items.Clear();
+
+                cmBox_Departamento_GestionPuestos.Items.Add(new ComboBoxItem
+                {
+                    Text = "Todos los departamentos",
+                    Value = 0
+                });
+
+                while (reader.Read())
+                {
                     cmBox_Departamento_GestionPuestos.Items.Add(new ComboBoxItem
                     {
-                        Text = "Todos los departamentos",
-                        Value = 0
+                        Text = reader["NombreDepartamento"].ToString(),
+                        Value = (int)reader["ID_Departamento"]
                     });
-
-                    while (reader.Read())
-                    {
-                        cmBox_Departamento_GestionPuestos.Items.Add(new ComboBoxItem
-                        {
-                            Text = reader["NombreDepartamento"].ToString(),
-                            Value = (int)reader["ID_Departamento"]
-                        });
-                    }
-
-                    reader.Close();
-                    cmBox_Departamento_GestionPuestos.SelectedIndex = 0;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar los departamentos: " + ex.Message);
-                }
+
+                reader.Close();
+                cmBox_Departamento_GestionPuestos.SelectedIndex = 0;
             }
         }
+
         ////
         bool existe = false;
         private void ValidarExistencia()
@@ -191,6 +187,7 @@ namespace NominaMAD
                 cmd.Parameters.AddWithValue("@DepartamentoID", idDepartamentoSeleccionado);
 
                 cmd.ExecuteNonQuery();
+                MostrarComboBoxDep();
                 CargarPuestos(idDepartamentoSeleccionado);
             }
         }
@@ -212,7 +209,7 @@ namespace NominaMAD
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Puesto actualizado correctamente.");
 
-
+                MostrarComboBoxDep();
                 CargarPuestos(idDepartamentoSeleccionado);
             }
         }
@@ -242,7 +239,7 @@ namespace NominaMAD
             }
 
             MessageBox.Show("Puesto eliminado correctamente.");
-
+            MostrarComboBoxDep();
             int idDepartamentoSeleccionado = ((ComboBoxItem)cmBox_Departamento_GestionPuestos.SelectedItem).Value;
             CargarPuestos(idDepartamentoSeleccionado);
         }

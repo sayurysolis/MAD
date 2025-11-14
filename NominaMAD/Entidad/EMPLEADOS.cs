@@ -14,9 +14,16 @@ namespace NominaMAD.Entidad
         public string apellidoM { get; set; }
         public DateTime fechaNacimiento { get; set; }
         //---------------------------//
-        public string empresaID { get; set; }
-        public string depID { get; set; }
-        public string puestoID { get; set; }
+        public int empresaID { get; set; }
+        public int depID { get; set; }
+        public int puestoID { get; set; }
+
+        public string EmpresaNombre { get; set; }
+        public string DepartamentoNombre { get; set; }
+        public string PuestoNombre { get; set; }
+
+
+
         //---------------------------//
         public string CURP { get; set; }
         public string NSS { get; set; }
@@ -32,11 +39,9 @@ namespace NominaMAD.Entidad
         public string calle {  get; set; }
         public int numero {  get; set; }
         public string colonia {get; set;}
-
         public string municipio  {get; set;}
         public string estado { get; set; }
         public string CodigoPostal {  get; set; }
-
 
         public string Email { get; set; }
      
@@ -47,38 +52,46 @@ namespace NominaMAD.Entidad
 
         public EMPLEADOS() {}
 
-        public EMPLEADOS(string empresaID, string depID, string puestoID, 
-            int iD_Empleado, string CURP, string RFC, string NSS,
-            string nombre, string apellidoP, string apellidoM, DateTime fechaNacimiento,
-            string banco, string numCuenta, decimal salarioDiario, decimal salarioDiarioIntegrado,
-            string calle, int numero, string colonia, string municipio, string estado, string codigoPostal,
-            string email, string telefono, bool estatus,DateTime fechaIngreso)
+        public EMPLEADOS(int empresaID, int depID, int puestoID,
+    int idEmpleado, string CURP, string RFC, string NSS,
+    string nombre, string apellidoP, string apellidoM, DateTime fechaNacimiento,
+    string banco, string numCuenta, decimal salarioDiario, decimal salarioDiarioIntegrado,
+    string calle, int numero, string colonia, string municipio, string estado, string codigoPostal,
+    string email, string telefono, bool estatus, DateTime fechaIngreso)
         {
             this.empresaID = empresaID;
             this.depID = depID;
             this.puestoID = puestoID;
-            this.ID_Empleado = iD_Empleado;
+
+            this.ID_Empleado = idEmpleado;
             this.CURP = CURP;
             this.RFC = RFC;
             this.NSS = NSS;
+
             this.nombre = nombre;
             this.apellidoP = apellidoP;
             this.apellidoM = apellidoM;
             this.fechaNacimiento = fechaNacimiento;
+
             this.banco = banco;
             this.numCuenta = numCuenta;
             this.SalarioDiario = salarioDiario;
             this.SalarioDiarioIntegrado = salarioDiarioIntegrado;
-            this.Email = email;
+
             this.calle = calle;
             this.numero = numero;
             this.colonia = colonia;
             this.municipio = municipio;
             this.estado = estado;
             this.CodigoPostal = codigoPostal;
+
+            this.Email = email;
             this.Telefono = telefono;
+
             this.estatus = estatus;
             this.fechaIngreso = fechaIngreso;
         }
+
     }
 }
+

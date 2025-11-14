@@ -57,7 +57,7 @@
             this.dtgv_Empleados_GenerarNomina.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgv_Empleados_GenerarNomina.Size = new System.Drawing.Size(339, 139);
             this.dtgv_Empleados_GenerarNomina.TabIndex = 0;
-            this.dtgv_Empleados_GenerarNomina.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Empleados_GenerarNomina_CellClick);
+//            this.dtgv_Empleados_GenerarNomina.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Empleados_GenerarNomina_CellClick);
             // 
             // dtgv_DP_GenerarNomina
             // 
@@ -69,7 +69,7 @@
             this.dtgv_DP_GenerarNomina.RowTemplate.Height = 24;
             this.dtgv_DP_GenerarNomina.Size = new System.Drawing.Size(279, 169);
             this.dtgv_DP_GenerarNomina.TabIndex = 1;
-            this.dtgv_DP_GenerarNomina.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_DP_GenerarNomina_CellClick);
+          //  this.dtgv_DP_GenerarNomina.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_DP_GenerarNomina_CellClick);
             // 
             // btn_Regresar_GenerarNomina
             // 
@@ -92,7 +92,7 @@
             this.dtgv_EmDP_GenerarNomina.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgv_EmDP_GenerarNomina.Size = new System.Drawing.Size(492, 189);
             this.dtgv_EmDP_GenerarNomina.TabIndex = 4;
-            this.dtgv_EmDP_GenerarNomina.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_EmDP_GenerarNomina_CellContentClick);
+        //    this.dtgv_EmDP_GenerarNomina.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_EmDP_GenerarNomina_CellContentClick);
             // 
             // btn_Eliminar_GenerarNomina
             // 
@@ -102,7 +102,7 @@
             this.btn_Eliminar_GenerarNomina.TabIndex = 5;
             this.btn_Eliminar_GenerarNomina.Text = "Eliminar";
             this.btn_Eliminar_GenerarNomina.UseVisualStyleBackColor = true;
-            this.btn_Eliminar_GenerarNomina.Click += new System.EventHandler(this.btn_Eliminar_GenerarNomina_Click);
+        //    this.btn_Eliminar_GenerarNomina.Click += new System.EventHandler(this.btn_Eliminar_GenerarNomina_Click);
             // 
             // btn_GenerarNominaInd_GenerarNomina
             // 

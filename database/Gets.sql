@@ -110,9 +110,16 @@ CREATE PROCEDURE sp_GetEmpleadoByID
     @ID_Empleado INT
 AS
 BEGIN
-    SELECT *
-    FROM Vista_Empleado
-    WHERE ID_Empleado = @ID_Empleado;
+    SELECT 
+        e.*,
+        emp.Nombre AS NombreEmpresa,
+        d.Nombre AS NombreDepartamento,
+        p.Nombre AS NombrePuesto
+    FROM Empleado e
+    INNER JOIN Empresa emp ON e.EmpresaID = emp.ID_Empresa
+    INNER JOIN Departamento d ON e.DepID = d.ID_Departamento
+    INNER JOIN Puesto p ON e.PuestoID = p.ID_Puesto
+    WHERE e.ID_Empleado = @ID_Empleado;
 END;
 GO
 
@@ -120,6 +127,14 @@ GO
 
 
 --CONCEPTOS 
+CREATE PROCEDURE sp_GetConceptos
+AS
+BEGIN
+    SELECT * 
+    FROM Conceptos
+    WHERE estatus = 1;  -- solo activos
+END;
+GO
 --PERIODOS
 --Nomina
 --NominaDetalle

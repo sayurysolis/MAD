@@ -62,7 +62,6 @@
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Concepto:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -74,7 +73,6 @@
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tipo:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -86,7 +84,6 @@
             this.label3.Size = new System.Drawing.Size(112, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Nombre Concepto:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label_Monto
             // 
@@ -107,7 +104,6 @@
             this.labelMonto.Size = new System.Drawing.Size(46, 13);
             this.labelMonto.TabIndex = 4;
             this.labelMonto.Text = "Monto:";
-            this.labelMonto.Click += new System.EventHandler(this.labelMonto_Click);
             // 
             // labelPorcentaje
             // 
@@ -119,7 +115,6 @@
             this.labelPorcentaje.Size = new System.Drawing.Size(72, 13);
             this.labelPorcentaje.TabIndex = 5;
             this.labelPorcentaje.Text = "Porcentaje:";
-            this.labelPorcentaje.Click += new System.EventHandler(this.labelPorcentaje_Click);
             // 
             // CmBox_Concepto_ConceptosDP
             // 
@@ -127,7 +122,7 @@
             this.CmBox_Concepto_ConceptosDP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Concepto_ConceptosDP.FormattingEnabled = true;
             this.CmBox_Concepto_ConceptosDP.Location = new System.Drawing.Point(87, 20);
-            this.CmBox_Concepto_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CmBox_Concepto_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Concepto_ConceptosDP.Name = "CmBox_Concepto_ConceptosDP";
             this.CmBox_Concepto_ConceptosDP.Size = new System.Drawing.Size(84, 21);
             this.CmBox_Concepto_ConceptosDP.TabIndex = 6;
@@ -138,7 +133,7 @@
             this.CmBox_Tipo_ConceptosDP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmBox_Tipo_ConceptosDP.FormattingEnabled = true;
             this.CmBox_Tipo_ConceptosDP.Location = new System.Drawing.Point(227, 24);
-            this.CmBox_Tipo_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CmBox_Tipo_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.CmBox_Tipo_ConceptosDP.Name = "CmBox_Tipo_ConceptosDP";
             this.CmBox_Tipo_ConceptosDP.Size = new System.Drawing.Size(76, 21);
             this.CmBox_Tipo_ConceptosDP.TabIndex = 7;
@@ -147,7 +142,7 @@
             // txt_NombreCon_ConceptosDP
             // 
             this.txt_NombreCon_ConceptosDP.Location = new System.Drawing.Point(118, 58);
-            this.txt_NombreCon_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_NombreCon_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.txt_NombreCon_ConceptosDP.Name = "txt_NombreCon_ConceptosDP";
             this.txt_NombreCon_ConceptosDP.Size = new System.Drawing.Size(106, 20);
             this.txt_NombreCon_ConceptosDP.TabIndex = 8;
@@ -156,7 +151,7 @@
             // txt_Monto_ConceptosDP
             // 
             this.txt_Monto_ConceptosDP.Location = new System.Drawing.Point(82, 90);
-            this.txt_Monto_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Monto_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Monto_ConceptosDP.Name = "txt_Monto_ConceptosDP";
             this.txt_Monto_ConceptosDP.Size = new System.Drawing.Size(88, 20);
             this.txt_Monto_ConceptosDP.TabIndex = 9;
@@ -165,7 +160,7 @@
             // txt_Porcentaje_ConceptosDP
             // 
             this.txt_Porcentaje_ConceptosDP.Location = new System.Drawing.Point(94, 117);
-            this.txt_Porcentaje_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Porcentaje_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Porcentaje_ConceptosDP.Name = "txt_Porcentaje_ConceptosDP";
             this.txt_Porcentaje_ConceptosDP.Size = new System.Drawing.Size(77, 20);
             this.txt_Porcentaje_ConceptosDP.TabIndex = 10;
@@ -175,7 +170,7 @@
             // 
             this.dtgv_ConceptosDP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgv_ConceptosDP.Location = new System.Drawing.Point(336, 20);
-            this.dtgv_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgv_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.dtgv_ConceptosDP.Name = "dtgv_ConceptosDP";
             this.dtgv_ConceptosDP.ReadOnly = true;
             this.dtgv_ConceptosDP.RowHeadersWidth = 51;
@@ -188,7 +183,7 @@
             // btn_Agregar_ConceptosDP
             // 
             this.btn_Agregar_ConceptosDP.Location = new System.Drawing.Point(205, 90);
-            this.btn_Agregar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Agregar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Agregar_ConceptosDP.Name = "btn_Agregar_ConceptosDP";
             this.btn_Agregar_ConceptosDP.Size = new System.Drawing.Size(64, 27);
             this.btn_Agregar_ConceptosDP.TabIndex = 12;
@@ -199,7 +194,7 @@
             // btn_Aceptar_ConceptosDP
             // 
             this.btn_Aceptar_ConceptosDP.Location = new System.Drawing.Point(9, 168);
-            this.btn_Aceptar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Aceptar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Aceptar_ConceptosDP.Name = "btn_Aceptar_ConceptosDP";
             this.btn_Aceptar_ConceptosDP.Size = new System.Drawing.Size(72, 19);
             this.btn_Aceptar_ConceptosDP.TabIndex = 13;
@@ -210,7 +205,7 @@
             // btn_Cancelar_ConceptosDP
             // 
             this.btn_Cancelar_ConceptosDP.Location = new System.Drawing.Point(107, 168);
-            this.btn_Cancelar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Cancelar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Cancelar_ConceptosDP.Name = "btn_Cancelar_ConceptosDP";
             this.btn_Cancelar_ConceptosDP.Size = new System.Drawing.Size(81, 19);
             this.btn_Cancelar_ConceptosDP.TabIndex = 14;
@@ -221,7 +216,7 @@
             // btn_Regresar_ConceptosDP
             // 
             this.btn_Regresar_ConceptosDP.Location = new System.Drawing.Point(336, 300);
-            this.btn_Regresar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Regresar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Regresar_ConceptosDP.Name = "btn_Regresar_ConceptosDP";
             this.btn_Regresar_ConceptosDP.Size = new System.Drawing.Size(64, 27);
             this.btn_Regresar_ConceptosDP.TabIndex = 15;
@@ -232,7 +227,7 @@
             // btn_Modificar_ConceptosDP
             // 
             this.btn_Modificar_ConceptosDP.Location = new System.Drawing.Point(65, 203);
-            this.btn_Modificar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Modificar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Modificar_ConceptosDP.Name = "btn_Modificar_ConceptosDP";
             this.btn_Modificar_ConceptosDP.Size = new System.Drawing.Size(68, 23);
             this.btn_Modificar_ConceptosDP.TabIndex = 16;
@@ -243,7 +238,7 @@
             // btn_Eliminar_ConceptosDP
             // 
             this.btn_Eliminar_ConceptosDP.Location = new System.Drawing.Point(161, 203);
-            this.btn_Eliminar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Eliminar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Eliminar_ConceptosDP.Name = "btn_Eliminar_ConceptosDP";
             this.btn_Eliminar_ConceptosDP.Size = new System.Drawing.Size(68, 23);
             this.btn_Eliminar_ConceptosDP.TabIndex = 17;
@@ -254,7 +249,7 @@
             // btn_ModAceptar_ConceptosDP
             // 
             this.btn_ModAceptar_ConceptosDP.Location = new System.Drawing.Point(18, 251);
-            this.btn_ModAceptar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_ModAceptar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ModAceptar_ConceptosDP.Name = "btn_ModAceptar_ConceptosDP";
             this.btn_ModAceptar_ConceptosDP.Size = new System.Drawing.Size(59, 20);
             this.btn_ModAceptar_ConceptosDP.TabIndex = 18;
@@ -265,7 +260,7 @@
             // btn_ModCancelar_ConceptosDP
             // 
             this.btn_ModCancelar_ConceptosDP.Location = new System.Drawing.Point(82, 251);
-            this.btn_ModCancelar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_ModCancelar_ConceptosDP.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ModCancelar_ConceptosDP.Name = "btn_ModCancelar_ConceptosDP";
             this.btn_ModCancelar_ConceptosDP.Size = new System.Drawing.Size(64, 20);
             this.btn_ModCancelar_ConceptosDP.TabIndex = 19;
@@ -282,6 +277,7 @@
             this.cadames.TabIndex = 20;
             this.cadames.Text = "Cada mes";
             this.cadames.UseVisualStyleBackColor = true;
+            this.cadames.CheckedChanged += new System.EventHandler(this.cadames_CheckedChanged);
             // 
             // P_ConceptosDP
             // 
@@ -310,7 +306,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "P_ConceptosDP";

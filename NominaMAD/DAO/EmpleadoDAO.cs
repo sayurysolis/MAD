@@ -52,7 +52,7 @@ namespace NominaMAD.DAO
             }
         }
 
-        public List<EMPLEADOS> GetEMPLEADOS()
+        public static List<EMPLEADOS> GetEMPLEADOS()
         {
             List<EMPLEADOS> lista = new List<EMPLEADOS>();
 
@@ -93,10 +93,9 @@ namespace NominaMAD.DAO
                         estatus = Convert.ToBoolean(dr["estatus"]),
                         fechaIngreso = Convert.ToDateTime(dr["FechaIngreso"]),
 
-                        // extras de la vista
-                        empresaID = dr["NombreEmpresa"].ToString(),
-                        depID = dr["NombreDepartamento"].ToString(),
-                        puestoID = dr["NombrePuesto"].ToString()
+                        EmpresaNombre = dr["NombreEmpresa"].ToString(),
+                        DepartamentoNombre = dr["NombreDepartamento"].ToString(),
+                        PuestoNombre = dr["NombrePuesto"].ToString()
                     };
 
                     lista.Add(emp);
@@ -105,6 +104,7 @@ namespace NominaMAD.DAO
 
             return lista;
         }
+
         public static EMPLEADOS GetEmpleadoByID(int idEmpleado)
         {
             EMPLEADOS emp = null;
@@ -148,10 +148,15 @@ namespace NominaMAD.DAO
                         estatus = Convert.ToBoolean(dr["estatus"]),
                         fechaIngreso = Convert.ToDateTime(dr["FechaIngreso"]),
 
-                        // nombres descriptivos de la vista
-                        empresaID = dr["NombreEmpresa"].ToString(),
-                        depID = dr["NombreDepartamento"].ToString(),
-                        puestoID = dr["NombrePuesto"].ToString()
+                        // IDs reales
+                        empresaID = Convert.ToInt32(dr["EmpresaID"]),
+                        depID = Convert.ToInt32(dr["DepID"]),
+                        puestoID = Convert.ToInt32(dr["PuestoID"]),
+
+                        // Nombres
+                        EmpresaNombre = dr["NombreEmpresa"].ToString(),
+                        DepartamentoNombre = dr["NombreDepartamento"].ToString(),
+                        PuestoNombre = dr["NombrePuesto"].ToString()
                     };
                 }
             }
