@@ -132,8 +132,6 @@ namespace NominaMAD
 
         }
         #region Habilitar_btn
-
-
         private void btn_Agregar_GestionPuestos_Click(object sender, EventArgs e)
         {
             // limpiar

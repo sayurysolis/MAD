@@ -69,12 +69,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_AgregarAceptar_GestionEmpleados = new System.Windows.Forms.Button();
             this.btn_AgregarCancelar_GestionEmpleados = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.txt_SalarioDiario_GestionEmpleados = new System.Windows.Forms.TextBox();
             this.txt_SalarioDIntegrado_GestionEmpleados = new System.Windows.Forms.TextBox();
-            this.CmBox_Estatus_GestionEmpleados = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_NumEmplea_GestionEmpleados = new System.Windows.Forms.TextBox();
             this.txt_numero_gestEmp = new System.Windows.Forms.TextBox();
@@ -501,17 +499,6 @@
             this.btn_AgregarCancelar_GestionEmpleados.UseVisualStyleBackColor = true;
             this.btn_AgregarCancelar_GestionEmpleados.Click += new System.EventHandler(this.btn_AgregarCancelar_GestionEmpleados_Click);
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(498, 339);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(67, 17);
-            this.label18.TabIndex = 87;
-            this.label18.Text = "Estatus:";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -549,16 +536,6 @@
             this.txt_SalarioDIntegrado_GestionEmpleados.Name = "txt_SalarioDIntegrado_GestionEmpleados";
             this.txt_SalarioDIntegrado_GestionEmpleados.Size = new System.Drawing.Size(147, 20);
             this.txt_SalarioDIntegrado_GestionEmpleados.TabIndex = 91;
-            // 
-            // CmBox_Estatus_GestionEmpleados
-            // 
-            this.CmBox_Estatus_GestionEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmBox_Estatus_GestionEmpleados.FormattingEnabled = true;
-            this.CmBox_Estatus_GestionEmpleados.Location = new System.Drawing.Point(609, 335);
-            this.CmBox_Estatus_GestionEmpleados.Margin = new System.Windows.Forms.Padding(2);
-            this.CmBox_Estatus_GestionEmpleados.Name = "CmBox_Estatus_GestionEmpleados";
-            this.CmBox_Estatus_GestionEmpleados.Size = new System.Drawing.Size(147, 21);
-            this.CmBox_Estatus_GestionEmpleados.TabIndex = 92;
             // 
             // label2
             // 
@@ -687,12 +664,10 @@
             this.Controls.Add(this.txt_Municiipo_Gestio);
             this.Controls.Add(this.txt_Colonia_Gestio);
             this.Controls.Add(this.txt_numero_gestEmp);
-            this.Controls.Add(this.CmBox_Estatus_GestionEmpleados);
             this.Controls.Add(this.txt_SalarioDIntegrado_GestionEmpleados);
             this.Controls.Add(this.txt_SalarioDiario_GestionEmpleados);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.label18);
             this.Controls.Add(this.btn_AgregarCancelar_GestionEmpleados);
             this.Controls.Add(this.btn_AgregarAceptar_GestionEmpleados);
             this.Controls.Add(this.txt_MosNumEmplea_GestionEmpleados);
@@ -790,12 +765,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_AgregarAceptar_GestionEmpleados;
         private System.Windows.Forms.Button btn_AgregarCancelar_GestionEmpleados;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txt_SalarioDiario_GestionEmpleados;
         private System.Windows.Forms.TextBox txt_SalarioDIntegrado_GestionEmpleados;
-        private System.Windows.Forms.ComboBox CmBox_Estatus_GestionEmpleados;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_NumEmplea_GestionEmpleados;
         private System.Windows.Forms.TextBox txt_numero_gestEmp;

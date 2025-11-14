@@ -20,47 +20,28 @@ namespace NominaMAD
         {
             InitializeComponent();
             // Asignar el evento de solo números
+            txt_NumEmplea_GestionEmpleados.KeyPress += SoloNumeros_KeyPress;
+            txt_CodPost_Gestio.KeyPress += SoloNumeros_KeyPress;
             txt_Telefono_GestionEmpleados.KeyPress += SoloNumeros_KeyPress;
             txt_NSS_GestionEmpleados.KeyPress += SoloNumeros_KeyPress;
             txt_NumCuenta_GestionEmpleados.KeyPress += SoloNumeros_KeyPress;
-            txt_NumEmplea_GestionEmpleados.KeyPress += SoloNumeros_KeyPress;
             txt_SalarioDiario_GestionEmpleados.KeyPress += SoloNumeros_KeyPress;
             txt_SalarioDIntegrado_GestionEmpleados.KeyPress += SoloNumeros_KeyPress;
-
             txt_Nombres_GestionEmpleados.KeyPress += SoloLetras_KeyPress;
+            //solo letras
             txt_ApellPaterno_GestionEmpleados.KeyPress += SoloLetras_KeyPress;
             txt_ApellMaterno_GestionEmpleados.KeyPress += SoloLetras_KeyPress;
             txt_Banco_GestionEmpleados.KeyPress += SoloLetras_KeyPress;
 
+            desactivarCamposCaptura();       
 
-            txt_Nombres_GestionEmpleados.Enabled = false;
-            txt_ApellPaterno_GestionEmpleados.Enabled = false;
-            txt_ApellMaterno_GestionEmpleados.Enabled = false;
-            Cmbox_Departamento_GestionEmpleados.Enabled = false;
-            CmBox_Puesto_GestionEmpleados.Enabled = false;
-            dateTimer_FechaNacim_GestionEmpleados.Enabled = false;
-            txt_Curp_GestionEmpleados.Enabled = false;
-            txt_NSS_GestionEmpleados.Enabled = false;
-            txt_RFC_GestionEmpleados.Enabled = false;
-            txt_DomCompleto_GestionEmpleados.Enabled = false;
-            txt_Banco_GestionEmpleados.Enabled = false;
-            txt_NumCuenta_GestionEmpleados.Enabled = false;
-            txt_Email_GestionEmpleados.Enabled = false;
-            txt_Telefono_GestionEmpleados.Enabled = false;
-            dateTimer_FechaIngreEmpr_GestionEmpleados.Enabled = false;
-
-     
-            txt_MosNumEmplea_GestionEmpleados.Enabled = false;
-            txt_SalarioDiario_GestionEmpleados.Enabled = false;
-            txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
-            CmBox_Estatus_GestionEmpleados.Enabled = false;
-            //CmBox_Turno_GestionEmpleados.Enabled=false;
-
+            btn_Agregar_GestionEmpleados.Visible = true;
             btn_Modificar_GestionEmpleados.Visible = false;
-            //btn_Agregar_GestionEmpleados.Visible = false;
             btn_Eliminar_GestionEmpleados.Visible = false;
+
             btn_AceptarMOD_GestionEmpleados.Visible = false;
             btn_CancelarMOD_GestionEmpleados.Visible=false;
+
             btn_AgregarAceptar_GestionEmpleados.Visible = false;
             btn_AgregarCancelar_GestionEmpleados.Visible = false;
 
@@ -76,13 +57,75 @@ namespace NominaMAD
             txt_Telefono_GestionEmpleados.MaxLength = 10;
             txt_SalarioDiario_GestionEmpleados.MaxLength = 15;
            
+        }
 
-            // Configurar ComboBox de Estatus
-            CmBox_Estatus_GestionEmpleados.Items.Add("Activo");
-            CmBox_Estatus_GestionEmpleados.Items.Add("Inactivo");
-            //CargarTurnos();
+        #region Formato
+        private void desactivarCamposCaptura()
+        {
+
+            txt_MosNumEmplea_GestionEmpleados.Enabled = false;
+            txt_Nombres_GestionEmpleados.Enabled = false;
+            txt_ApellPaterno_GestionEmpleados.Enabled = false;
+            txt_ApellMaterno_GestionEmpleados.Enabled = false;
+            dateTimer_FechaNacim_GestionEmpleados.Enabled = false;
+
+            txt_DomCompleto_GestionEmpleados.Enabled = false; //CALLE
+            txt_numero_gestEmp.Enabled = false;
+            txt_Colonia_Gestio.Enabled = false;
+            txt_Municiipo_Gestio.Enabled = false;
+            txt_Estado_Gestio.Enabled = false;
+            txt_CodPost_Gestio.Enabled = false;
+            txt_Email_GestionEmpleados.Enabled = false;
+            txt_Telefono_GestionEmpleados.Enabled = false;
+            txt_NSS_GestionEmpleados.Enabled = false;
+            txt_Curp_GestionEmpleados.Enabled = false;
+            txt_RFC_GestionEmpleados.Enabled = false;
+
+            Cmbox_Departamento_GestionEmpleados.Enabled = false;
+            CmBox_Puesto_GestionEmpleados.Enabled = false;
+
+
+            txt_Banco_GestionEmpleados.Enabled = false;
+            txt_NumCuenta_GestionEmpleados.Enabled = false;
+            txt_SalarioDiario_GestionEmpleados.Enabled = false;
+            txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
+            dateTimer_FechaIngreEmpr_GestionEmpleados.Enabled = false;
 
         }
+        private void activarCamposCaptura()
+        {
+
+            txt_MosNumEmplea_GestionEmpleados.Enabled = true;
+            txt_Nombres_GestionEmpleados.Enabled = true;
+            txt_ApellPaterno_GestionEmpleados.Enabled = true;
+            txt_ApellMaterno_GestionEmpleados.Enabled = true;
+            dateTimer_FechaNacim_GestionEmpleados.Enabled = true;
+
+            txt_DomCompleto_GestionEmpleados.Enabled = true; //CALLE
+            txt_numero_gestEmp.Enabled = true;
+            txt_Colonia_Gestio.Enabled = true;
+            txt_Municiipo_Gestio.Enabled = true;
+            txt_Estado_Gestio.Enabled = true;
+            txt_CodPost_Gestio.Enabled = true;
+            txt_Email_GestionEmpleados.Enabled = true;
+            txt_Telefono_GestionEmpleados.Enabled = true;
+            txt_NSS_GestionEmpleados.Enabled = true;
+            txt_Curp_GestionEmpleados.Enabled = true;
+            txt_RFC_GestionEmpleados.Enabled = true;
+
+            Cmbox_Departamento_GestionEmpleados.Enabled = true;
+            CmBox_Puesto_GestionEmpleados.Enabled = true;
+
+
+            txt_Banco_GestionEmpleados.Enabled = true;
+            txt_NumCuenta_GestionEmpleados.Enabled = true;
+            txt_SalarioDiario_GestionEmpleados.Enabled = true;
+            txt_SalarioDIntegrado_GestionEmpleados.Enabled = true;
+            dateTimer_FechaIngreEmpr_GestionEmpleados.Enabled = true;
+
+        }
+        #endregion
+
 
 
         string modificarOpcion;
@@ -164,7 +207,7 @@ namespace NominaMAD
                     txt_SalarioDiario_GestionEmpleados.Text = reader["SalarioDiario"].ToString();
                     txt_SalarioDIntegrado_GestionEmpleados.Text = reader["SalarioDiarioIntegrado"].ToString();
                     bool activo = Convert.ToBoolean(reader["estatus"]);
-                    CmBox_Estatus_GestionEmpleados.SelectedIndex = activo ? 0 : 1;
+                   
 
                     btn_Modificar_GestionEmpleados.Visible = true;
                     btn_Agregar_GestionEmpleados.Visible = false;
@@ -177,28 +220,31 @@ namespace NominaMAD
 
         private void btn_Modificar_GestionEmpleados_Click(object sender, EventArgs e)
         {
-           // txt_Nombres_GestionEmpleados.Enabled = true;
-           // txt_ApellPaterno_GestionEmpleados.Enabled = true;
-           // txt_ApellMaterno_GestionEmpleados.Enabled = true;
+            txt_Nombres_GestionEmpleados.Enabled = true;
+            txt_ApellPaterno_GestionEmpleados.Enabled = true;
+            txt_ApellMaterno_GestionEmpleados.Enabled = true;
             Cmbox_Departamento_GestionEmpleados.Enabled = true;
             CmBox_Puesto_GestionEmpleados.Enabled = true;
             dateTimer_FechaNacim_GestionEmpleados.Enabled = true;
             txt_Curp_GestionEmpleados.Enabled = true;
-           // txt_NSS_GestionEmpleados.Enabled = true;
+            txt_NSS_GestionEmpleados.Enabled = true;
             txt_RFC_GestionEmpleados.Enabled = true;
-            txt_DomCompleto_GestionEmpleados.Enabled = true;
+
+            
+
+
+
             txt_Banco_GestionEmpleados.Enabled = true;
             txt_NumCuenta_GestionEmpleados.Enabled = true;
             txt_Email_GestionEmpleados.Enabled = true; ;
             txt_Telefono_GestionEmpleados.Enabled = true;
-            //dateTimer_FechaIngreEmpr_GestionEmpleados.Enabled = true;
+            dateTimer_FechaIngreEmpr_GestionEmpleados.Enabled = true;
             dateTimer_FechaIngreEmpr_GestionEmpleados.Enabled = false;
             // txt_NumEmplea_GestionEmpleados.Enabled = false;
 
             txt_SalarioDiario_GestionEmpleados.Enabled = true;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
-            CmBox_Estatus_GestionEmpleados.Enabled = true;
-            //CmBox_Turno_GestionEmpleados.Enabled = true;
+          
 
             btn_Modificar_GestionEmpleados.Visible = false;
             btn_Agregar_GestionEmpleados.Visible = false;
@@ -212,7 +258,7 @@ namespace NominaMAD
         {
 
             int idEmpleado = int.Parse(txt_MosNumEmplea_GestionEmpleados.Text);
-            bool nuevoEstatusActivo = CmBox_Estatus_GestionEmpleados.SelectedIndex == 0;
+          
             decimal salarioDiario = 0;
             decimal salarioDiarioIntegrado = 0;
 
@@ -267,7 +313,7 @@ namespace NominaMAD
                 cmd.Parameters.AddWithValue("@NumeroCuenta", txt_NumCuenta_GestionEmpleados.Text);
                 cmd.Parameters.AddWithValue("@Email", txt_Email_GestionEmpleados.Text);
                 cmd.Parameters.AddWithValue("@Telefono", txt_Telefono_GestionEmpleados.Text);
-                cmd.Parameters.AddWithValue("@NuevoEstatusActivo", nuevoEstatusActivo ? 1 : 0);
+                
                 cmd.Parameters.AddWithValue("@SalarioDiario", salarioDiario);
                 cmd.Parameters.AddWithValue("@SalarioDiarioIntegrado", salarioDiarioIntegrado);
                 // Fecha actual para reactivación
@@ -315,7 +361,7 @@ namespace NominaMAD
 
             txt_SalarioDiario_GestionEmpleados.Enabled = false;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
-            CmBox_Estatus_GestionEmpleados.Enabled = false;
+           
             //CmBox_Turno_GestionEmpleados.Enabled = false;
 
             btn_Modificar_GestionEmpleados.Visible = false;
@@ -361,7 +407,7 @@ namespace NominaMAD
                     txt_SalarioDiario_GestionEmpleados.Text = reader["SalarioDiario"].ToString();
                     txt_SalarioDIntegrado_GestionEmpleados.Text = reader["SalarioDiarioIntegrado"].ToString();
                     bool activo = Convert.ToBoolean(reader["estatus"]);
-                    CmBox_Estatus_GestionEmpleados.SelectedIndex = activo ? 0 : 1;
+                    
                 }
 
                 cn.Close();
@@ -461,8 +507,7 @@ namespace NominaMAD
             dateTimer_FechaIngreEmpr_GestionEmpleados.Value = DateTime.Now;
             txt_SalarioDiario_GestionEmpleados.Clear();
             txt_SalarioDIntegrado_GestionEmpleados.Clear();
-            CmBox_Estatus_GestionEmpleados.SelectedIndex = -1;//Es la manera correcta de dejar el ComboBox en un estado sin selección.
-            //CmBox_Turno_GestionEmpleados.SelectedIndex = -1;
+            
         }
 
         private void btn_Agregar_GestionEmpleados_Click(object sender, EventArgs e)
@@ -493,8 +538,7 @@ namespace NominaMAD
 
             txt_SalarioDiario_GestionEmpleados.Enabled = true;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
-            CmBox_Estatus_GestionEmpleados.Enabled = false;
-            CmBox_Estatus_GestionEmpleados.SelectedIndex = 0; // Seleccionar "Activo" por defecto
+           
             //CmBox_Turno_GestionEmpleados.Enabled = true;
 
             btn_Modificar_GestionEmpleados.Visible = false;
@@ -516,7 +560,7 @@ namespace NominaMAD
             }
             decimal salarioDiario = 0;
             decimal salarioDiarioIntegrado = 0;
-            bool estatusActivo = CmBox_Estatus_GestionEmpleados.SelectedIndex == 0; // Si es 0, está activo
+            
 
             // Obtener y calcular salario diario integrado
             if (!string.IsNullOrEmpty(txt_SalarioDiario_GestionEmpleados.Text) &&
@@ -565,7 +609,7 @@ namespace NominaMAD
                 cmd.Parameters.AddWithValue("@FechaIngreso", dateTimer_FechaIngreEmpr_GestionEmpleados.Value);
                 cmd.Parameters.AddWithValue("@SalarioDiario", salarioDiario);
                 cmd.Parameters.AddWithValue("@SalarioDiarioIntegrado", salarioDiarioIntegrado);
-                cmd.Parameters.AddWithValue("@Activo", estatusActivo ? 1 : 0);
+                
 
                 try
                 {
@@ -608,7 +652,7 @@ namespace NominaMAD
 
             txt_SalarioDiario_GestionEmpleados.Enabled = false;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
-            CmBox_Estatus_GestionEmpleados.Enabled = false;
+           
             //CmBox_Turno_GestionEmpleados.Enabled = false;
 
             btn_Modificar_GestionEmpleados.Visible = false;
@@ -642,7 +686,7 @@ namespace NominaMAD
 
             txt_SalarioDiario_GestionEmpleados.Enabled = false;
             txt_SalarioDIntegrado_GestionEmpleados.Enabled = false;
-            CmBox_Estatus_GestionEmpleados.Enabled = false;
+          
             //CmBox_Turno_GestionEmpleados.Enabled = false;
 
             btn_Modificar_GestionEmpleados.Visible = false;

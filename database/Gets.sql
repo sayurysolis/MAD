@@ -96,8 +96,29 @@ FROM Empleado e
 INNER JOIN Empresa emp ON e.EmpresaID = emp.ID_Empresa
 INNER JOIN Departamento d ON e.DepID = d.ID_Departamento
 INNER JOIN Puesto p ON e.PuestoID = p.ID_Puesto;
-
 GO
+CREATE PROCEDURE sp_GetEmpleados
+AS
+BEGIN
+    SELECT *
+    FROM Vista_Empleado
+    WHERE estatus = 1; -- activos (opcional)
+END;
+GO
+
+CREATE PROCEDURE sp_GetEmpleadoByID
+    @ID_Empleado INT
+AS
+BEGIN
+    SELECT *
+    FROM Vista_Empleado
+    WHERE ID_Empleado = @ID_Empleado;
+END;
+GO
+
+
+
+
 --CONCEPTOS 
 --PERIODOS
 --Nomina
