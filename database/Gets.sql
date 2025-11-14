@@ -123,9 +123,6 @@ BEGIN
 END;
 GO
 
-
-
-
 --CONCEPTOS 
 CREATE PROCEDURE sp_GetConceptos
 AS
@@ -135,28 +132,27 @@ BEGIN
     WHERE estatus = 1;  -- solo activos
 END;
 GO
+
+CREATE VIEW vw_ConceptosTipoTexto AS
+SELECT 
+    ID_Conceptos,
+    CASE 
+        WHEN Tipo = 1 THEN 'Percepción'
+        ELSE 'Deducción'
+    END AS TipoTexto,
+    Nombre,
+    EsPorcetanje,
+    Valor,
+    General,
+    Estatus
+FROM dbo.Conceptos
+WHERE Estatus = 1;
+
 --PERIODOS
 --Nomina
 --NominaDetalle
 
-CREATE TABLE Matriz (
-    id_Matriz INT IDENTITY(1,1) PRIMARY KEY,
-    id_Empleado INT,
-    NombreEmpleado NVARCHAR(MAX),
-    Faltas INT,
-    Asistencia DECIMAL(10,2),
-    Puntualidad DECIMAL(10,2),
-    Despensa DECIMAL(10,2),
-    Vacaciones DECIMAL(10,2),
-    PrimaVacacional DECIMAL(10,2),
-    PrestamoEmpresa DECIMAL(10,2),
-    PrestamoInfo DECIMAL(10,2),
-    FondoAhorro DECIMAL(10,2),
-    Productividad DECIMAL(10,2),
-    HorasExtras INT,
-    PensionAlimenticia DECIMAL(10,2),
-    FOREIGN KEY (id_Empleado) REFERENCES Empleado(ID_Empleado)
-);
+
 
 /*
 CREATE TABLE Matriz (

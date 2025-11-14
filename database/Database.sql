@@ -82,6 +82,7 @@ CREATE TABLE Conceptos(
 	estatus BIT DEFAULT 1
 );
 
+
 CREATE TABLE Periodo (
     id_Periodo INT IDENTITY(1,1) PRIMARY KEY,
     diaInicio INT Default 1,
@@ -119,3 +120,29 @@ CREATE TABLE NominaDetalle(
 	FOREIGN KEY(NominaID) REFERENCES Nomina(ID_Nomina),
 	FOREIGN KEY(ConceptosID) REFERENCES Conceptos(ID_Conceptos)
 );
+
+CREATE TABLE Matriz (
+    id_Matriz INT IDENTITY(1,1) PRIMARY KEY,
+    id_Empleado INT NOT NULL,
+    PeriodoID INT NOT NULL,
+
+    SalarioDiario DECIMAL(10,2) NOT NULL,
+    SalarioDiarioIntegrado DECIMAL(10,2) NOT NULL,
+    PagoMensual DECIMAL(10,2) NOT NULL,
+
+    Faltas INT DEFAULT 0,
+    DiasTrabajados INT, -- Se calcula en C# al insertar
+
+    IMSS DECIMAL(10,2), -- Se calcula en C# al insertar
+    ISR DECIMAL(10,2) DEFAULT 0, -- Se calcula en C# al insertar
+
+    BonoPuntualidad DECIMAL(10,2), -- Se calcula en C# al insertar
+    Despensa DECIMAL(10,2), -- Se calcula en C# al insertar
+    BonoAsistencia DECIMAL(10,2), -- Se calcula en C# al insertar
+    BonoProductividad DECIMAL(10,2), -- Se calcula en C# al insertar
+
+    FOREIGN KEY (id_Empleado) REFERENCES Empleado(ID_Empleado),
+    FOREIGN KEY (PeriodoID) REFERENCES Periodo(id_Periodo)
+);
+
+SELECT *  FROM Empleado
