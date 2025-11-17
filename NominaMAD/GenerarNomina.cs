@@ -632,7 +632,7 @@ namespace NominaMAD
                             cmd.ExecuteNonQuery();
                         }
                     }
-
+        F
                     // Refrescar la tabla del medio para mostrar los cambios
                     mostrarTablaDEDPERNOMINA();
                     ColocarDatos();
@@ -756,20 +756,20 @@ namespace NominaMAD
                         decimal sueldo = emp.SalarioDiario * diasTrabajados;
                         detalles.Add(new NominaDetalle { ConceptosID = 1, Monto = sueldo }); // 1 = Sueldo
 
-                        detalles.Add(new NominaDetalle { ConceptosID = 10, Monto = bonoPuntualidad }); // 10 = B. Puntualidad
-                        detalles.Add(new NominaDetalle { ConceptosID = 11, Monto = bonoAsistencia }); // 11 = B. Asistencia
-                        detalles.Add(new NominaDetalle { ConceptosID = 12, Monto = bonoProductividad }); // 12 = B. Productividad
-                        detalles.Add(new NominaDetalle { ConceptosID = 13, Monto = despensa }); // 13 = Despensa
+                        detalles.Add(new NominaDetalle { ConceptosID = 2, Monto = bonoPuntualidad }); // 10 = B. Puntualidad
+                        detalles.Add(new NominaDetalle { ConceptosID = 3, Monto = bonoAsistencia }); // 11 = B. Asistencia
+                        detalles.Add(new NominaDetalle { ConceptosID = 4, Monto = bonoProductividad }); // 12 = B. Productividad
+                        detalles.Add(new NominaDetalle { ConceptosID = 5, Monto = despensa }); // 13 = Despensa
 
                         // DEDUCCIONES
                         // ¡¡IMPORTANTE!! Asumo IDs de la tabla Conceptos. ¡DEBES AJUSTARLOS!
                         decimal imss = CalcularIMSS(emp.SalarioDiarioIntegrado, diasTrabajados);
-                        detalles.Add(new NominaDetalle { ConceptosID = 100, Monto = imss }); // 100 = IMSS
+                        detalles.Add(new NominaDetalle { ConceptosID = 6, Monto = imss }); // 100 = IMSS
 
                         // Calcular base gravable para ISR (Sueldo + Bonos)
                         decimal baseGravableISR = sueldo + bonoPuntualidad + bonoAsistencia + bonoProductividad; // Despensa usualmente exenta
                         decimal isr = CalcularISR(baseGravableISR);
-                        detalles.Add(new NominaDetalle { ConceptosID = 101, Monto = isr }); // 101 = ISR
+                        detalles.Add(new NominaDetalle { ConceptosID = 7, Monto = isr }); // 101 = ISR
 
 
                         // --- 4. CALCULAR TOTALES ---
@@ -951,20 +951,20 @@ namespace NominaMAD
                         decimal sueldo = emp.SalarioDiario * diasTrabajados;
                         detalles.Add(new NominaDetalleItem { ConceptosID = 1, Monto = sueldo }); // 1 = Sueldo
 
-                        if (bonoPuntualidad > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 10, Monto = bonoPuntualidad }); // 10 = B. Puntualidad
-                        if (bonoAsistencia > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 11, Monto = bonoAsistencia }); // 11 = B. Asistencia
-                        if (bonoProductividad > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 12, Monto = bonoProductividad }); // 12 = B. Productividad
-                        if (despensa > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 13, Monto = despensa }); // 13 = Despensa
+                        if (bonoPuntualidad > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 2 ,Monto = bonoPuntualidad }); // 10 = B. Puntualidad
+                        if (bonoAsistencia > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 3, Monto = bonoAsistencia }); // 11 = B. Asistencia
+                        if (bonoProductividad > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 4, Monto = bonoProductividad }); // 12 = B. Productividad
+                        if (despensa > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 5, Monto = despensa }); // 13 = Despensa
 
                         // DEDUCCIONES
                         // ¡¡IMPORTANTE!! Asumo IDs de la tabla Conceptos. ¡DEBES AJUSTARLOS!
                         decimal imss = CalcularIMSS(emp.SalarioDiarioIntegrado, diasTrabajados); // Usa el dummy
-                        if (imss > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 100, Monto = imss }); // 100 = IMSS
+                        if (imss > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 6, Monto = imss }); // 100 = IMSS
 
                         // Calcular base gravable para ISR (Sueldo + Bonos)
                         decimal baseGravableISR = sueldo + bonoPuntualidad + bonoAsistencia + bonoProductividad; // Despensa usualmente exenta
                         decimal isr = CalcularISR(baseGravableISR); // ¡Usa TU función de ISR!
-                        if (isr > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 101, Monto = isr }); // 101 = ISR
+                        if (isr > 0) detalles.Add(new NominaDetalleItem { ConceptosID = 7, Monto = isr }); // 101 = ISR
 
 
                         // --- 4. CALCULAR TOTALES ---

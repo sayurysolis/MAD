@@ -18,9 +18,9 @@ namespace NominaMAD
 {
     public partial class P_ReciboEmpleado : Form
     {
-        string Conexion = "Data Source=LUISMTZ\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+        string Conexion = "Data Source=DESKTOP-R0TMTLN\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
         public P_ReciboEmpleado()
-        {
+       {
             InitializeComponent();
            // combo_Mes.Items.Add("Noviembre");
         }

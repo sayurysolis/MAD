@@ -31,7 +31,6 @@ END
 GO
 
 
-
 --PUESTO
 
 CREATE PROCEDURE sp_GetPuestos
@@ -154,7 +153,7 @@ WHERE Estatus = 1;
 
 
 
-/*
+
 CREATE TABLE Matriz (
     id_Matriz INT IDENTITY(1,1) PRIMARY KEY,
     id_Periodo INT,
@@ -180,9 +179,9 @@ CREATE TABLE Matriz (
 
     FOREIGN KEY (id_Periodo) REFERENCES Periodo(id_Periodo),
     FOREIGN KEY (id_Empleado) REFERENCES Empleado(ID_Empleado)
-);*/
+);
 
-/*CREATE TABLE DEDPERNOMINA (
+CREATE TABLE DEDPERNOMINA (
     id_DPN INT IDENTITY(1,1) PRIMARY KEY,
     id_Empleado INT NOT NULL,
     id_PD INT NOT NULL, -- ID de la percepci?n o deducci?n
@@ -191,7 +190,7 @@ CREATE TABLE Matriz (
 
     FOREIGN KEY (id_Empleado) REFERENCES Empleado(ID_Empleado),
     FOREIGN KEY (id_PD) REFERENCES PercepcionesDeduccion(ID_PercDed)
-);*/
+);
 
 
 

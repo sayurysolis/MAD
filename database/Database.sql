@@ -80,6 +80,8 @@ CREATE TABLE Conceptos(
 	Valor DECIMAL (10,2),
 	General BIT, --siempre se aplica?
 	estatus BIT DEFAULT 1
+
+
 );
 
 
@@ -119,6 +121,7 @@ CREATE TABLE NominaDetalle(
 	Monto DECIMAL(10,2),
 	FOREIGN KEY(NominaID) REFERENCES Nomina(ID_Nomina),
 	FOREIGN KEY(ConceptosID) REFERENCES Conceptos(ID_Conceptos)
+	
 );
 
 CREATE TABLE Matriz (
@@ -146,3 +149,21 @@ CREATE TABLE Matriz (
 );
 
 SELECT *  FROM Empleado
+INSERT INTO Conceptos (Tipo, nombre, EsPorcetanje, Valor, General, estatus)
+VALUES (1, 'Concepto faltante', 0, 0, 0, 1);
+
+INSERT INTO Conceptos (Tipo, nombre, EsPorcetanje, Valor, General, estatus)
+VALUES 
+-- PERCEPCIONES
+(1, 'Sueldo', 0, 0, 1, 1),           -- ID 1
+(1, 'Puntualidad', 0, 0, 1, 1),      -- ID 2
+(1, 'Asistencia', 0, 0, 1, 1),       -- ID 3
+(1, 'Productividad', 0, 0, 1, 1),    -- ID 4
+(1, 'Despensa', 0, 0, 1, 1),         -- ID 5
+
+-- DEDUCCIONES
+(0, 'IMSS', 0, 0, 1, 1),             -- ID 6
+(0, 'ISR', 0, 0, 1, 1);              -- ID 7
+
+SELECT ID_Conceptos, nombre FROM Conceptos;
+SELECT NominaID, ConceptosID, Monto FROM NominaDetalle;

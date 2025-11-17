@@ -78,3 +78,30 @@ E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\Nomi
 E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.Up2Date
 E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.exe
 E:\A Escuelas\FCFM\5to semestre\Modelos de Administracion de Datos\1era\MAD\NominaMAD\obj\Debug\NominaMAD.pdb
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\bin\Debug\NominaMAD.exe.config
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\bin\Debug\NominaMAD.exe
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\bin\Debug\NominaMAD.pdb
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\bin\Debug\itextsharp.dll
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\bin\Debug\itextsharp.xml
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.exe.config
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_ConceptosDP.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_Empresa.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_HeadCounter.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_RH.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_RepGenNomina.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_ReciboEmpleado.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_GenerarNomina.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_GestionEmpleados.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_GestionPuestos.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_GestionDepar.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_Menu2.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_Menu1.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.P_Inicio.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.Properties.Resources.resources
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.GenerateResource.cache
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.csproj.Up2Date
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.exe
+C:\Users\Usuario\Documents\GitHub\MAD\NominaMAD\obj\Debug\NominaMAD.pdb
