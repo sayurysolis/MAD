@@ -28,37 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtgv_Empleados_GenerarNomina = new System.Windows.Forms.DataGridView();
             this.btn_Regresar_GenerarNomina = new System.Windows.Forms.Button();
-            this.dtgv_EmDP_GenerarNomina = new System.Windows.Forms.DataGridView();
             this.btn_Eliminar_GenerarNomina = new System.Windows.Forms.Button();
             this.btn_GenerarNominaInd_GenerarNomina = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_CierrePeriodo_GenerarNomina = new System.Windows.Forms.Button();
             this.dtgv_Matriz_GenerarNomina = new System.Windows.Forms.DataGridView();
             this.DateTime_Periodo = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_Empleados_GenerarNomina)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_EmDP_GenerarNomina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_Matriz_GenerarNomina)).BeginInit();
             this.SuspendLayout();
             // 
-            // dtgv_Empleados_GenerarNomina
-            // 
-            this.dtgv_Empleados_GenerarNomina.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgv_Empleados_GenerarNomina.Location = new System.Drawing.Point(804, 399);
-            this.dtgv_Empleados_GenerarNomina.Margin = new System.Windows.Forms.Padding(2);
-            this.dtgv_Empleados_GenerarNomina.Name = "dtgv_Empleados_GenerarNomina";
-            this.dtgv_Empleados_GenerarNomina.ReadOnly = true;
-            this.dtgv_Empleados_GenerarNomina.RowHeadersWidth = 51;
-            this.dtgv_Empleados_GenerarNomina.RowTemplate.Height = 24;
-            this.dtgv_Empleados_GenerarNomina.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgv_Empleados_GenerarNomina.Size = new System.Drawing.Size(254, 149);
-            this.dtgv_Empleados_GenerarNomina.TabIndex = 0;
-            this.dtgv_Empleados_GenerarNomina.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Empleados_GenerarNomina_CellContentClick);
-            // 
             // btn_Regresar_GenerarNomina
             // 
-            this.btn_Regresar_GenerarNomina.Location = new System.Drawing.Point(569, 533);
+            this.btn_Regresar_GenerarNomina.Location = new System.Drawing.Point(953, 542);
             this.btn_Regresar_GenerarNomina.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Regresar_GenerarNomina.Name = "btn_Regresar_GenerarNomina";
             this.btn_Regresar_GenerarNomina.Size = new System.Drawing.Size(96, 33);
@@ -66,20 +48,6 @@
             this.btn_Regresar_GenerarNomina.Text = "Regresar";
             this.btn_Regresar_GenerarNomina.UseVisualStyleBackColor = true;
             this.btn_Regresar_GenerarNomina.Click += new System.EventHandler(this.btn_Regresar_GenerarNomina_Click);
-            // 
-            // dtgv_EmDP_GenerarNomina
-            // 
-            this.dtgv_EmDP_GenerarNomina.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgv_EmDP_GenerarNomina.Location = new System.Drawing.Point(23, 394);
-            this.dtgv_EmDP_GenerarNomina.Margin = new System.Windows.Forms.Padding(2);
-            this.dtgv_EmDP_GenerarNomina.Name = "dtgv_EmDP_GenerarNomina";
-            this.dtgv_EmDP_GenerarNomina.ReadOnly = true;
-            this.dtgv_EmDP_GenerarNomina.RowHeadersWidth = 51;
-            this.dtgv_EmDP_GenerarNomina.RowTemplate.Height = 24;
-            this.dtgv_EmDP_GenerarNomina.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgv_EmDP_GenerarNomina.Size = new System.Drawing.Size(254, 154);
-            this.dtgv_EmDP_GenerarNomina.TabIndex = 4;
-            this.dtgv_EmDP_GenerarNomina.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_EmDP_GenerarNomina_CellContentClick);
             // 
             // btn_Eliminar_GenerarNomina
             // 
@@ -93,7 +61,7 @@
             // 
             // btn_GenerarNominaInd_GenerarNomina
             // 
-            this.btn_GenerarNominaInd_GenerarNomina.Location = new System.Drawing.Point(469, 457);
+            this.btn_GenerarNominaInd_GenerarNomina.Location = new System.Drawing.Point(564, 508);
             this.btn_GenerarNominaInd_GenerarNomina.Margin = new System.Windows.Forms.Padding(2);
             this.btn_GenerarNominaInd_GenerarNomina.Name = "btn_GenerarNominaInd_GenerarNomina";
             this.btn_GenerarNominaInd_GenerarNomina.Size = new System.Drawing.Size(116, 54);
@@ -105,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(498, 349);
+            this.label1.Location = new System.Drawing.Point(190, 494);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
@@ -114,10 +82,10 @@
             // 
             // btn_CierrePeriodo_GenerarNomina
             // 
-            this.btn_CierrePeriodo_GenerarNomina.Location = new System.Drawing.Point(418, 542);
+            this.btn_CierrePeriodo_GenerarNomina.Location = new System.Drawing.Point(433, 508);
             this.btn_CierrePeriodo_GenerarNomina.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CierrePeriodo_GenerarNomina.Name = "btn_CierrePeriodo_GenerarNomina";
-            this.btn_CierrePeriodo_GenerarNomina.Size = new System.Drawing.Size(106, 20);
+            this.btn_CierrePeriodo_GenerarNomina.Size = new System.Drawing.Size(106, 54);
             this.btn_CierrePeriodo_GenerarNomina.TabIndex = 10;
             this.btn_CierrePeriodo_GenerarNomina.Text = "Cierra De Periodo";
             this.btn_CierrePeriodo_GenerarNomina.UseVisualStyleBackColor = true;
@@ -132,13 +100,13 @@
             this.dtgv_Matriz_GenerarNomina.RowHeadersWidth = 51;
             this.dtgv_Matriz_GenerarNomina.RowTemplate.Height = 24;
             this.dtgv_Matriz_GenerarNomina.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgv_Matriz_GenerarNomina.Size = new System.Drawing.Size(1047, 279);
+            this.dtgv_Matriz_GenerarNomina.Size = new System.Drawing.Size(1047, 381);
             this.dtgv_Matriz_GenerarNomina.TabIndex = 11;
             this.dtgv_Matriz_GenerarNomina.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Matriz_GenerarNomina_CellContentClick);
             // 
             // DateTime_Periodo
             // 
-            this.DateTime_Periodo.Location = new System.Drawing.Point(435, 379);
+            this.DateTime_Periodo.Location = new System.Drawing.Point(127, 524);
             this.DateTime_Periodo.Name = "DateTime_Periodo";
             this.DateTime_Periodo.Size = new System.Drawing.Size(200, 20);
             this.DateTime_Periodo.TabIndex = 13;
@@ -156,17 +124,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_GenerarNominaInd_GenerarNomina);
             this.Controls.Add(this.btn_Eliminar_GenerarNomina);
-            this.Controls.Add(this.dtgv_EmDP_GenerarNomina);
             this.Controls.Add(this.btn_Regresar_GenerarNomina);
-            this.Controls.Add(this.dtgv_Empleados_GenerarNomina);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "P_GenerarNomina";
             this.Text = "Generar Nomina";
             this.Load += new System.EventHandler(this.P_GenerarNomina_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_Empleados_GenerarNomina)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_EmDP_GenerarNomina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_Matriz_GenerarNomina)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -174,10 +138,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dtgv_Empleados_GenerarNomina;
         private System.Windows.Forms.Button btn_Regresar_GenerarNomina;
-        private System.Windows.Forms.DataGridView dtgv_EmDP_GenerarNomina;
         private System.Windows.Forms.Button btn_Eliminar_GenerarNomina;
         private System.Windows.Forms.Button btn_GenerarNominaInd_GenerarNomina;
         private System.Windows.Forms.Label label1;

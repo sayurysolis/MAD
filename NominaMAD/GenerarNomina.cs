@@ -1,8 +1,9 @@
 ﻿// --- ¡NUEVOS USINGS PARA PDF! ---
 // Necesitas instalar el paquete NuGet "itext7"
-/*using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;*/
+//using iText.Kernel.Pdf;
+//using iText.Layout;
+//using iText.Layout.Element;
+//using iText.Layout.Properties;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.tool.xml.html.table;
@@ -498,122 +499,121 @@ namespace NominaMAD
             string faltas = selectedRow.Cells["Faltas"].Value.ToString();
             DateTime periodo = DateTime_Periodo.Value;
             CalculoNominaRow calculo = rowData.Calculo;
+
+            //// 4. Preguntar dónde guardar el archivo
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "Archivo PDF (*.pdf)|*.pdf";
+            //sfd.Title = "Guardar Recibo de Nómina";
+            //sfd.FileName = $"Recibo_{empleadoName.Replace(' ', '_')}_{periodo:yyyyMM}.pdf";
+
+            //if (sfd.ShowDialog() == DialogResult.OK)
+            //{
+            //    try
+            //    {
+            //        // 5. Generar el PDF usando iText 7
+            //        using (PdfWriter writer = new PdfWriter(sfd.FileName))
+            //        {
+            //            using (PdfDocument pdf = new PdfDocument(writer))
+            //            {
+            //                using (Document document = new Document(pdf))
+            //                {
+            //                    // --- Encabezado ---
+            //                    document.Add(new Paragraph("Recibo de Nómina")
+            //                        .SetTextAlignment(TextAlignment.CENTER)
+            //                        .SetFontSize(20)
+            //                        .SetBold());
+
+            //                    document.Add(new Paragraph($"Empleado: {empleadoName}"));
+            //                    document.Add(new Paragraph($"Período: {periodo:MMMM 'de' yyyy}"));
+            //                    document.Add(new Paragraph($"Salario Diario: {selectedRow.Cells["SalarioDiario"].Value}"));
+            //                    document.Add(new Paragraph($"Faltas: {faltas}")); // Añadir faltas al PDF
+            //                    document.Add(new Paragraph(" ")); // Espacio
+
+            //                    // --- Tablas de Percepciones y Deducciones ---
+            //                    Table table = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 })).UseAllAvailableWidth();
+
+            //                    // Encabezados de tabla
+            //                    table.AddHeaderCell(new Cell().Add(new Paragraph("PERCEPCIONES").SetBold()));
+            //                    table.AddHeaderCell(new Cell().Add(new Paragraph("DEDUCCIONES").SetBold()));
+
+            //                    // --- Listas para separar ---
+            //                    List<string> percepciones = new List<string>();
+            //                    List<string> deducciones = new List<string>();
+            //                    decimal totalPercepciones = 0;
+            //                    decimal totalDeducciones = 0;
+
+            //                    // --- CÁLCULO DE SALARIO PAGADO (BASE) ---
+            //                    decimal sd = Convert.ToDecimal(selectedRow.Cells["SalarioDiario"].Value);
+            //                    int diasMes = DateTime.DaysInMonth(periodo.Year, periodo.Month);
+            //                    int numFaltas = Convert.ToInt32(faltas);
+            //                    int diasPagados = diasMes - numFaltas;
+            //                    if (diasPagados < 0) diasPagados = 0;
+            //                    decimal sm_pagado = sd * diasPagados;
+
+            //                    percepciones.Add($"Salario ({diasPagados} días): {sm_pagado:C}");
+            //                    totalPercepciones = calculo.SueldoBruto; // El bruto ya incluye todas las percepciones
+
+            //                    foreach (var kvp in calculo.Importes)
+            //                    {
+            //                        DataRow con = dtConceptosGlobal.AsEnumerable().FirstOrDefault(r => r.Field<int>("ID_Conceptos") == kvp.Key);
+            //                        if (con == null) continue;
+
+            //                        string nombre = con.Field<string>("nombre");
+            //                        bool esPercepcion = con.Field<bool>("Tipo");
+            //                        decimal importe = kvp.Value;
+
+            //                        if (esPercepcion)
+            //                        {
+            //                            // No agregar Salario Mensual de nuevo (ya lo pusimos como 'Salario (x días)')
+            //                            if (nombre.ToUpper() != "SALARIO MENSUAL")
+            //                                percepciones.Add($"{nombre}: {importe:C}");
+            //                        }
+            //                        else
+            //                        {
+            //                            deducciones.Add($"{nombre}: {importe:C}");
+            //                            totalDeducciones += importe;
+            //                        }
+            //                    }
+
+            //                    // --- Llenar la tabla ---
+            //                    int maxRows = Math.Max(percepciones.Count, deducciones.Count);
+            //                    for (int i = 0; i < maxRows; i++)
+            //                    {
+            //                        table.AddCell(new Cell().Add(new Paragraph(i < percepciones.Count ? percepciones[i] : "")));
+            //                        table.AddCell(new Cell().Add(new Paragraph(i < deducciones.Count ? deducciones[i] : "")));
+            //                    }
+
+            //                    document.Add(table);
+            //                    document.Add(new Paragraph(" ")); // Espacio
+
+            //                    // --- Totales ---
+            //                    document.Add(new Paragraph($"Sueldo Bruto (Total Percepciones): {calculo.SueldoBruto:C}")
+            //                        .SetTextAlignment(TextAlignment.RIGHT).SetBold());
+
+            //                    document.Add(new Paragraph($"Total Deducciones: {totalDeducciones:C}")
+            //                        .SetTextAlignment(TextAlignment.RIGHT).SetBold());
+
+            //                    document.Add(new Paragraph($"SUELDO NETO: {calculo.SueldoNeto:C}")
+            //                        .SetTextAlignment(TextAlignment.RIGHT).SetFontSize(14).SetBold());
+            //                }
+            //            }
+            //        } // Fin de using (cierra el documento)
+
+            //        MessageBox.Show("PDF generado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //    }
+            //    catch (System.IO.FileNotFoundException ex)
+            //    {
+            //        // Error común si la librería no está
+            //        MessageBox.Show("Error: No se encontró la librería iText 7 (itext.kernel.dll).\nAsegúrese de instalar el paquete NuGet 'itext7'.\n\nDetalle: " + ex.Message,
+            //                        "Error de Librería", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Ocurrió un error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
-/*
-            // 4. Preguntar dónde guardar el archivo
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Archivo PDF (*.pdf)|*.pdf";
-            sfd.Title = "Guardar Recibo de Nómina";
-            sfd.FileName = $"Recibo_{empleadoName.Replace(' ', '_')}_{periodo:yyyyMM}.pdf";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    // 5. Generar el PDF usando iText 7
-                    using (PdfWriter writer = new PdfWriter(sfd.FileName))
-                    {
-                        using (PdfDocument pdf = new PdfDocument(writer))
-                        {
-                            using (Document document = new Document(pdf))
-                            {
-                                // --- Encabezado ---
-                                document.Add(new Paragraph("Recibo de Nómina")
-                                    .SetTextAlignment(TextAlignment.CENTER)
-                                    .SetFontSize(20)
-                                    .SetBold());
-
-                                document.Add(new Paragraph($"Empleado: {empleadoName}"));
-                                document.Add(new Paragraph($"Período: {periodo:MMMM 'de' yyyy}"));
-                                document.Add(new Paragraph($"Salario Diario: {selectedRow.Cells["SalarioDiario"].Value}"));
-                                document.Add(new Paragraph($"Faltas: {faltas}")); // Añadir faltas al PDF
-                                document.Add(new Paragraph(" ")); // Espacio
-
-                                // --- Tablas de Percepciones y Deducciones ---
-                                Table table = new Table(UnitValue.CreatePercentArray(new float[] { 1, 1 })).UseAllAvailableWidth();
-
-                                // Encabezados de tabla
-                                table.AddHeaderCell(new Cell().Add(new Paragraph("PERCEPCIONES").SetBold()));
-                                table.AddHeaderCell(new Cell().Add(new Paragraph("DEDUCCIONES").SetBold()));
-
-                                // --- Listas para separar ---
-                                List<string> percepciones = new List<string>();
-                                List<string> deducciones = new List<string>();
-                                decimal totalPercepciones = 0;
-                                decimal totalDeducciones = 0;
-
-                                // --- CÁLCULO DE SALARIO PAGADO (BASE) ---
-                                decimal sd = Convert.ToDecimal(selectedRow.Cells["SalarioDiario"].Value);
-                                int diasMes = DateTime.DaysInMonth(periodo.Year, periodo.Month);
-                                int numFaltas = Convert.ToInt32(faltas);
-                                int diasPagados = diasMes - numFaltas;
-                                if (diasPagados < 0) diasPagados = 0;
-                                decimal sm_pagado = sd * diasPagados;
-
-                                percepciones.Add($"Salario ({diasPagados} días): {sm_pagado:C}");
-                                totalPercepciones = calculo.SueldoBruto; // El bruto ya incluye todas las percepciones
-
-                                foreach (var kvp in calculo.Importes)
-                                {
-                                    DataRow con = dtConceptosGlobal.AsEnumerable().FirstOrDefault(r => r.Field<int>("ID_Conceptos") == kvp.Key);
-                                    if (con == null) continue;
-
-                                    string nombre = con.Field<string>("nombre");
-                                    bool esPercepcion = con.Field<bool>("Tipo");
-                                    decimal importe = kvp.Value;
-
-                                    if (esPercepcion)
-                                    {
-                                        // No agregar Salario Mensual de nuevo (ya lo pusimos como 'Salario (x días)')
-                                        if (nombre.ToUpper() != "SALARIO MENSUAL")
-                                            percepciones.Add($"{nombre}: {importe:C}");
-                                    }
-                                    else
-                                    {
-                                        deducciones.Add($"{nombre}: {importe:C}");
-                                        totalDeducciones += importe;
-                                    }
-                                }
-
-                                // --- Llenar la tabla ---
-                                int maxRows = Math.Max(percepciones.Count, deducciones.Count);
-                                for (int i = 0; i < maxRows; i++)
-                                {
-                                    table.AddCell(new Cell().Add(new Paragraph(i < percepciones.Count ? percepciones[i] : "")));
-                                    table.AddCell(new Cell().Add(new Paragraph(i < deducciones.Count ? deducciones[i] : "")));
-                                }
-
-                                document.Add(table);
-                                document.Add(new Paragraph(" ")); // Espacio
-
-                                // --- Totales ---
-                                document.Add(new Paragraph($"Sueldo Bruto (Total Percepciones): {calculo.SueldoBruto:C}")
-                                    .SetTextAlignment(TextAlignment.RIGHT).SetBold());
-
-                                document.Add(new Paragraph($"Total Deducciones: {totalDeducciones:C}")
-                                    .SetTextAlignment(TextAlignment.RIGHT).SetBold());
-
-                                document.Add(new Paragraph($"SUELDO NETO: {calculo.SueldoNeto:C}")
-                                    .SetTextAlignment(TextAlignment.RIGHT).SetFontSize(14).SetBold());
-                            }
-                        }
-                    } // Fin de using (cierra el documento)
-
-                    MessageBox.Show("PDF generado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                catch (System.IO.FileNotFoundException ex)
-                {
-                    // Error común si la librería no está
-                    MessageBox.Show("Error: No se encontró la librería iText 7 (itext.kernel.dll).\nAsegúrese de instalar el paquete NuGet 'itext7'.\n\nDetalle: " + ex.Message,
-                                    "Error de Librería", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocurrió un error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }*/
 
 
         // --- BOTÓN DE CIERRE DE PERÍODO (LÓGICA DE GUARDADO) ---
@@ -905,15 +905,6 @@ namespace NominaMAD
             }
         }
 
-        private void dtgv_EmDP_GenerarNomina_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dtgv_Empleados_GenerarNomina_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     } // Fin de la clase P_GenerarNomina
 
 
