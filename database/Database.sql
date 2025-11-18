@@ -167,3 +167,5 @@ VALUES
 
 SELECT ID_Conceptos, nombre FROM Conceptos;
 SELECT NominaID, ConceptosID, Monto FROM NominaDetalle;
+
+SELECT *FROM Empleado
