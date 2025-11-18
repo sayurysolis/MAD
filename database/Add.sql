@@ -88,6 +88,10 @@ BEGIN
 END;
 GO
 
+
+
+
+
 CREATE PROCEDURE sp_CrearPrimerPeriodo
     @Mes INT,
     @Anio INT
