@@ -80,92 +80,72 @@ CREATE TABLE Conceptos(
 	Valor DECIMAL (10,2),
 	General BIT, --siempre se aplica?
 	estatus BIT DEFAULT 1
-
-
 );
-
-
-CREATE TABLE Periodo (
-    id_Periodo INT IDENTITY(1,1) PRIMARY KEY,
-    diaInicio INT Default 1,
-	diaFin INT Default 30,
-	Mes INT,         -- Ej: "Enero", "Febrero"
-    Anio INT,                  -- Ej: 2025
-    
-    Cerrado BIT DEFAULT 0     -- 0 = abierto, 1 = cerrado
-);
-
-
-
-
 
 CREATE TABLE Nomina(
 	ID_Nomina INT IDENTITY (10000,1)PRIMARY KEY,
+	Periodo DATE NOT NULL,
 
-	MES INT,
-	Anio INT,
-	SueldoBruto DECIMAL (10,2),
-	SueldoNeto DECIMAL (10,2),
-
-
+	Cerrado Bit Default 0, --0  es abierto
+	DiasTrabajados INT,
 	EmpleadoID INT,
-	PeriodoID INT,
+	
 	FOREIGN KEY(EmpleadoID) REFERENCES Empleado(ID_Empleado),
-	FOREIGN KEY(PeriodoID) REFERENCES Periodo(ID_Periodo)
+	
 );
+CREATE UNIQUE INDEX UX_Nomina_EmpleadoPeriodo
+ON Nomina(EmpleadoID, Periodo);
+
 
 CREATE TABLE NominaDetalle(
 	ID_NominaDetalle INT IDENTITY(1,1) PRIMARY KEY,
-	NominaID INT,
-	ConceptosID INT,
-	Monto DECIMAL(10,2),
+
+	NominaID INT NOT NULL,
+	ConceptosID INT NOT NULL,
+	Importe DECIMAL (10,2),
+	SueldoBruto DECIMAL(10,2) NULL,
+    SueldoNeto DECIMAL(10,2) NULL,
+
 	FOREIGN KEY(NominaID) REFERENCES Nomina(ID_Nomina),
 	FOREIGN KEY(ConceptosID) REFERENCES Conceptos(ID_Conceptos)
 	
 );
 
-CREATE TABLE Matriz (
-    id_Matriz INT IDENTITY(1,1) PRIMARY KEY,
-    id_Empleado INT NOT NULL,
-    PeriodoID INT NOT NULL,
+SELECT * FROM Conceptos
 
-    SalarioDiario DECIMAL(10,2) NOT NULL,
-    SalarioDiarioIntegrado DECIMAL(10,2) NOT NULL,
-    PagoMensual DECIMAL(10,2) NOT NULL,
 
-    Faltas INT DEFAULT 0,
-    DiasTrabajados INT, -- Se calcula en C# al insertar
+UPDATE Empleado 
+set Estatus =0
+WHERE ID_Empleado = 1002
 
-    IMSS DECIMAL(10,2), -- Se calcula en C# al insertar
-    ISR DECIMAL(10,2) DEFAULT 0, -- Se calcula en C# al insertar
 
-    BonoPuntualidad DECIMAL(10,2), -- Se calcula en C# al insertar
-    Despensa DECIMAL(10,2), -- Se calcula en C# al insertar
-    BonoAsistencia DECIMAL(10,2), -- Se calcula en C# al insertar
-    BonoProductividad DECIMAL(10,2), -- Se calcula en C# al insertar
 
-    FOREIGN KEY (id_Empleado) REFERENCES Empleado(ID_Empleado),
-    FOREIGN KEY (PeriodoID) REFERENCES Periodo(id_Periodo)
-);
 
-SELECT *  FROM Empleado
-INSERT INTO Conceptos (Tipo, nombre, EsPorcetanje, Valor, General, estatus)
-VALUES (1, 'Concepto faltante', 0, 0, 0, 1);
 
 INSERT INTO Conceptos (Tipo, nombre, EsPorcetanje, Valor, General, estatus)
 VALUES 
 -- PERCEPCIONES
 (1, 'Sueldo', 0, 0, 1, 1),           -- ID 1
-(1, 'Puntualidad', 0, 0, 1, 1),      -- ID 2
-(1, 'Asistencia', 0, 0, 1, 1),       -- ID 3
-(1, 'Productividad', 0, 0, 1, 1),    -- ID 4
-(1, 'Despensa', 0, 0, 1, 1),         -- ID 5
+(1, 'Puntualidad', 0, 0, 0, 1),      -- ID 2
+(1, 'Asistencia', 0, 0, 0, 1),       -- ID 3
+(1, 'Productividad', 0, 0, 0, 1),    -- ID 4
+(1, 'Despensa', 0, 0, 0, 1),         -- ID 5
 
 -- DEDUCCIONES
 (0, 'IMSS', 0, 0, 1, 1),             -- ID 6
 (0, 'ISR', 0, 0, 1, 1);              -- ID 7
 
 SELECT ID_Conceptos, nombre FROM Conceptos;
+<<<<<<< HEAD
 SELECT NominaID, ConceptosID, Monto FROM NominaDetalle;
 
 SELECT *FROM Empleado
+=======
+SELECT NominaID, ConceptosID, Importe FROM NominaDetalle;
+
+
+
+SELECT * FROM  Empleado
+
+
+>>>>>>> 252ffdc8259a78f7b2a91d5c4fb72db5f360b888

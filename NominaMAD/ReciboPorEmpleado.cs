@@ -1,24 +1,24 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
-using System.IO;
-using System.Data.SqlClient;
-
 namespace NominaMAD
 {
     public partial class P_ReciboEmpleado : Form
     {
-        string Conexion = "Data Source=DESKTOP-R0TMTLN\\SQLEXPRESS;Initial Catalog=Nomina;Integrated Security=True";
+        string Conexion = "Data Source=DESKTOP-R0TMTTLN\\SQLEXPRESS;Initial Catalog=DSB_Topografia;Integrated Security=True";
         public P_ReciboEmpleado()
        {
             InitializeComponent();
@@ -28,373 +28,12 @@ namespace NominaMAD
 
         private void btn_Imprimir_RecPEmpleado_Click(object sender, EventArgs e)
         {
-            imprimirr(sender, e);
-    //        //SaveFileDialog guardar=new SaveFileDialog();
-    //        //guardar.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-    //        ////guardar.ShowDialog();
-
-    //        // //string paginahtml_texto = "<table border=1><tr><td>HOLA MUNDO</td></tr></table>";
-    //        //string paginahtml_texto = Properties.Resources.plantilla.ToString();
-    //        //paginahtml_texto = paginahtml_texto.Replace("@NUMERO_EMPLEADO", );
-
-    //        //if (guardar.ShowDialog() == DialogResult.OK)
-    //        //{
-
-    //        //    using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-    //        //    {
-    //        //        Document pdfDoc = new Document(PageSize.A4, 25,25,25,25);
-
-    //        //        PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-
-    //        //        pdfDoc.Open();
-
-    //        //        pdfDoc.Add(new Phrase(""));
-
-    //        //        using (StringReader sr = new StringReader(paginahtml_texto))
-    //        //        {
-
-    //        //            XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);   
-    //        //        }
-    //        //        pdfDoc.Close();
-
-    //        //        stream.Close();
-    //        //    }
-    //        //}
-
-
-    //        SaveFileDialog guardar = new SaveFileDialog();
-    //        guardar.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-
-    //        // Cargar la plantilla HTML desde los recursos
-    //        string paginahtml_texto = Properties.Resources.plantilla.ToString();
-
-    //        // Obtener y reemplazar datos de la Empresa
-    //        using (SqlConnection cn = new SqlConnection(Conexion))
-    //        {
-    //            cn.Open();
-
-    //            // 1. Datos de la Empresa
-    //            string queryEmpresa = "SELECT Nombre, RazonFiscal, DomicilioFiscal, Telefono, RegistroPatronal, RFC, FechaInOperaciones FROM Empresa";
-    //            SqlCommand cmdEmpresa = new SqlCommand(queryEmpresa, cn);
-    //            SqlDataReader readerEmpresa = cmdEmpresa.ExecuteReader();
-
-    //            if (readerEmpresa.Read())
-    //            {
-    //                paginahtml_texto = paginahtml_texto.Replace("@MES_NOMINA", combo_Mes.Text);
-    //                paginahtml_texto = paginahtml_texto.Replace("@ANO_NOMINA", txt_Ano_RecPEmpleado.Text);
-    //                paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPRESA", readerEmpresa["Nombre"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@RAZON_SOCIAL", readerEmpresa["RazonFiscal"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@DOMICILIO_FISCAL", readerEmpresa["DomicilioFiscal"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@TELEFONO_EMPRESA", readerEmpresa["Telefono"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@REGISTRO_PATRONAL", readerEmpresa["RegistroPatronal"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPRESA", readerEmpresa["RFC"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@FECHA_INICIO_OPERACIONES", Convert.ToDateTime(readerEmpresa["FechaInOperaciones"]).ToString("dd/MM/yyyy"));
-    //            }
-    //            readerEmpresa.Close();
-
-    //            // 2. Datos del Empleado
-    //            int numeroEmpleado = int.Parse(txt_NumEmpleado_RecPEmpleado.Text);
-    //            string queryEmpleado = @"
-    //                SELECT e.NombreEmpleado, e.ApelPaternoEmpleado, e.ApelMaternoEmpleado, e.RFC, e.Curp, e.NSS, e.FechaIngresoEmpresa, 
-    //                       d.NombreDepartamento, p.NombrePuesto, p.SalarioDiario, e.Banco, e.NumeroCuenta
-    //                FROM Empleado e
-    //                JOIN Departamento d ON e.id_Departamento = d.id_Departamento
-    //                JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-    //                WHERE e.id_Empleado = @idEmpleado";
-    //            SqlCommand cmdEmpleado = new SqlCommand(queryEmpleado, cn);
-    //            cmdEmpleado.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-    //            SqlDataReader readerEmpleado = cmdEmpleado.ExecuteReader();
-
-    //            if (readerEmpleado.Read())
-    //            {
-    //                paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPLEADO", $"{readerEmpleado["NombreEmpleado"]} {readerEmpleado["ApelPaternoEmpleado"]} {readerEmpleado["ApelMaternoEmpleado"]}");
-    //                paginahtml_texto = paginahtml_texto.Replace("@NUMERO_EMPLEADO", numeroEmpleado.ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPLEADO", readerEmpleado["RFC"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@CURP_EMPLEADO", readerEmpleado["Curp"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@IMSS_EMPLEADO", readerEmpleado["NSS"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@FECHA_INGRESO", Convert.ToDateTime(readerEmpleado["FechaIngresoEmpresa"]).ToString("dd/MM/yyyy"));
-    //                paginahtml_texto = paginahtml_texto.Replace("@DEPARTAMENTO", readerEmpleado["NombreDepartamento"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@PUESTO", readerEmpleado["NombrePuesto"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@BANCO", readerEmpleado["Banco"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@NUMERO_CUENTA", readerEmpleado["NumeroCuenta"].ToString());
-    //            }
-    //            readerEmpleado.Close();
-
-    //            // 3. Datos de la Nómina Individual y Deducciones/Percepciones
-    //            //string mes = combo_Mes.Text;
-    //            //int ano = int.Parse(txt_Ano_RecPEmpleado.Text);
-    //            //string queryNomina = @"
-    //            //    SELECT DiasTrabajados, SueldoBruto, SueldoNeto, totalDeducciones, totalPercepciones
-    //            //    FROM NominaIndividual
-    //            //    WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
-    //            //SqlCommand cmdNomina = new SqlCommand(queryNomina, cn);
-    //            //cmdNomina.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-    //            //cmdNomina.Parameters.AddWithValue("@mes", mes);
-    //            //cmdNomina.Parameters.AddWithValue("@ano", ano);
-    //            //SqlDataReader readerNomina = cmdNomina.ExecuteReader();
-
-    //            //if (readerNomina.Read())
-    //            //{
-    //            //    paginahtml_texto = paginahtml_texto.Replace("@DIAS_TRABAJADOS", readerNomina["DiasTrabajados"].ToString());
-    //            //    paginahtml_texto = paginahtml_texto.Replace("@TOTAL_PERCEPCIONES", readerNomina["totalPercepciones"].ToString());
-    //            //    paginahtml_texto = paginahtml_texto.Replace("@TOTAL_DEDUCCIONES", readerNomina["totalDeducciones"].ToString());
-    //            //    paginahtml_texto = paginahtml_texto.Replace("@TOTAL_NETO", readerNomina["SueldoNeto"].ToString());
-    //            //}
-
-    //            //readerNomina.Close();
-    //            // 3. Datos de la Nómina Individual y Deducciones/Percepciones
-    //            string mes = combo_Mes.Text;
-    //            int ano = int.Parse(txt_Ano_RecPEmpleado.Text);
-    //            decimal isr = 0;
-    //            decimal imss = 0;
-
-    //            string queryNomina = @"
-    //SELECT DiasTrabajados, SueldoBruto, SueldoNeto, totalDeducciones, totalPercepciones, ISR, IMSS
-    //FROM NominaIndividual
-    //WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
-    //            SqlCommand cmdNomina = new SqlCommand(queryNomina, cn);
-    //            cmdNomina.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-    //            cmdNomina.Parameters.AddWithValue("@mes", mes);
-    //            cmdNomina.Parameters.AddWithValue("@ano", ano);
-    //            SqlDataReader readerNomina = cmdNomina.ExecuteReader();
-
-    //            if (readerNomina.Read())
-    //            {
-    //                paginahtml_texto = paginahtml_texto.Replace("@DIAS_TRABAJADOS", readerNomina["DiasTrabajados"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@TOTAL_PERCEPCIONES", readerNomina["totalPercepciones"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@TOTAL_DEDUCCIONES", readerNomina["totalDeducciones"].ToString());
-    //                paginahtml_texto = paginahtml_texto.Replace("@TOTAL_NETO", readerNomina["SueldoNeto"].ToString());
-
-    //                // Obtener valores de ISR e IMSS
-    //                isr = Convert.ToDecimal(readerNomina["ISR"]);
-    //                imss = Convert.ToDecimal(readerNomina["IMSS"]);
-    //            }
-    //            readerNomina.Close();
-
-    //            // 4. Obtener Deducciones del Empleado y agregar ISR e IMSS
-    //            string deduccionesHtml = "";
-    //            decimal totalDeducciones = 0;
-
-    //            string queryDeducciones = @"
-    //SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS Importe
-    //FROM DEDPERNOMINA dpn
-    //JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-    //WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Deducción'";
-
-    //            SqlCommand cmdDeducciones = new SqlCommand(queryDeducciones, cn);
-    //            cmdDeducciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-    //            cmdDeducciones.Parameters.AddWithValue("@mes", mes);
-    //            cmdDeducciones.Parameters.AddWithValue("@ano", ano);
-    //            SqlDataReader readerDeducciones = cmdDeducciones.ExecuteReader();
-
-    //            while (readerDeducciones.Read())
-    //            {
-    //                string clave = readerDeducciones["id_PD"].ToString();
-    //                string concepto = readerDeducciones["Nombre_PD"].ToString();
-    //                decimal importe = Convert.ToDecimal(readerDeducciones["Importe"]);
-
-    //                deduccionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-    //                totalDeducciones += importe;
-    //            }
-    //            readerDeducciones.Close();
-
-    //            // Agregar ISR e IMSS a la tabla de deducciones
-    //            deduccionesHtml += $"<tr><td>ISR</td><td>ISR</td><td>{isr:C}</td></tr>";
-    //            deduccionesHtml += $"<tr><td>IMSS</td><td>IMSS</td><td>{imss:C}</td></tr>";
-
-    //            // Sumar ISR e IMSS al total de deducciones
-    //            totalDeducciones += isr + imss;
-
-    //            // Reemplazar las deducciones en el HTML
-    //            paginahtml_texto = paginahtml_texto.Replace("@FILAS_DEDUCCIONES", deduccionesHtml);
-    //            paginahtml_texto = paginahtml_texto.Replace("@TOTAL_DEDUCCIONES", totalDeducciones.ToString("C"));
-
-
-    //            ///////////////////
-    //            ///
-    //            // 2. Reemplazar deducciones y percepciones en el PDF
-    //            // int numeroEmpleado = int.Parse(txt_NumEmpleado_RecPEmpleado.Text);
-    //            //string mes = combo_Mes.Text;
-    //            //int ano = int.Parse(txt_Ano_RecPEmpleado.Text);
-
-    //            // Reemplazo dinámico de filas de percepciones
-    //            // Código para obtener y reemplazar las percepciones
-
-
-
-    //            //////
-    //            // 4. Obtener Percepciones del Empleado
-    //            string percepcionesHtml = "";
-    //            decimal totalPercepciones = 0;
-
-    //            string queryPercepciones = @"
-    //SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS MontoPD, COALESCE(dp.Porcentaje_PD, 0) AS Porcentaje_PD
-    //FROM DEDPERNOMINA dpn
-    //JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-    //WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Percepción'";
-
-    //            SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-    //            cmdPercepciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-    //            cmdPercepciones.Parameters.AddWithValue("@mes", mes);
-    //            cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-    //            SqlDataReader readerPercepciones = cmdPercepciones.ExecuteReader();
-
-    //            while (readerPercepciones.Read())
-    //            {
-    //                string clave = readerPercepciones["id_PD"].ToString();
-    //                string concepto = readerPercepciones["Nombre_PD"].ToString();
-    //                decimal monto = Convert.ToDecimal(readerPercepciones["MontoPD"]);
-    //                decimal porcentaje = Convert.ToDecimal(readerPercepciones["Porcentaje_PD"]);
-
-    //                // Determinar si se usa Monto o Porcentaje para el Importe
-    //                string importe = monto > 0 ? $"${monto}" : $"{porcentaje}%";
-
-    //                percepcionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe}</td></tr>";
-    //               // totalPercepciones += monto > 0 ? monto : (SueldoBruto * porcentaje / 100); // Asumiendo que el porcentaje se aplica sobre SueldoBruto
-    //            }
-    //            readerPercepciones.Close();
-
-    //            // Reemplazar las percepciones en el HTML
-    //            paginahtml_texto = paginahtml_texto.Replace("@FILAS_PERCEPCIONES", percepcionesHtml);
-    //            paginahtml_texto = paginahtml_texto.Replace("@TOTAL_PERCEPCIONES", totalPercepciones.ToString("C"));
-
-
-    //            //            string percepcionesHtml = "";
-    //            //            decimal totalPercepciones = 0;
-
-    //            //            string queryPercepciones = @"
-    //            //SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS Importe
-    //            //FROM DEDPERNOMINA dpn
-    //            //JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-    //            //WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Percepción'";
-
-    //            //            SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-    //            //            cmdPercepciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-    //            //            cmdPercepciones.Parameters.AddWithValue("@mes", mes);
-    //            //            cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-
-    //            //            SqlDataReader readerPercepciones = cmdPercepciones.ExecuteReader();
-
-    //            //            while (readerPercepciones.Read())
-    //            //            {
-    //            //                string clave = readerPercepciones["id_PD"].ToString();
-    //            //                string concepto = readerPercepciones["Nombre_PD"].ToString();
-    //            //                decimal importe = Convert.ToDecimal(readerPercepciones["Importe"]);
-
-    //            //                percepcionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-    //            //                totalPercepciones += importe;
-    //            //            }
-    //            //            readerPercepciones.Close();
-    //            //            paginahtml_texto = paginahtml_texto.Replace("@FILAS_PERCEPCIONES", percepcionesHtml);
-    //            //            paginahtml_texto = paginahtml_texto.Replace("@TOTAL_PERCEPCIONES", totalPercepciones.ToString("C"));
-    //            /////////////
-    //            // Código para obtener y reemplazar las deducciones
-
-
-    //            //            string deduccionesHtml = "";
-    //            //            decimal totalDeducciones = 0;
-
-    //            //            string queryDeducciones = @"
-    //            //SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS Importe
-    //            //FROM DEDPERNOMINA dpn
-    //            //JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-    //            //WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Deducción'";
-
-    //            //            SqlCommand cmdDeducciones = new SqlCommand(queryDeducciones, cn);
-    //            //            cmdDeducciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-    //            //            cmdDeducciones.Parameters.AddWithValue("@mes", mes);
-    //            //            cmdDeducciones.Parameters.AddWithValue("@ano", ano);
-
-    //            //            SqlDataReader readerDeducciones = cmdDeducciones.ExecuteReader();
-
-    //            //            while (readerDeducciones.Read())
-    //            //            {
-    //            //                string clave = readerDeducciones["id_PD"].ToString();
-    //            //                string concepto = readerDeducciones["Nombre_PD"].ToString();
-    //            //                decimal importe = Convert.ToDecimal(readerDeducciones["Importe"]);
-
-    //            //                deduccionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-    //            //                totalDeducciones += importe;
-    //            //            }
-    //            //            readerDeducciones.Close();
-    //            //            paginahtml_texto = paginahtml_texto.Replace("@FILAS_DEDUCCIONES", deduccionesHtml);
-    //            //            paginahtml_texto = paginahtml_texto.Replace("@TOTAL_DEDUCCIONES", totalDeducciones.ToString("C"));
-
-
-    //        }
-    //        ////////
-    //        ///
-
-
-
-
-    //        //// Generar el PDF
-    //        //if (guardar.ShowDialog() == DialogResult.OK)
-    //        //{
-    //        //    using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-    //        //    {
-    //        //        Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-    //        //        PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-
-    //        //        pdfDoc.Open();
-    //        //        pdfDoc.Add(new Phrase(""));
-
-    //        //        using (StringReader sr = new StringReader(paginahtml_texto))
-    //        //        {
-    //        //            XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-    //        //        }
-
-    //        //        pdfDoc.Close();
-    //        //        stream.Close();
-    //        //    }
-
-    //        //    MessageBox.Show("Recibo de nómina generado exitosamente.");
-    //        //}
-    //        // Generar el PDF con los datos completados
-    //        if (guardar.ShowDialog() == DialogResult.OK)
-    //        {
-    //            using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-    //            {
-    //                Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-    //                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-
-    //                pdfDoc.Open();
-    //                pdfDoc.Add(new Phrase(""));
-
-    //                using (StringReader sr = new StringReader(paginahtml_texto))
-    //                {
-    //                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-    //                }
-
-    //                pdfDoc.Close();
-    //                stream.Close();
-    //            }
-
-    //            MessageBox.Show("Recibo de nómina generado exitosamente.");
-    //        }
-
-
-
+            
+    
         }
 
         private void btn_Buscar_RecPEmpleado_Click(object sender, EventArgs e)
         {
-            //// Valida que el campo de Número de Empleado, Mes y Año estén completos
-            //if (string.IsNullOrEmpty(txt_NumEmpleado_RecPEmpleado.Text) ||
-            //    string.IsNullOrEmpty(combo_Mes.Text) ||
-            //    string.IsNullOrEmpty(txt_Ano_RecPEmpleado.Text))
-            //{
-            //    MessageBox.Show("Por favor, llena todos los campos.");
-            //    return;
-            //}
-
-            //int numeroEmpleado = int.Parse(txt_NumEmpleado_RecPEmpleado.Text);
-            //string mes = combo_Mes.Text;
-            //int ano = int.Parse(txt_Ano_RecPEmpleado.Text);
-
-            //MessageBox.Show($"Empleado encontrado: {numeroEmpleado}"); // Mensaje de confirmación de búsqueda
-          
-            // Validar campos
             if (string.IsNullOrEmpty(txt_NumEmpleado_RecPEmpleado.Text) ||
                 string.IsNullOrEmpty(combo_Mes.Text) ||
                 string.IsNullOrEmpty(txt_Ano_RecPEmpleado.Text))
@@ -485,12 +124,27 @@ namespace NominaMAD
 
                 // 1. Obtener datos del empleado
                 string queryEmpleado = @"
-            SELECT e.NombreEmpleado, e.ApelPaternoEmpleado, e.ApelMaternoEmpleado, e.RFC, e.Curp, e.NSS,
-                   e.FechaIngresoEmpresa, d.NombreDepartamento, p.NombrePuesto, e.Banco, e.NumeroCuenta, e.SalarioDiario
-            FROM Empleado e
-            JOIN Departamento d ON e.id_Departamento = d.id_Departamento
-            JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-            WHERE e.id_Empleado = @idEmpleado";
+    SELECT 
+        e.Nombre,
+        e.ApellidoPaterno,
+        e.ApellidoMaterno,
+        e.RFC,
+        e.CURP,
+        e.NSS,
+        e.FechaIngreso AS FechaIngresoEmpresa,
+        d.Nombre AS NombreDepartamento,
+        p.Nombre AS NombrePuesto,
+        e.Banco,
+        e.NumeroCuenta,
+        e.SalarioDiario,
+        emp.nombre AS NombreEmpresa,
+        emp.RazonSocial
+    FROM Empleado e
+    JOIN Departamento d ON e.DepID = d.ID_Departamento
+    JOIN Puesto p ON e.PuestoID = p.ID_Puesto
+    JOIN Empresa emp ON e.EmpresaID = emp.ID_Empresa
+    WHERE e.ID_Empleado = @idEmpleado
+";
 
                 SqlCommand cmdEmpleado = new SqlCommand(queryEmpleado, cn);
                 cmdEmpleado.Parameters.AddWithValue("@idEmpleado", idEmpleado);
@@ -501,22 +155,21 @@ namespace NominaMAD
                     txt_Nombre_RecPEmpleado.Text = $"{readerEmpleado["NombreEmpleado"]} {readerEmpleado["ApelPaternoEmpleado"]} {readerEmpleado["ApelMaternoEmpleado"]}";
                     txt_NumEmpleadoMostrar_RecPEmpleado.Text = idEmpleado.ToString();
                     txt_RFC_RecPEmpleado.Text = readerEmpleado["RFC"].ToString();
-                    txt_Curp_RecPEmpleado.Text = readerEmpleado["Curp"].ToString();
+                    txt_Curp_RecPEmpleado.Text = readerEmpleado["CURP"].ToString();
                     txt_IMSS_RecPEmpleado.Text = readerEmpleado["NSS"].ToString();
                     txt_Departamento_RecPEmpleado.Text = readerEmpleado["NombreDepartamento"].ToString();
                     txt_Puesto_RecPEmpleado.Text = readerEmpleado["NombrePuesto"].ToString();
                     txt_Banco_RecPEmpleado.Text = readerEmpleado["Banco"].ToString();
                     txt_NumCuenta_RecPEmpleado.Text = readerEmpleado["NumeroCuenta"].ToString();
-                    txt_SalarioDiario_RecPEmpleado.Text = Convert.ToDecimal(readerEmpleado["SalarioDiario"]).ToString("C"); // Asigna Salario Diario
-
+                    txt_SalarioDiario_RecPEmpleado.Text = Convert.ToDecimal(readerEmpleado["SalarioDiario"]).ToString("C");
                 }
                 readerEmpleado.Close();
 
                 // 2. Obtener datos de la nómina individual
                 string queryNomina = @"
-            SELECT DiasTrabajados, totalDeducciones, totalPercepciones, SueldoNeto, SueldoBruto
-            FROM NominaIndividual
-            WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
+    SELECT DiasTrabajados, totalDeducciones, totalPercepciones, SueldoNeto, SueldoBruto
+    FROM NominaIndividual
+    WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
 
                 SqlCommand cmdNomina = new SqlCommand(queryNomina, cn);
                 cmdNomina.Parameters.AddWithValue("@idEmpleado", idEmpleado);
@@ -530,8 +183,7 @@ namespace NominaMAD
                     txt_TOTDeducciones_RecPEmpleado.Text = Convert.ToDecimal(readerNomina["totalDeducciones"]).ToString("C");
                     txt_TOTPercepciones_RecPEmpleado.Text = Convert.ToDecimal(readerNomina["totalPercepciones"]).ToString("C");
                     txt_Neto_RecPEmpleado.Text = Convert.ToDecimal(readerNomina["SueldoNeto"]).ToString("C");
-                    txt_Bruto_RecPEmpleado.Text = Convert.ToDecimal(readerNomina["SueldoBruto"]).ToString("C"); // Asigna Sueldo Bruto
-
+                    txt_Bruto_RecPEmpleado.Text = Convert.ToDecimal(readerNomina["SueldoBruto"]).ToString("C");
                 }
                 else
                 {
@@ -546,7 +198,7 @@ namespace NominaMAD
             using (SqlConnection cn = new SqlConnection(Conexion))
             {
                 cn.Open();
-                string query = "SELECT COUNT(*) FROM Empleado WHERE id_Empleado = @idEmpleado";
+                string query = "SELECT COUNT(*) FROM Empleado WHERE ID_Empleado = @idEmpleado";
                 SqlCommand cmd = new SqlCommand(query, cn);
                 cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
                 int count = (int)cmd.ExecuteScalar();
@@ -592,7 +244,7 @@ namespace NominaMAD
                     string query = @"
                 SELECT COUNT(*)
                 FROM NominaIndividual
-                WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
+                WHERE EmpleadoID = @idEmpleado AND Mes = @mes AND Ano = @ano";
 
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
@@ -609,400 +261,6 @@ namespace NominaMAD
             }
             return existe;
         }
-
-        //        private void imprimirr(object sender, EventArgs e)
-        //        {
-
-        //            SaveFileDialog guardar = new SaveFileDialog();
-        //            guardar.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-
-        //            // Cargar la plantilla HTML desde los recursos
-        //            string paginahtml_texto = Properties.Resources.plantilla.ToString();
-
-        //            using (SqlConnection cn = new SqlConnection(Conexion))
-        //            {
-        //                cn.Open();
-
-        //                // 1. Datos de la Empresa
-        //                string queryEmpresa = "SELECT Nombre, RazonFiscal, DomicilioFiscal, Telefono, RegistroPatronal, RFC, FechaInOperaciones FROM Empresa";
-        //                SqlCommand cmdEmpresa = new SqlCommand(queryEmpresa, cn);
-        //                SqlDataReader readerEmpresa = cmdEmpresa.ExecuteReader();
-
-        //                if (readerEmpresa.Read())
-        //                {
-        //                    paginahtml_texto = paginahtml_texto.Replace("@MES_NOMINA", combo_Mes.Text);
-        //                    paginahtml_texto = paginahtml_texto.Replace("@ANO_NOMINA", txt_Ano_RecPEmpleado.Text);
-        //                    paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPRESA", readerEmpresa["Nombre"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@RAZON_SOCIAL", readerEmpresa["RazonFiscal"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@DOMICILIO_FISCAL", readerEmpresa["DomicilioFiscal"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@TELEFONO_EMPRESA", readerEmpresa["Telefono"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@REGISTRO_PATRONAL", readerEmpresa["RegistroPatronal"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPRESA", readerEmpresa["RFC"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@FECHA_INICIO_OPERACIONES", Convert.ToDateTime(readerEmpresa["FechaInOperaciones"]).ToString("dd/MM/yyyy"));
-        //                }
-        //                readerEmpresa.Close();
-
-
-
-
-        //                //2.Empleado
-        //                int numeroEmpleado = int.Parse(txt_NumEmpleado_RecPEmpleado.Text);
-        //                string queryEmpleado = @"
-        //    SELECT e.NombreEmpleado, e.ApelPaternoEmpleado, e.ApelMaternoEmpleado, e.RFC, e.Curp, e.NSS, e.FechaIngresoEmpresa, 
-        //           d.NombreDepartamento, p.NombrePuesto, e.SalarioDiario, e.Banco, e.NumeroCuenta
-        //    FROM Empleado e
-        //    JOIN Departamento d ON e.id_Departamento = d.id_Departamento
-        //    JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //    WHERE e.id_Empleado = @idEmpleado";
-
-        //                SqlCommand cmdEmpleado = new SqlCommand(queryEmpleado, cn);
-        //                cmdEmpleado.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //                SqlDataReader readerEmpleado = cmdEmpleado.ExecuteReader();
-        //                decimal salarioDiario = 0;
-        //                if (readerEmpleado.Read())
-        //                {
-        //                    paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPLEADO", $"{readerEmpleado["NombreEmpleado"]} {readerEmpleado["ApelPaternoEmpleado"]} {readerEmpleado["ApelMaternoEmpleado"]}");
-        //                    paginahtml_texto = paginahtml_texto.Replace("@NUMERO_EMPLEADO", numeroEmpleado.ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPLEADO", readerEmpleado["RFC"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@CURP_EMPLEADO", readerEmpleado["Curp"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@IMSS_EMPLEADO", readerEmpleado["NSS"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@FECHA_INGRESO", Convert.ToDateTime(readerEmpleado["FechaIngresoEmpresa"]).ToString("dd/MM/yyyy"));
-        //                    paginahtml_texto = paginahtml_texto.Replace("@DEPARTAMENTO", readerEmpleado["NombreDepartamento"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@PUESTO", readerEmpleado["NombrePuesto"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@BANCO", readerEmpleado["Banco"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@NUMERO_CUENTA", readerEmpleado["NumeroCuenta"].ToString());
-        //                    paginahtml_texto = paginahtml_texto.Replace("@SALARIO_DIARIO", Convert.ToDecimal(readerEmpleado["SalarioDiario"]).ToString("C"));
-        //                    salarioDiario = Convert.ToDecimal(readerEmpleado["SalarioDiario"]);
-        //                }
-        //                readerEmpleado.Close();
-
-        //                string mes = combo_Mes.Text;
-        //                int ano = int.Parse(txt_Ano_RecPEmpleado.Text);
-
-        //                //3.Deducciones
-        //                int faltas = ContarFaltasEmpleado(numeroEmpleado, mes, ano);
-        //                //decimal salarioDiario = Convert.ToDecimal(readerEmpleado["SalarioDiario"]);
-        //                decimal deduccionFaltas = faltas * salarioDiario;
-        //                decimal totalDeducciones = deduccionFaltas; // Inicia con las faltas
-
-        //                // Agregar las demás deducciones
-        //                string deduccionesHtml = "";
-        //                string queryDeducciones = @"
-        //    SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS MontoPD, COALESCE(dp.Porcentaje_PD, 0) AS Porcentaje_PD
-        //    FROM DEDPERNOMINA dpn
-        //    JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-        //    WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Deducción'
-        //    AND dp.Nombre_PD != 'Falta'"; // Excluye las faltas aquí para no duplicarlas
-
-        //                SqlCommand cmdDeducciones = new SqlCommand(queryDeducciones, cn);
-        //                cmdDeducciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //                cmdDeducciones.Parameters.AddWithValue("@mes", mes);
-        //                cmdDeducciones.Parameters.AddWithValue("@ano", ano);
-        //                SqlDataReader readerDeducciones = cmdDeducciones.ExecuteReader();
-
-        //                while (readerDeducciones.Read())
-        //                {
-        //                    string clave = readerDeducciones["id_PD"].ToString();
-        //                    string concepto = readerDeducciones["Nombre_PD"].ToString();
-        //                    decimal monto = Convert.ToDecimal(readerDeducciones["MontoPD"]);
-        //                    decimal porcentaje = Convert.ToDecimal(readerDeducciones["Porcentaje_PD"]);
-        //                    decimal importe = monto > 0 ? monto : (salarioDiario * porcentaje / 100);
-
-        //                    deduccionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-        //                    totalDeducciones += importe;
-        //                }
-        //                readerDeducciones.Close();
-
-        //                // Obtener ISR e IMSS desde la tabla NominaIndividual
-        //                string queryNomina = @"
-        //SELECT ISR, IMSS
-        //FROM NominaIndividual
-        //WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
-
-        //                SqlCommand cmdNomina = new SqlCommand(queryNomina, cn);
-        //                cmdNomina.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //                cmdNomina.Parameters.AddWithValue("@mes", mes);
-        //                cmdNomina.Parameters.AddWithValue("@ano", ano);
-        //                SqlDataReader readerNomina = cmdNomina.ExecuteReader();
-
-        //                decimal isr = 0;
-        //                decimal imss = 0;
-
-        //                if (readerNomina.Read())
-        //                {
-        //                    isr = Convert.ToDecimal(readerNomina["ISR"]);
-        //                    imss = Convert.ToDecimal(readerNomina["IMSS"]);
-        //                }
-        //                readerNomina.Close();
-
-        //                // Agregar ISR e IMSS a las deducciones
-        //                totalDeducciones += isr + imss;
-        //                deduccionesHtml += $"<tr><td>ISR</td><td>ISR</td><td>{isr:C}</td></tr>";
-        //                deduccionesHtml += $"<tr><td>IMSS</td><td>IMSS</td><td>{imss:C}</td></tr>";
-
-
-        //                // Reemplazar en la plantilla
-        //                paginahtml_texto = paginahtml_texto.Replace("@FILAS_DEDUCCIONES", deduccionesHtml);
-        //                paginahtml_texto = paginahtml_texto.Replace("@TOTAL_DEDUCCIONES", totalDeducciones.ToString("C"));
-
-
-
-        //                //4.percepciones
-        //                string percepcionesHtml = "";
-        //                decimal totalPercepciones = 0;
-
-        //                string queryPercepciones = @"
-        //    SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS MontoPD, COALESCE(dp.Porcentaje_PD, 0) AS Porcentaje_PD
-        //    FROM DEDPERNOMINA dpn
-        //    JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-        //    WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Percepción'";
-
-        //                SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-        //                cmdPercepciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //                cmdPercepciones.Parameters.AddWithValue("@mes", mes);
-        //                cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-        //                SqlDataReader readerPercepciones = cmdPercepciones.ExecuteReader();
-
-        //                while (readerPercepciones.Read())
-        //                {
-        //                    string clave = readerPercepciones["id_PD"].ToString();
-        //                    string concepto = readerPercepciones["Nombre_PD"].ToString();
-        //                    decimal monto = Convert.ToDecimal(readerPercepciones["MontoPD"]);
-        //                    decimal porcentaje = Convert.ToDecimal(readerPercepciones["Porcentaje_PD"]);
-        //                    decimal importe = monto > 0 ? monto : (salarioDiario * porcentaje / 100);
-
-        //                    percepcionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-        //                    totalPercepciones += importe;
-        //                }
-        //                readerPercepciones.Close();
-
-        //                // Reemplazar en la plantilla
-        //                paginahtml_texto = paginahtml_texto.Replace("@FILAS_PERCEPCIONES", percepcionesHtml);
-        //                paginahtml_texto = paginahtml_texto.Replace("@TOTAL_PERCEPCIONES", totalPercepciones.ToString("C"));
-
-
-
-        //            }
-
-        //            // Generar el PDF con los datos completados
-        //            if (guardar.ShowDialog() == DialogResult.OK)
-        //            {
-        //                using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-        //                {
-        //                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-        //                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-
-        //                    pdfDoc.Open();
-        //                    pdfDoc.Add(new Phrase(""));
-
-        //                    using (StringReader sr = new StringReader(paginahtml_texto))
-        //                    {
-        //                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-        //                    }
-
-        //                    pdfDoc.Close();
-        //                    stream.Close();
-        //                }
-
-        //                MessageBox.Show("Recibo de nómina generado exitosamente.");
-        //            }
-
-        //        }
-
-        //private void imprimirr(object sender, EventArgs e)
-        //{
-        //    SaveFileDialog guardar = new SaveFileDialog();
-        //    guardar.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-
-        //    // Cargar la plantilla HTML desde los recursos
-        //    string paginahtml_texto = Properties.Resources.plantilla.ToString();
-
-        //    using (SqlConnection cn = new SqlConnection(Conexion))
-        //    {
-        //        cn.Open();
-
-        //        // 1. Datos de la Empresa
-        //        string queryEmpresa = "SELECT Nombre, RazonFiscal, DomicilioFiscal, Telefono, RegistroPatronal, RFC, FechaInOperaciones FROM Empresa";
-        //        SqlCommand cmdEmpresa = new SqlCommand(queryEmpresa, cn);
-        //        SqlDataReader readerEmpresa = cmdEmpresa.ExecuteReader();
-
-        //        if (readerEmpresa.Read())
-        //        {
-        //            paginahtml_texto = paginahtml_texto.Replace("@MES_NOMINA", combo_Mes.Text);
-        //            paginahtml_texto = paginahtml_texto.Replace("@ANO_NOMINA", txt_Ano_RecPEmpleado.Text);
-        //            paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPRESA", readerEmpresa["Nombre"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@RAZON_SOCIAL", readerEmpresa["RazonFiscal"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@DOMICILIO_FISCAL", readerEmpresa["DomicilioFiscal"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@TELEFONO_EMPRESA", readerEmpresa["Telefono"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@REGISTRO_PATRONAL", readerEmpresa["RegistroPatronal"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPRESA", readerEmpresa["RFC"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@FECHA_INICIO_OPERACIONES", Convert.ToDateTime(readerEmpresa["FechaInOperaciones"]).ToString("dd/MM/yyyy"));
-        //        }
-        //        readerEmpresa.Close();
-
-        //        // 2. Datos del Empleado
-        //        int numeroEmpleado = int.Parse(txt_NumEmpleado_RecPEmpleado.Text);
-        //        string queryEmpleado = @"
-        //SELECT e.NombreEmpleado, e.ApelPaternoEmpleado, e.ApelMaternoEmpleado, e.RFC, e.Curp, e.NSS, e.FechaIngresoEmpresa, 
-        //       d.NombreDepartamento, p.NombrePuesto, e.SalarioDiario, e.Banco, e.NumeroCuenta
-        //FROM Empleado e
-        //JOIN Departamento d ON e.id_Departamento = d.id_Departamento
-        //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-        //WHERE e.id_Empleado = @idEmpleado";
-
-        //        SqlCommand cmdEmpleado = new SqlCommand(queryEmpleado, cn);
-        //        cmdEmpleado.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //        SqlDataReader readerEmpleado = cmdEmpleado.ExecuteReader();
-
-        //        decimal salarioDiario = 0;
-        //        if (readerEmpleado.Read())
-        //        {
-        //            paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPLEADO", $"{readerEmpleado["NombreEmpleado"]} {readerEmpleado["ApelPaternoEmpleado"]} {readerEmpleado["ApelMaternoEmpleado"]}");
-        //            paginahtml_texto = paginahtml_texto.Replace("@NUMERO_EMPLEADO", numeroEmpleado.ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPLEADO", readerEmpleado["RFC"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@CURP_EMPLEADO", readerEmpleado["Curp"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@IMSS_EMPLEADO", readerEmpleado["NSS"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@FECHA_INGRESO", Convert.ToDateTime(readerEmpleado["FechaIngresoEmpresa"]).ToString("dd/MM/yyyy"));
-        //            paginahtml_texto = paginahtml_texto.Replace("@DEPARTAMENTO", readerEmpleado["NombreDepartamento"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@PUESTO", readerEmpleado["NombrePuesto"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@BANCO", readerEmpleado["Banco"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@NUMERO_CUENTA", readerEmpleado["NumeroCuenta"].ToString());
-        //            paginahtml_texto = paginahtml_texto.Replace("@SALARIO_DIARIO", Convert.ToDecimal(readerEmpleado["SalarioDiario"]).ToString("C"));
-        //            salarioDiario = Convert.ToDecimal(readerEmpleado["SalarioDiario"]);
-        //        }
-        //        readerEmpleado.Close();
-
-        //        string mes = combo_Mes.Text;
-        //        int ano = int.Parse(txt_Ano_RecPEmpleado.Text);
-
-        //        // Obtener el Sueldo Bruto de la tabla NominaIndividual para el cálculo de porcentajes
-        //        decimal sueldoBruto = 0;
-        //        string queryNomina = @"
-        //SELECT DiasTrabajados, SueldoBruto, ISR, IMSS
-        //FROM NominaIndividual
-        //WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
-
-        //        SqlCommand cmdNomina = new SqlCommand(queryNomina, cn);
-        //        cmdNomina.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //        cmdNomina.Parameters.AddWithValue("@mes", mes);
-        //        cmdNomina.Parameters.AddWithValue("@ano", ano);
-        //        SqlDataReader readerNomina = cmdNomina.ExecuteReader();
-
-        //        int diasTrabajados = 0;
-        //        decimal isr = 0, imss = 0;
-        //        if (readerNomina.Read())
-        //        {
-        //            diasTrabajados = Convert.ToInt32(readerNomina["DiasTrabajados"]);
-        //            sueldoBruto = Convert.ToDecimal(readerNomina["SueldoBruto"]);
-        //            isr = Convert.ToDecimal(readerNomina["ISR"]);
-        //            imss = Convert.ToDecimal(readerNomina["IMSS"]);
-        //        }
-        //        readerNomina.Close();
-
-        //        // Reemplazar los días trabajados en la plantilla
-        //        paginahtml_texto = paginahtml_texto.Replace("@DIAS_TRABAJADOS", diasTrabajados.ToString());
-
-        //        // 3. Calcular Deducciones, incluyendo faltas
-        //        int faltas = ContarFaltasEmpleado(numeroEmpleado, mes, ano);
-        //        decimal deduccionFaltas = faltas * salarioDiario;
-        //        decimal totalDeducciones = deduccionFaltas;
-
-        //        // Agregar deducción por faltas
-        //        string deduccionesHtml = $"<tr><td>Falta</td><td>Faltas</td><td>{deduccionFaltas:C}</td></tr>";
-
-        //        // Agregar otras deducciones
-        //        string queryDeducciones = @"
-        //SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS MontoPD, COALESCE(dp.Porcentaje_PD, 0) AS Porcentaje_PD
-        //FROM DEDPERNOMINA dpn
-        //JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-        //WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Deducción' 
-        //AND dp.Nombre_PD != 'Falta'";
-
-        //        SqlCommand cmdDeducciones = new SqlCommand(queryDeducciones, cn);
-        //        cmdDeducciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //        cmdDeducciones.Parameters.AddWithValue("@mes", mes);
-        //        cmdDeducciones.Parameters.AddWithValue("@ano", ano);
-        //        SqlDataReader readerDeducciones = cmdDeducciones.ExecuteReader();
-
-        //        while (readerDeducciones.Read())
-        //        {
-        //            string clave = readerDeducciones["id_PD"].ToString();
-        //            string concepto = readerDeducciones["Nombre_PD"].ToString();
-        //            decimal monto = Convert.ToDecimal(readerDeducciones["MontoPD"]);
-        //            decimal porcentaje = Convert.ToDecimal(readerDeducciones["Porcentaje_PD"]);
-        //            decimal importe = monto > 0 ? monto : (sueldoBruto * porcentaje / 100);
-
-        //            deduccionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-        //            totalDeducciones += importe;
-        //        }
-        //        readerDeducciones.Close();
-
-        //        // Agregar ISR e IMSS
-        //        totalDeducciones += isr + imss;
-        //        deduccionesHtml += $"<tr><td>ISR</td><td>ISR</td><td>{isr:C}</td></tr>";
-        //        deduccionesHtml += $"<tr><td>IMSS</td><td>IMSS</td><td>{imss:C}</td></tr>";
-
-        //        // Reemplazar en la plantilla
-        //        paginahtml_texto = paginahtml_texto.Replace("@FILAS_DEDUCCIONES", deduccionesHtml);
-        //        paginahtml_texto = paginahtml_texto.Replace("@TOTAL_DEDUCCIONES", totalDeducciones.ToString("C"));
-
-        //        // 4. Calcular Percepciones
-        //        string percepcionesHtml = "";
-        //        decimal totalPercepciones = 0;
-
-        //        string queryPercepciones = @"
-        //SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS MontoPD, COALESCE(dp.Porcentaje_PD, 0) AS Porcentaje_PD
-        //FROM DEDPERNOMINA dpn
-        //JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-        //WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Percepción'";
-
-        //        SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-        //        cmdPercepciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-        //        cmdPercepciones.Parameters.AddWithValue("@mes", mes);
-        //        cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-        //        SqlDataReader readerPercepciones = cmdPercepciones.ExecuteReader();
-
-        //        while (readerPercepciones.Read())
-        //        {
-        //            string clave = readerPercepciones["id_PD"].ToString();
-        //            string concepto = readerPercepciones["Nombre_PD"].ToString();
-        //            decimal monto = Convert.ToDecimal(readerPercepciones["MontoPD"]);
-        //            decimal porcentaje = Convert.ToDecimal(readerPercepciones["Porcentaje_PD"]);
-        //            decimal importe = monto > 0 ? monto : (sueldoBruto * porcentaje / 100);
-
-        //            percepcionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-        //            totalPercepciones += importe;
-        //        }
-        //        readerPercepciones.Close();
-
-        //        // Reemplazar en la plantilla
-        //        paginahtml_texto = paginahtml_texto.Replace("@FILAS_PERCEPCIONES", percepcionesHtml);
-        //        paginahtml_texto = paginahtml_texto.Replace("@TOTAL_PERCEPCIONES", totalPercepciones.ToString("C"));
-
-        //        // Generar el PDF con los datos completados
-        //        if (guardar.ShowDialog() == DialogResult.OK)
-        //        {
-        //            using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-        //            {
-        //                Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-        //                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-
-        //                pdfDoc.Open();
-        //                pdfDoc.Add(new Phrase(""));
-
-        //                using (StringReader sr = new StringReader(paginahtml_texto))
-        //                {
-        //                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-        //                }
-
-        //                pdfDoc.Close();
-        //                stream.Close();
-        //            }
-
-        //            MessageBox.Show("Recibo de nómina generado exitosamente.");
-        //        }
-        //    }
-        //}
         private void imprimirr(object sender, EventArgs e)
         {
             //SaveFileDialog guardar = new SaveFileDialog();
@@ -1319,169 +577,6 @@ WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp
             
             }   
 
-            //SaveFileDialog guardar = new SaveFileDialog();
-            //guardar.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-
-            //// Cargar la plantilla HTML desde los recursos
-            //string paginahtml_texto = Properties.Resources.plantilla.ToString();
-
-
-            //using (SqlConnection cn = new SqlConnection(Conexion))
-            //{
-            //    cn.Open();
-
-            //    // 1. Datos de la Empresa
-            //    string queryEmpresa = "SELECT Nombre, RazonFiscal, DomicilioFiscal, Telefono, RegistroPatronal, RFC, FechaInOperaciones FROM Empresa";
-            //    SqlCommand cmdEmpresa = new SqlCommand(queryEmpresa, cn);
-            //    SqlDataReader readerEmpresa = cmdEmpresa.ExecuteReader();
-
-            //    if (readerEmpresa.Read())
-            //    {
-            //        paginahtml_texto = paginahtml_texto.Replace("@MES_NOMINA", combo_Mes.Text);
-            //        paginahtml_texto = paginahtml_texto.Replace("@ANO_NOMINA", txt_Ano_RecPEmpleado.Text);
-            //        paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPRESA", readerEmpresa["Nombre"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@RAZON_SOCIAL", readerEmpresa["RazonFiscal"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@DOMICILIO_FISCAL", readerEmpresa["DomicilioFiscal"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@TELEFONO_EMPRESA", readerEmpresa["Telefono"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@REGISTRO_PATRONAL", readerEmpresa["RegistroPatronal"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPRESA", readerEmpresa["RFC"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@FECHA_INICIO_OPERACIONES", Convert.ToDateTime(readerEmpresa["FechaInOperaciones"]).ToString("dd/MM/yyyy"));
-            //    }
-            //    readerEmpresa.Close();
-
-            //    // 2. Datos del Empleado
-            //    int numeroEmpleado = int.Parse(txt_NumEmpleado_RecPEmpleado.Text);
-            //    string queryEmpleado = @"
-            //SELECT e.NombreEmpleado, e.ApelPaternoEmpleado, e.ApelMaternoEmpleado, e.RFC, e.Curp, e.NSS, e.FechaIngresoEmpresa, 
-            //       d.NombreDepartamento, p.NombrePuesto, e.SalarioDiario, e.Banco, e.NumeroCuenta
-            //FROM Empleado e
-            //JOIN Departamento d ON e.id_Departamento = d.id_Departamento
-            //JOIN Puestos p ON e.id_Puesto = p.id_Puesto
-            //WHERE e.id_Empleado = @idEmpleado";
-
-            //    SqlCommand cmdEmpleado = new SqlCommand(queryEmpleado, cn);
-            //    cmdEmpleado.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-            //    SqlDataReader readerEmpleado = cmdEmpleado.ExecuteReader();
-
-            //    decimal salarioDiario = 0;
-            //    if (readerEmpleado.Read())
-            //    {
-            //        paginahtml_texto = paginahtml_texto.Replace("@NOMBRE_EMPLEADO", $"{readerEmpleado["NombreEmpleado"]} {readerEmpleado["ApelPaternoEmpleado"]} {readerEmpleado["ApelMaternoEmpleado"]}");
-            //        paginahtml_texto = paginahtml_texto.Replace("@NUMERO_EMPLEADO", numeroEmpleado.ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@RFC_EMPLEADO", readerEmpleado["RFC"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@CURP_EMPLEADO", readerEmpleado["Curp"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@IMSS_EMPLEADO", readerEmpleado["NSS"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@FECHA_INGRESO", Convert.ToDateTime(readerEmpleado["FechaIngresoEmpresa"]).ToString("dd/MM/yyyy"));
-            //        paginahtml_texto = paginahtml_texto.Replace("@DEPARTAMENTO", readerEmpleado["NombreDepartamento"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@PUESTO", readerEmpleado["NombrePuesto"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@BANCO", readerEmpleado["Banco"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@NUMERO_CUENTA", readerEmpleado["NumeroCuenta"].ToString());
-            //        paginahtml_texto = paginahtml_texto.Replace("@SALARIO_DIARIO", Convert.ToDecimal(readerEmpleado["SalarioDiario"]).ToString("C"));
-            //        salarioDiario = Convert.ToDecimal(readerEmpleado["SalarioDiario"]);
-            //    }
-            //    readerEmpleado.Close();
-
-            //    string mes = combo_Mes.Text;
-            //    int ano = int.Parse(txt_Ano_RecPEmpleado.Text);
-
-            //    // 3. Obtener datos de la nómina individual
-            //    decimal sueldoBruto = 0, sueldoNeto = 0, isr = 0, imss = 0, totalDeducciones = 0, totalPercepciones = 0;
-            //    int diasTrabajados = 0;
-
-            //    string queryNomina = @"
-            //SELECT DiasTrabajados, SueldoBruto, SueldoNeto, ISR, IMSS, totalDeducciones, totalPercepciones
-            //FROM NominaIndividual
-            //WHERE idEmpleadoFK = @idEmpleado AND Mes = @mes AND Ano = @ano";
-
-            //    SqlCommand cmdNomina = new SqlCommand(queryNomina, cn);
-            //    cmdNomina.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-            //    cmdNomina.Parameters.AddWithValue("@mes", mes);
-            //    cmdNomina.Parameters.AddWithValue("@ano", ano);
-            //    SqlDataReader readerNomina = cmdNomina.ExecuteReader();
-
-            //    if (readerNomina.Read())
-            //    {
-            //        diasTrabajados = Convert.ToInt32(readerNomina["DiasTrabajados"]);
-            //        sueldoBruto = Convert.ToDecimal(readerNomina["SueldoBruto"]);
-            //        sueldoNeto = Convert.ToDecimal(readerNomina["SueldoNeto"]);
-            //        isr = Convert.ToDecimal(readerNomina["ISR"]);
-            //        imss = Convert.ToDecimal(readerNomina["IMSS"]);
-            //        totalDeducciones = Convert.ToDecimal(readerNomina["totalDeducciones"]);
-            //        totalPercepciones = Convert.ToDecimal(readerNomina["totalPercepciones"]);
-            //    }
-            //    readerNomina.Close();
-
-            //    // Calcular faltas en base a los días trabajados
-            //    int faltas = 30 - diasTrabajados;
-            //    decimal deduccionFaltas = faltas * salarioDiario;
-
-            //    // Reemplazar los valores en la plantilla
-            //    paginahtml_texto = paginahtml_texto.Replace("@DIAS_TRABAJADOS", diasTrabajados.ToString());
-            //    paginahtml_texto = paginahtml_texto.Replace("@TOTAL_NETO", sueldoNeto.ToString("C"));
-            //    paginahtml_texto = paginahtml_texto.Replace("@SUELDO_BRUTO", sueldoBruto.ToString("C"));
-            //    paginahtml_texto = paginahtml_texto.Replace("@TOTAL_DEDUCCIONES", totalDeducciones.ToString("C"));
-            //    paginahtml_texto = paginahtml_texto.Replace("@TOTAL_PERCEPCIONES", totalPercepciones.ToString("C"));
-
-            //    // 4. Generar tabla de deducciones
-            //    string deduccionesHtml = $"<tr><td>Falta</td><td>Faltas</td><td>{deduccionFaltas:C}</td></tr>";
-            //    deduccionesHtml += $"<tr><td>ISR</td><td>ISR</td><td>{isr:C}</td></tr>";
-            //    deduccionesHtml += $"<tr><td>IMSS</td><td>IMSS</td><td>{imss:C}</td></tr>";
-
-            //    // Reemplazar la tabla de deducciones en la plantilla
-            //    paginahtml_texto = paginahtml_texto.Replace("@FILAS_DEDUCCIONES", deduccionesHtml);
-
-            //    // 5. Generar tabla de percepciones
-            //    string percepcionesHtml = "";
-            //    string queryPercepciones = @"
-            //SELECT dp.id_PD, dp.Nombre_PD, COALESCE(dp.MontoPD, 0) AS MontoPD, COALESCE(dp.Porcentaje_PD, 0) AS Porcentaje_PD
-            //FROM DEDPERNOMINA dpn
-            //JOIN DeduccionesPercepciones dp ON dpn.id_PD = dp.id_PD
-            //WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp.D_P = 'Percepción'";
-
-            //    SqlCommand cmdPercepciones = new SqlCommand(queryPercepciones, cn);
-            //    cmdPercepciones.Parameters.AddWithValue("@idEmpleado", numeroEmpleado);
-            //    cmdPercepciones.Parameters.AddWithValue("@mes", mes);
-            //    cmdPercepciones.Parameters.AddWithValue("@ano", ano);
-            //    SqlDataReader readerPercepciones = cmdPercepciones.ExecuteReader();
-
-            //    while (readerPercepciones.Read())
-            //    {
-            //        string clave = readerPercepciones["id_PD"].ToString();
-            //        string concepto = readerPercepciones["Nombre_PD"].ToString();
-            //        decimal monto = Convert.ToDecimal(readerPercepciones["MontoPD"]);
-            //        decimal porcentaje = Convert.ToDecimal(readerPercepciones["Porcentaje_PD"]);
-            //        decimal importe = monto > 0 ? monto : (sueldoBruto * porcentaje / 100);
-
-            //        percepcionesHtml += $"<tr><td>{clave}</td><td>{concepto}</td><td>{importe:C}</td></tr>";
-            //    }
-            //    readerPercepciones.Close();
-
-            //    // Reemplazar la tabla de percepciones en la plantilla
-            //    paginahtml_texto = paginahtml_texto.Replace("@FILAS_PERCEPCIONES", percepcionesHtml);
-
-            //    // Generar el PDF con los datos completados
-            //    if (guardar.ShowDialog() == DialogResult.OK)
-            //    {
-            //        using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
-            //        {
-            //            Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-            //            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-
-            //            pdfDoc.Open();
-            //            pdfDoc.Add(new Phrase(""));
-
-            //            using (StringReader sr = new StringReader(paginahtml_texto))
-            //            {
-            //                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-            //            }
-
-            //            pdfDoc.Close();
-            //            stream.Close();
-            //        }
-
-            //        MessageBox.Show("Recibo de nómina generado exitosamente.");
-            //    }
-            //}
         }
         private (int diasVacaciones, decimal montoVacaciones, decimal primaVacacional) CalcularVacaciones(int idEmpleado, string mes, int ano, decimal salarioDiario)
         {
@@ -1623,5 +718,74 @@ WHERE dpn.id_Empleado = @idEmpleado AND dpn.Mes = @mes AND dpn.Ano = @ano AND dp
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GenerarPDF(DataTable datos)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "PDF (*.pdf)|*.pdf";
+            saveFile.FileName = "NominaEmpleado.pdf";
+
+            if (saveFile.ShowDialog() != DialogResult.OK)
+                return;
+
+            string ruta = saveFile.FileName;
+
+            try
+            {
+                Document doc = new Document(PageSize.A4);
+                PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
+                doc.Open();
+
+                // 🔹 TÍTULO
+                Paragraph titulo = new Paragraph("Recibo de Nómina",
+                    FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 20));
+                titulo.Alignment = Element.ALIGN_CENTER;
+                doc.Add(titulo);
+                doc.Add(new Paragraph("\n"));
+
+                // 🔹 OBTENER DATOS
+                DataRow row = datos.Rows[0];
+
+                PdfPTable tabla = new PdfPTable(2);
+                tabla.WidthPercentage = 100;
+
+                void AddRow(string campo, string valor)
+                {
+                    tabla.AddCell(new Phrase(campo, FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12)));
+                    tabla.AddCell(new Phrase(valor, FontFactory.GetFont(FontFactory.HELVETICA, 12)));
+                }
+
+                // 🔹 DATOS DEL EMPLEADO
+                AddRow("Empleado:", row["Empleado"].ToString());
+                AddRow("RFC:", row["RFC"].ToString());
+                AddRow("CURP:", row["CURP"].ToString());
+                AddRow("NSS:", row["NSS"].ToString());
+                AddRow("Departamento:", row["Departamento"].ToString());
+                AddRow("Puesto:", row["Puesto"].ToString());
+                AddRow("Banco:", row["Banco"].ToString());
+                AddRow("Número de cuenta:", row["NumeroCuenta"].ToString());
+                AddRow("Salario Diario:", "$" + row["SalarioDiario"].ToString());
+
+                // 🔹 DATOS DE NÓMINA
+                AddRow("Periodo:", row["Periodo"].ToString());
+                AddRow("Días trabajados:", row["DiasTrabajados"].ToString());
+                AddRow("Sueldo Bruto:", "$" + row["SueldoBruto"].ToString());
+                AddRow("Sueldo Neto:", "$" + row["SueldoNeto"].ToString());
+
+                doc.Add(tabla);
+                doc.Close();
+
+                MessageBox.Show("PDF generado correctamente", "Éxito");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar PDF: " + ex.Message);
+            }
+        }
+
     }
 }

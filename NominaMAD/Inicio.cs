@@ -33,7 +33,9 @@ namespace NominaMAD
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           // ObtenerPeriodoActual();
+            // ObtenerPeriodoActual();
+            txt_NomUsua_Inicio.Text = "fer";
+            txt_Contra_Inicio.Text = "123";
         }
 
         private void btn_INGRESAR_ACEPTAR_Click(object sender, EventArgs e)

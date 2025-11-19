@@ -112,6 +112,13 @@ namespace NominaMAD
         {
 
         }
+
+        private void P_Menu1_Load(object sender, EventArgs e)
+        {
+            btn_ReporteHeadcounter_MENU1.Enabled = false;
+            btn_ReporteGenNomina_MENU1.Enabled = false;
+        }
+
     }
 
 }
