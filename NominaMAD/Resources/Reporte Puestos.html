@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .position-header {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .employee-header {
+            font-weight: bold;
+            background-color: #dcdcdc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mes y Año en la esquina superior derecha -->
+    <div class="header">
+        Mes: @MES_REPORTE Año: @ANO_REPORTE
+    </div>
+
+    <!-- Título del Reporte -->
+    <div class="title">
+        <h2>Reporte de Puestos</h2>
+    </div>
+
+    <!-- Lista de Puestos y Empleados -->
+    <table class="table">
+        @PUESTOS <!-- Marca de lugar para cada puesto y sus empleados -->
+    </table>
+
+</body>
+</html>

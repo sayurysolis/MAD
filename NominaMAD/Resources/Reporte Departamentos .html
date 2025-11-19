@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            .table th, .table td {
+                border: 1px solid #000;
+                padding: 8px;
+                text-align: left;
+            }
+
+        .department-header {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .employee-header {
+            font-weight: bold;
+            background-color: #dcdcdc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mes y Año en la esquina superior derecha -->
+    <div class="header">
+        Mes: @MES_REPORTE Año: @ANO_REPORTE
+    </div>
+
+    <!-- Título del Reporte -->
+    <div class="title">
+        <h2>Reporte de Departamentos</h2>
+    </div>
+
+    <!-- Lista de Departamentos y Empleados -->
+    <table class="table">
+        @DEPARTAMENTOS <!-- Marca de lugar para cada departamento y sus empleados -->
+    </table>
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .department-table, .employee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            .department-table th, .department-table td, .employee-table th, .employee-table td {
+                border: 1px solid #000;
+                padding: 8px;
+                text-align: left;
+            }
+
+        .department-header {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .employee-header {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>-->
+<!-- Mes y Año en la esquina superior derecha -->
+<!--<div class="header">
+    Mes: @MES_REPORTE Año: @ANO_REPORTE
+</div>-->
+<!-- Título del Reporte -->
+<!--<div class="title">
+    <h2>Reporte de Empleados por Departamento</h2>
+</div>-->
+<!-- Lista de Departamentos y Empleados -->
+<!--@DEPARTAMENTOS--> <!-- Esta es la marca de lugar para los departamentos que será reemplazada en el código -->
+<!--</body>
+</html>-->
+//////
+<!--<!DOCTYPE html>
+<html>
+<body>-->
+<!-- Mes y Año en la esquina superior derecha -->
+<!--<div class="header">
+    <strong>Mes:</strong> @MES_REPORTE <strong>Año:</strong> @ANO_REPORTE
+</div>-->
+<!-- Título del Reporte -->
+<!--<table style="width:100%; margin-bottom: 20px;">
+    <tr>
+        <td align="center"><h2>Reporte de Empleados por Departamento</h2></td>
+    </tr>
+</table>-->
+<!-- Lista de Departamentos y Empleados -->
+<!--@DEPARTAMENTOS--> <!-- Esta es la marca de lugar para los departamentos que será reemplazada en el código -->
+<!--<table border="1" style="width:100%; margin-bottom: 20px;">
+    <tr>
+        <td colspan="2" align="center"><strong>Departamento: @NOMBRE_DEPARTAMENTO</strong></td>
+    </tr>
+    <tr>
+        <td><strong>ID Departamento:</strong> @ID_DEPARTAMENTO</td>
+        <td><strong>Empleados en Departamento:</strong> @TOTAL_EMPLEADOS</td>
+    </tr>
+</table>-->
+<!-- Lista de Empleados en el Departamento -->
+<!--<table border="1" style="width:100%; margin-bottom: 20px;">
+    <tr>
+        <th>ID Empleado</th>
+        <th>Nombre</th>
+        <th>Puesto</th>
+        <th>Fecha de Ingreso</th>
+        <th>Salario Diario</th>
+    </tr>
+    @FILAS_EMPLEADOS-->
+<!-- Marca de lugar para cada empleado en el departamento -->
+<!--</table>
+
+</body>
+</html>-->

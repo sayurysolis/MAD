@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <!-- Mes y Año en la esquina superior derecha -->
+    <table style="width:100%; margin-bottom: 10px;">
+        <tr>
+            <td style="text-align: right;"><strong>Mes:</strong> @MES_NOMINA <strong>Año:</strong> @ANO_NOMINA</td>
+        </tr>
+    </table>
+
+    <!-- Datos de la Empresa -->
+    <table border="1" style="width:100%; margin-bottom: 20px;">
+        <tr>
+            <td colspan="2" align="center"><h2>Recibo de Nómina</h2></td>
+        </tr>
+        <tr>
+            <td><strong>Nombre:</strong> @NOMBRE_EMPRESA</td>
+            <td><strong>Razón Social:</strong> @RAZON_SOCIAL</td>
+        </tr>
+        <tr>
+            <td><strong>Domicilio Fiscal:</strong> @DOMICILIO_FISCAL</td>
+            <td><strong>Teléfono:</strong> @TELEFONO_EMPRESA</td>
+        </tr>
+        <tr>
+            <td><strong>Registro Patronal:</strong> @REGISTRO_PATRONAL</td>
+            <td><strong>RFC:</strong> @RFC_EMPRESA</td>
+        </tr>
+        <tr>
+            <td><strong>Fecha de Inicio de Operaciones:</strong> @FECHA_INICIO_OPERACIONES</td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- Datos del Empleado -->
+    <table border="1" style="width:100%; margin-bottom: 20px;">
+        <tr><td colspan="4" align="center"><strong>Datos del Empleado</strong></td></tr>
+        <tr>
+            <td><strong>Nombre:</strong> @NOMBRE_EMPLEADO</td>
+            <td><strong>Número de Empleado:</strong> @NUMERO_EMPLEADO</td>
+            <td><strong>RFC:</strong> @RFC_EMPLEADO</td>
+            <td><strong>CURP:</strong> @CURP_EMPLEADO</td>
+        </tr>
+        <tr>
+            <td><strong>IMSS:</strong> @IMSS_EMPLEADO</td>
+            <td><strong>Fecha de Ingreso:</strong> @FECHA_INGRESO</td>
+            <td><strong>Departamento:</strong> @DEPARTAMENTO</td>
+            <td><strong>Puesto:</strong> @PUESTO</td>
+        </tr>
+        <tr>
+            <td><strong>Banco:</strong> @BANCO</td>
+            <td><strong>Número de Cuenta:</strong> @NUMERO_CUENTA</td>
+            <td><strong>Días Trabajados:</strong> @DIAS_TRABAJADOS</td>
+            <td><strong>Salario Diario:</strong> @SALARIO_DIARIO</td> <!-- Añadido aquí -->
+        </tr>
+    </table>
+
+
+    <!-- Percepciones y Deducciones -->
+    <table border="1" style="width:100%; margin-bottom: 20px;">
+        <tr>
+            <td>
+                <strong>Percepciones</strong>
+                <table border="1" style="width:100%;">
+                    <tr>
+                        <th>Clave</th>
+                        <th>Concepto</th>
+                        <th>Importe</th>
+                    </tr>
+                    @FILAS_PERCEPCIONES
+                    <tr>
+                        <td colspan="2"><strong>Total Percepciones</strong></td>
+                        <td>@TOTAL_PERCEPCIONES</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <strong>Deducciones</strong>
+                <table border="1" style="width:100%;">
+                    <tr>
+                        <th>Clave</th>
+                        <th>Concepto</th>
+                        <th>Importe</th>
+                    </tr>
+                    @FILAS_DEDUCCIONES
+                    <tr>
+                        <td colspan="2"><strong>Total Deducciones</strong></td>
+                        <td>@TOTAL_DEDUCCIONES</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Total Neto y Sueldo Bruto -->
+    <table border="1" style="width:100%;">
+        <tr>
+            <td align="left"><strong>Sueldo Bruto:</strong> @SUELDO_BRUTO</td>
+            <td align="right"><strong>Total Neto a Pagar:</strong> @TOTAL_NETO</td>
+        </tr>
+    </table>
+
+
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>
+<html>
+<body>-->
+<!-- Mes y Año en la esquina superior derecha -->
+<!--<table style="width:100%; margin-bottom: 10px;">
+    <tr>
+        <td style="text-align: right;"><strong>Mes:</strong> @MES_NOMINA <strong>Año:</strong> @ANO_NOMINA</td>
+    </tr>
+</table>-->
+<!-- Datos de la Empresa -->
+<!--<table border="1" style="width:100%; margin-bottom: 20px;">
+    <tr>
+        <td colspan="2" align="center"><h2>Recibo de Nómina</h2></td>
+    </tr>
+    <tr>
+        <td><strong>Nombre:</strong> @NOMBRE_EMPRESA</td>
+        <td><strong>Razón Social:</strong> @RAZON_SOCIAL</td>
+    </tr>
+    <tr>
+        <td><strong>Domicilio Fiscal:</strong> @DOMICILIO_FISCAL</td>
+        <td><strong>Teléfono:</strong> @TELEFONO_EMPRESA</td>
+    </tr>
+    <tr>
+        <td><strong>Registro Patronal:</strong> @REGISTRO_PATRONAL</td>
+        <td><strong>RFC:</strong> @RFC_EMPRESA</td>
+    </tr>
+    <tr>
+        <td><strong>Fecha de Inicio de Operaciones:</strong> @FECHA_INICIO_OPERACIONES</td>
+        <td></td>
+    </tr>
+</table>-->
+<!-- Datos del Empleado -->
+<!--<table border="1" style="width:100%; margin-bottom: 20px;">
+    <tr><td colspan="4" align="center"><strong>Datos del Empleado</strong></td></tr>
+    <tr>
+        <td><strong>Nombre:</strong> @NOMBRE_EMPLEADO</td>
+        <td><strong>Número de Empleado:</strong> @NUMERO_EMPLEADO</td>
+        <td><strong>RFC:</strong> @RFC_EMPLEADO</td>
+        <td><strong>CURP:</strong> @CURP_EMPLEADO</td>
+    </tr>
+    <tr>
+        <td><strong>IMSS:</strong> @IMSS_EMPLEADO</td>
+        <td><strong>Fecha de Ingreso:</strong> @FECHA_INGRESO</td>
+        <td><strong>Departamento:</strong> @DEPARTAMENTO</td>
+        <td><strong>Puesto:</strong> @PUESTO</td>
+    </tr>
+    <tr>
+        <td><strong>Banco:</strong> @BANCO</td>
+        <td><strong>Número de Cuenta:</strong> @NUMERO_CUENTA</td>
+        <td><strong>Días Trabajados:</strong> @DIAS_TRABAJADOS</td>
+        <td></td>
+    </tr>
+</table>-->
+<!-- Percepciones y Deducciones -->
+<!--<table border="1" style="width:100%; margin-bottom: 20px;">
+    <tr>
+        <td>
+            <strong>Percepciones</strong>
+            <table border="1" style="width:100%;">
+                <tr>
+                    <th>Clave</th>
+                    <th>Concepto</th>
+                    <th>Importe</th>
+                </tr>
+                <tr>
+                    <td>@CLAVE_PERCEPCION1</td>
+                    <td>@CONCEPTO_PERCEPCION1</td>
+                    <td>@IMPORTE_PERCEPCION1</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Total Percepciones</strong></td>
+                    <td>@TOTAL_PERCEPCIONES</td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <strong>Deducciones</strong>
+            <table border="1" style="width:100%;">
+                <tr>
+                    <th>Clave</th>
+                    <th>Concepto</th>
+                    <th>Importe</th>
+                </tr>
+                <tr>
+                    <td>@CLAVE_DEDUCCION1</td>
+                    <td>@CONCEPTO_DEDUCCION1</td>
+                    <td>@IMPORTE_DEDUCCION1</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Total Deducciones</strong></td>
+                    <td>@TOTAL_DEDUCCIONES</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>-->
+<!-- Total Neto -->
+<!--<table border="1" style="width:100%;">
+        <tr>
+            <td align="right"><strong>Total Neto a Pagar:</strong> @TOTAL_NETO</td>
+        </tr>
+    </table>
+
+</body>
+</html>-->
